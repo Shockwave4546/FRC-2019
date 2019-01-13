@@ -3,17 +3,12 @@ For FRC Season 2018-2019
 
 *Deep Space*
 
-Contributors:
-
-Jadon
-
-Dilan
-
-Gabe
-
-Sage
-
-Harrison
+# Contributors:
+- Jadon
+- Dilan
+- Gabe
+- Sage
+- Harrison
 
 # Index of FRC-2019
 - [Main Robot Code]()
