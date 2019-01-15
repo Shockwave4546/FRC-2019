@@ -6,7 +6,7 @@ For FRC Season 2018-2019
 # Contributors:
 - Jadon
 - Dilan
-- Gabe (this time from laptop 10)
+- Gabe (laptop 10)
 - Sage
 - Harrison
 
