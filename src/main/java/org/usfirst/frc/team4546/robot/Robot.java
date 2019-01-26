@@ -80,7 +80,7 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         //analogValue = getVoltage(sUltrasonic1);
-        System.out.println(analogValue);
+        //System.out.println(analogValue);
         // IDK WHAT TO DO HERE
     }
 }
