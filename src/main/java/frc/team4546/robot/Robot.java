@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4546.robot;
+package frc.team4546.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
