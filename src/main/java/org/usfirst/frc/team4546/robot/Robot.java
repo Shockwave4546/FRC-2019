@@ -5,18 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package org.usfirst.frc.team4546.robot;
 
 
 
 
 
-
-import frc.robot.subsystems.vision.Cameras;
+import org.usfirst.frc.team4546.robot.subsystems.vision.Cameras;
 
 
 import edu.wpi.first.wpilibj.DriverStation;
+<<<<<<< HEAD:src/main/java/frc/robot/Robot.java
 
+=======
+import edu.wpi.first.wpilibj.RobotBase;
+>>>>>>> parent of d42566b... File Path Changes:src/main/java/org/usfirst/frc/team4546/robot/Robot.java
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -37,13 +40,14 @@ public class Robot extends TimedRobot {
 
 
 
+
 	private int driverStationNumber = 0;
 
 
 
 	@Override
 	public void robotInit() {
-	
+		
 		driverStationNumber = DriverStation.getInstance().getLocation();
 		Cameras.setup();
 		
@@ -53,7 +57,7 @@ public class Robot extends TimedRobot {
 	public void robotPeriodic() {
 		Scheduler.getInstance().run();
 		Cameras.run();
-		
+	
 	}
 
 	/**
@@ -61,7 +65,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-	
+
 	}
 
 	@Override
@@ -85,7 +89,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		
+	
 	}
 
 	@Override
@@ -108,17 +112,19 @@ public class Robot extends TimedRobot {
 		return driverStationNumber;
 	}
 
-	public enum RobotMode {
-		
+
+	/**
+	 * DO NOT MODIFY
+	 */
+	private Robot() {
+		Robot.instance = this;
 	}
 
 	/**
 	 * DO NOT MODIFY
 	 */
-	public Robot() {
-		Robot.instance = this;
+	public static void main(String... args) {
+		RobotBase.startRobot(Robot::new);
 	}
-
-	
 
 }
