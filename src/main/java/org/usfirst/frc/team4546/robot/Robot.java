@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private PowerDistributionPanel m_PDP;
 
     private static final int kMotor1Port = 13;
@@ -95,6 +96,8 @@ public class Robot extends TimedRobot {
 >>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
 =======
 >>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
+=======
+>>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -156,6 +159,9 @@ public class Robot extends TimedRobot {
         break;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
+=======
 >>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
 =======
 >>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
