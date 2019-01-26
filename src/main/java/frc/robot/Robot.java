@@ -5,20 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team4546.robot;
+package frc.robot;
 
 
 
 
 
-import org.usfirst.frc.team4546.robot.subsystems.vision.Cameras;
+
+import frc.robot.subsystems.vision.Cameras;
 
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.RobotBase;
+//import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,14 +37,13 @@ public class Robot extends TimedRobot {
 
 
 
-
 	private int driverStationNumber = 0;
 
 
 
 	@Override
 	public void robotInit() {
-		
+	
 		driverStationNumber = DriverStation.getInstance().getLocation();
 		Cameras.setup();
 		
@@ -53,7 +53,7 @@ public class Robot extends TimedRobot {
 	public void robotPeriodic() {
 		Scheduler.getInstance().run();
 		Cameras.run();
-	
+		
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+	
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-	
+		
 	}
 
 	@Override
@@ -108,19 +108,17 @@ public class Robot extends TimedRobot {
 		return driverStationNumber;
 	}
 
+	public enum RobotMode {
+		
+	}
 
 	/**
 	 * DO NOT MODIFY
 	 */
-	private Robot() {
+	public Robot() {
 		Robot.instance = this;
 	}
 
-	/**
-	 * DO NOT MODIFY
-	 */
-	public static void main(String... args) {
-		RobotBase.startRobot(Robot::new);
-	}
+	
 
 }
