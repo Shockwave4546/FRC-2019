@@ -15,11 +15,6 @@ import org.usfirst.frc.team4546.robot.subsystems.vision.Cameras;
 
 
 import edu.wpi.first.wpilibj.DriverStation;
-<<<<<<< HEAD:src/main/java/frc/robot/Robot.java
-
-=======
-import edu.wpi.first.wpilibj.RobotBase;
->>>>>>> parent of d42566b... File Path Changes:src/main/java/org/usfirst/frc/team4546/robot/Robot.java
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -36,7 +31,7 @@ public class Robot extends TimedRobot {
 	/**
 	 * DO NOT MODIFY
 	 */
-	public static Robot instance;
+
 
 
 
@@ -113,18 +108,8 @@ public class Robot extends TimedRobot {
 	}
 
 
-	/**
-	 * DO NOT MODIFY
-	 */
-	private Robot() {
-		Robot.instance = this;
-	}
+	
 
-	/**
-	 * DO NOT MODIFY
-	 */
-	public static void main(String... args) {
-		RobotBase.startRobot(Robot::new);
-	}
+
 
 }
