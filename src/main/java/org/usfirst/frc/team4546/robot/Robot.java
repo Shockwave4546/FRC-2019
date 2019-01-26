@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team4546.robot;
 
+
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,85 +21,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private PowerDistributionPanel m_PDP;
-
-    private static final int kMotor1Port = 13;
-    private Talon kMotor1;
-    private double kMotor1Pos = .5;
-    private double kMotor1Neg = -.5;
-
-    private static final int kMotor2Port = 14;
-    private Talon kMotor2;
-    private double kMotor2Pos = .5;
-    private double kMotor2Neg = .5;
-
-    private static final int sUltrasonic1Port = 0;
-    private AnalogInput sUltrasonic1;
-    private double analogValue;
-    
-    public XboxController xbox;
-
-    public Joystick joystick;
-    
-    @Override
-    public void robotInit() {    
-        m_PDP = new PowerDistributionPanel(0);
-        
-        kMotor1 = new Talon(kMotor1Port);
-        kMotor1.setInverted(false);
-        
-        kMotor2 = new Talon(kMotor2Port);
-        kMotor2.setInverted(false);
-        
-        sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
-
-        xbox = new XboxController(0);
-        joystick = new Joystick(1);
-        
-    }
-
-    @Override
-    public void disabledInit(){
-
-    }
-
-    @Override
-    public void disabledPeriodic() {
-        Scheduler.getInstance().run();
-    }
-
-    @Override
-    public void autonomousInit() {
-        
-    }
-
-    @Override
-    public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
-    }
-
-    @Override
-    public void teleopInit() {
-
-    }
-
-    @Override
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-        //analogValue = getVoltage(sUltrasonic1);
-        //System.out.println(analogValue);
-        // IDK WHAT TO DO HERE
-=======
-=======
->>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
-=======
->>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
-=======
->>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -157,16 +80,6 @@ public class Robot extends TimedRobot {
       default:
         // Put default auto code here
         break;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
-=======
->>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
-=======
->>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
-=======
->>>>>>> parent of ae247e9... OK so, basicly, this is ready to code now
     }
   }
 
@@ -182,5 +95,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+
+
+  public static void main(String... args){
+      RobotBase.startRobot(Robot::new);
   }
 }
