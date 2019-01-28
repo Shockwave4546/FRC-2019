@@ -12,7 +12,7 @@ public class Cameras {
     public static void setup() {
         initDrive();
         pixy = new PixyCamera(new SPILink());
-        
+
     }
 
     public static void light(boolean state) {
@@ -21,6 +21,10 @@ public class Cameras {
 
     public static void run() {
         pixy.run();
+    }
+
+    public static PixyCamera getPixyCamera() {
+        return pixy;
     }
 
     public static void initDrive() {
