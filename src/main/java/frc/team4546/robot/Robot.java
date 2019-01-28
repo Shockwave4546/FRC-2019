@@ -17,6 +17,7 @@ import frc.team4546.robot.subsystems.vision.Cameras;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -46,7 +47,9 @@ public class Robot extends TimedRobot {
 		driverStationNumber = DriverStation.getInstance().getLocation();
 		Cameras.setup();
 
-		Cameras.light(false);
+		SmartDashboard.putBoolean("Pixy2 Light", false);
+		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
+		Cameras.light(PixyLightState);
 
 		
 	}
@@ -55,6 +58,9 @@ public class Robot extends TimedRobot {
 	public void robotPeriodic() {
 		Scheduler.getInstance().run();
 		Cameras.run();
+
+		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
+		Cameras.light(PixyLightState);
 	
 	}
 
