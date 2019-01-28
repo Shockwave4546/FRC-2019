@@ -45,6 +45,9 @@ public class Robot extends TimedRobot {
 		
 		driverStationNumber = DriverStation.getInstance().getLocation();
 		Cameras.setup();
+
+		Cameras.light(false);
+
 		
 	}
 

@@ -6,6 +6,7 @@ import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 import io.github.pseudoresonance.pixy2api.links.Link;
+import edu.wpi.first.wpilibj.Timer;
 
 public class PixyCamera {
 
@@ -22,8 +23,18 @@ public class PixyCamera {
 	}
 
 	public void run() {
+		
 		pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
 		ArrayList<Block> blocks = pixy.getCCC().getBlocks();
+	}
+
+	public void light(boolean state) {
+		if (state == true){
+			pixy.setLamp((byte) 1, (byte) 0);
+		}
+		else if (state == false) {
+			pixy.setLamp((byte) 0, (byte) 0);
+		}
 	}
 
 	public Pixy2 getPixy() {
