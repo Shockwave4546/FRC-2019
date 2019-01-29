@@ -29,6 +29,11 @@ public class Robot extends TimedRobot {
     private static final int sUltrasonic1Port = 0;
     private AnalogInput sUltrasonic1;
     private double analogValue;
+    private int bits;
+    private int raw;
+    private double volts;
+    private int averageRaw;
+    private double averageVolts;
     
     public XboxController xbox;
 
@@ -45,6 +50,16 @@ public class Robot extends TimedRobot {
         kMotor2.setInverted(false);
         
         sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
+        
+        /*sUltrasonic1.setOversampleBits(4);
+        bits = sUltrasonic1.getOversampleBits();
+        sUltrasonic1.setAverageBits(2);
+        bits = sUltrasonic1.getAverageBits();*/
+
+        raw = sUltrasonic1.getValue();
+        volts = sUltrasonic1.getVoltage();
+        averageRaw = sUltrasonic1.getAverageValue();
+        averageVolts = sUltrasonic1.getAverageVoltage();
 
         xbox = new XboxController(0);
         joystick = new Joystick(1);
