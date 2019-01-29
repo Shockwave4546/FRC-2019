@@ -2,9 +2,9 @@ package frc.team4546.robot.subsystems.vision;
 
 import java.util.ArrayList;
 
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC;
@@ -27,11 +27,12 @@ public class PixyCamera {
 	}
 	
 	public void run() {
+		//pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
+		//ArrayList<Block> blocks = pixy.getCCC().getBlocks();
 		pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
-		ArrayList<Block> blocks = pixy.getCCC().getBlocks();
-	}
-	public void light(boolean state) {
 		
+	}
+	public void light(boolean state) {		
 		if (state == true && laststate == false) {
 			laststate = true;
 			pixy.setLamp((byte) 1, (byte) 0);

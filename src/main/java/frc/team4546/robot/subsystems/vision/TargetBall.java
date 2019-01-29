@@ -10,6 +10,9 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 public class TargetBall extends Command {
 
+    ArrayList<Block> blocks = Cameras.getPixyCamera().getPixy().getCCC().getBlocks();
+    private static final int blockSignature = 1;
+
     public TargetBall() {
     }
 
@@ -21,14 +24,14 @@ public class TargetBall extends Command {
     protected void execute() {
 
         Block largestBlock = null;
-        ArrayList<Block> blocks = Cameras.getPixyCamera().getPixy().getCCC().getBlocks();
-        
         for(Block block : blocks) {
-            if(largestBlock == null) {
-                largestBlock = block;
-            } else if(block.getWidth() > largestBlock.getWidth()) {
-                largestBlock = block;
-            }
+            if(block.getSignature() == blockSignature){
+                if(largestBlock == null) {
+                    largestBlock = block;
+                } else if(block.getWidth() > largestBlock.getWidth()) {
+                    largestBlock = block;
+                }
+            } 
         }
         Dashboard.getInstance().putNumber(false, "Ball X", largestBlock.getX());
         Dashboard.getInstance().putNumber(false, "Ball Y", largestBlock.getY());
