@@ -13,6 +13,7 @@ public class TargetBall extends Command {
     ArrayList<Block> blocks = Cameras.getPixyCamera().getPixy().getCCC().getBlocks();
     private static final int blockSignature = 1;
 
+    
     public TargetBall() {
     }
 
