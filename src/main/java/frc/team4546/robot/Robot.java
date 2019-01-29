@@ -55,12 +55,13 @@ public class Robot extends TimedRobot {
 	}
 
 	@Override
-	public void robotPeriodic() {
+	public void robotPeriodic() { 
 		Scheduler.getInstance().run();
 		Cameras.run();
 
 		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
 		Cameras.light(PixyLightState);
+
 	
 	}
 
