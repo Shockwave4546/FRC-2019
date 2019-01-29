@@ -31,9 +31,10 @@ public class PixyCamera {
 		//ArrayList<Block> blocks = pixy.getCCC().getBlocks();
 		pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
 		
+		
 	}
 	public void light(boolean state) {		
-		if (state == true && laststate == false) {
+		if ((state == true ) && (laststate == false)) {
 			laststate = true;
 			pixy.setLamp((byte) 1, (byte) 0);
 		} else if (state == false  && laststate == true) {

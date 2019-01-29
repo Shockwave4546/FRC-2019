@@ -21,6 +21,7 @@ public class Cameras {
 
     public static void run() {
         pixy.run();
+        TargetBall.run();
     }
 
     public static PixyCamera getPixyCamera() {
