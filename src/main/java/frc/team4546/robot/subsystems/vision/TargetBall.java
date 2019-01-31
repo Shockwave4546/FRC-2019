@@ -2,14 +2,13 @@ package frc.team4546.robot.subsystems.vision;
 
 import java.util.ArrayList;
 import edu.wpi.first.wpilibj.command.Command;
-//import frc.team4546.robot.Dashboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team4546.robot.Dashboard;
 
 import frc.team4546.robot.subsystems.vision.Cameras;
 //import io.github.pseudoresonance.pixy2api.Pixy2CCC;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
-public class TargetBall {
+public class TargetBall extends Command {
 
    private static ArrayList<Block> blocks = Cameras.getPixyCamera().getPixy().getCCC().getBlocks();
     private static final int blockSignature = 1;
@@ -18,9 +17,12 @@ public class TargetBall {
     public TargetBall() {
     }
 
+    @Override
+    protected void initialize() {
+    }
 
-    
-    public static void run() {
+    @Override
+    protected void execute() {
 
         Block largestBlock = null;
         for(Block block : blocks) {
@@ -38,6 +40,14 @@ public class TargetBall {
         Dashboard.getInstance().putNumber(false, "Ball Box Height", largestBlock.getHeight());
     }
 
+    @Override
+    protected boolean isFinished() {
+        return false;
+    }
 
+    @Override
+    protected void end() {
+        
+    }
 
 }
