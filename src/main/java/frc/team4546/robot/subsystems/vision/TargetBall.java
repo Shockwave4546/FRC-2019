@@ -10,10 +10,10 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 public class TargetBall extends Command {
 
-    ArrayList<Block> blocks = Cameras.getPixyCamera().getPixy().getCCC().getBlocks();
+   private static ArrayList<Block> blocks = Cameras.getPixyCamera().getPixy().getCCC().getBlocks();
     private static final int blockSignature = 1;
 
-    
+
     public TargetBall() {
     }
 
@@ -36,6 +36,8 @@ public class TargetBall extends Command {
         }
         Dashboard.getInstance().putNumber(false, "Ball X", largestBlock.getX());
         Dashboard.getInstance().putNumber(false, "Ball Y", largestBlock.getY());
+        Dashboard.getInstance().putNumber(false, "Ball Box Width", largestBlock.getWidth());
+        Dashboard.getInstance().putNumber(false, "Ball Box Height", largestBlock.getHeight());
     }
 
     @Override
