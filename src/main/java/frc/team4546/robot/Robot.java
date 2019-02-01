@@ -75,16 +75,6 @@ public class Robot extends TimedRobot {
         kMotor2.setInverted(false);
         
         sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
-        
-        /*sUltrasonic1.setOversampleBits(4);
-        bits = sUltrasonic1.getOversampleBits();
-        sUltrasonic1.setAverageBits(2);
-        bits = sUltrasonic1.getAverageBits();*/
-
-        raw = sUltrasonic1.getValue();
-        volts = sUltrasonic1.getVoltage();
-        averageRaw = sUltrasonic1.getAverageValue();
-        averageVolts = sUltrasonic1.getAverageVoltage();
 
         xbox = new XboxController(0);
         joystick = new Joystick(1);
@@ -118,8 +108,11 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
-        analogValue = averageVolts;
+		raw = sUltrasonic1.getValue();
+        volts = sUltrasonic1.getVoltage();
+        averageRaw = sUltrasonic1.getAverageValue();
+        averageVolts = sUltrasonic1.getAverageVoltage();
+        analogValue = raw;
         System.out.println(analogValue);
 	}
 
