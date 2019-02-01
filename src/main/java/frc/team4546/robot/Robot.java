@@ -38,18 +38,7 @@ public class Robot extends TimedRobot {
 
 
 	private int driverStationNumber = 0;
-	private PowerDistributionPanel m_PDP;
-
-    private static final int kMotor1Port = 13;
-    private Talon kMotor1;
-    private double kMotor1Pos = .5;
-    private double kMotor1Neg = -.5;
-
-    private static final int kMotor2Port = 14;
-    private Talon kMotor2;
-    private double kMotor2Pos = .5;
-    private double kMotor2Neg = -.5;
-
+	
     private static final int sUltrasonic1Port = 0;
     private AnalogInput sUltrasonic1;
     private double analogValue;
@@ -58,26 +47,12 @@ public class Robot extends TimedRobot {
     private double volts;
     private int averageRaw;
     private double averageVolts;
-    
-    public XboxController xbox;
 
-    public Joystick joystick;
 
 
 	@Override
 	public void robotInit() {
-		m_PDP = new PowerDistributionPanel(0);
-        
-        kMotor1 = new Talon(kMotor1Port);
-        kMotor1.setInverted(false);
-        
-        kMotor2 = new Talon(kMotor2Port);
-        kMotor2.setInverted(false);
-        
         sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
-
-        xbox = new XboxController(0);
-        joystick = new Joystick(1);
         
     }
 
