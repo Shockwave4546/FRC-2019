@@ -21,7 +21,6 @@ public class Cameras {
 
     public static void run() {
         pixy.run();
-        TargetBall.run();
     }
 
     public static PixyCamera getPixyCamera() {
@@ -31,13 +30,13 @@ public class Cameras {
     public static void initDrive() {
         drive = CameraServer.getInstance().startAutomaticCapture();
         if (drive != null) {
-			//drive.setVideoMode(PixelFormat.kBGR, 320, 240, 30);
-			drive.setResolution(320, 240);
+            // drive.setVideoMode(PixelFormat.kBGR, 320, 240, 30);
+            drive.setResolution(320, 240);
             drive.setFPS(30);
             drive.setWhiteBalanceManual(5000);
-			drive.setBrightness(50);
+            drive.setBrightness(50);
             drive.setExposureManual(50);
-		}
+        }
     }
 
 }
