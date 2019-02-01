@@ -7,7 +7,7 @@ package frc.team4546.robot.subsystems.vision;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import io.github.pseudoresonance.pixy2api.Pixy2;
-//import io.github.pseudoresonance.pixy2api.Pixy2CCC;
+import io.github.pseudoresonance.pixy2api.Pixy2CCC;
 //import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 import io.github.pseudoresonance.pixy2api.links.Link;
 
@@ -32,7 +32,9 @@ public class PixyCamera {
 		final int pixystatus = pixy.init(PixyResult); // Checks for Pixy2 Error (If issue, Robot is Not Effected)
 		if (pixystatus == 0) {
 
-			TargetBall.run(); // Track Orange Ball Code Run
+			final int count = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
+
+			TargetBall.run(count); // Track Orange Ball Code Run
 
 		}
 

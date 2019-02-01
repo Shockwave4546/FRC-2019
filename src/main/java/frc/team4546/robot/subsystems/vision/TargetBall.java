@@ -13,25 +13,28 @@ public class TargetBall {
     private static ArrayList<Block> blocks = Cameras.getPixyCamera().getPixy().getCCC().getBlocks();
     private static final int blockSignature = 1;
 
-    public static void run() {
-        Block largestBlock = null;
-        // Checks for Biggest Block that is of the Orange Color Signature
-        for (Block block : blocks) {
-            if (block.getSignature() == blockSignature) {
-                if (largestBlock == null) {
-                    largestBlock = block;
-                } else if (block.getWidth() > largestBlock.getWidth()) {
-                    largestBlock = block;
+    public static void run(int count) {
+        if (count > 0) {
+            Block largestBlock = null;
+            // Checks for Biggest Block that is of the Orange Color Signature
+            for (Block block : blocks) {
+                if (block.getSignature() == blockSignature) {
+                    if (largestBlock == null) {
+                        largestBlock = block;
+                    } else if (block.getWidth() > largestBlock.getWidth()) {
+                        largestBlock = block;
+                    }
                 }
             }
-        }
-        // Information about the Big Orange Block is sent to NetworkTables for
-        // Shuffleboard
+            // Information about the Big Orange Block is sent to NetworkTables for
+            // Shuffleboard
 
-        Dashboard.getInstance().putNumber(false, "Ball X", largestBlock.getX());
-        Dashboard.getInstance().putNumber(false, "Ball Y", largestBlock.getY());
-        Dashboard.getInstance().putNumber(false, "Ball Box Width", largestBlock.getWidth());
-        Dashboard.getInstance().putNumber(false, "Ball Box Height", largestBlock.getHeight());
+            Dashboard.getInstance().putNumber(false, "Ball X", largestBlock.getX());
+            Dashboard.getInstance().putNumber(false, "Ball Y", largestBlock.getY());
+            Dashboard.getInstance().putNumber(false, "Ball Box Width", largestBlock.getWidth());
+            Dashboard.getInstance().putNumber(false, "Ball Box Height", largestBlock.getHeight());
+        }
+
     }
 
 }
