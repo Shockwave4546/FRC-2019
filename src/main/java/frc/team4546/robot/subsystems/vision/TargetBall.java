@@ -26,9 +26,13 @@ public class TargetBall {
                     }
                 }
             }
+
+            int ballX = largestBlock.getX();
+            double yaw = ((ballX - 157.5) * 0.1904761905);
+
             // Information about the Big Orange Block is sent to NetworkTables for
             // Shuffleboard
-
+            Dashboard.getInstance().putNumber(false, "Ball Angle", yaw);
             Dashboard.getInstance().putNumber(false, "Ball X", largestBlock.getX());
             Dashboard.getInstance().putNumber(false, "Ball Y", largestBlock.getY());
             Dashboard.getInstance().putNumber(false, "Ball Box Width", largestBlock.getWidth());
