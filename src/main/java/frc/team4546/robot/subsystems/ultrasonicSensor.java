@@ -30,7 +30,7 @@ public class ultrasonicSensor {
         volts = sUltrasonic1.getVoltage();
         averageRaw = sUltrasonic1.getAverageValue();
         averageVolts = sUltrasonic1.getAverageVoltage();
-        analogValue = averageRaw * 5;
+        analogValue = averageRaw;
 
         // shift average window
         for(int i = 0; i < (voltageInputWindowLength - 1); i++){
