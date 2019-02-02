@@ -10,6 +10,9 @@ package frc.team4546.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 
 
 
@@ -32,16 +35,38 @@ public class Robot extends TimedRobot {
 
 	private int driverStationNumber = 0;
 	// Drivebase motors
-	private static final int kLeftMotorPort = 0;
+	private static final int kMotorPort0 = 0;
 	private PWM kLeftMotor;
+	private double kLeftMotorPos = .5;
+	private double kLeftMotorNeg = -.5;
 
-	private static final int kRightMotorPort = 1;
+	private static final int kMotorPort1 = 1;
 	private PWM kRightMotor;
+	private double kRightMotorPos = .5;
+	private double kRightMotorNeg = -.5;
+	
+	private static final int cXboxPort = 0;
+	private XboxController cXbox;
+	private double yAxisLeft;
+	private double xAxisLeft;
+	private double yAxisRight;
+	private double xAxisRight;
 
+	private static final int cJoystickPort = 1;
+	private Joystick cJoystick;
+	private double yAxis;
+	private double xAxis;
+	private double zAxis;
+	private double slider;
 
 	@Override
 	public void robotInit() {
-        
+		kLeftMotor = new PWM(kMotorPort0);
+
+		kRightMotor = new PWM(kMotorPort1);
+
+		cXbox = new XboxController(cXboxPort);
+		cJoystick = new Joystic(cJoystickPort):
     }
 
 	@Override
