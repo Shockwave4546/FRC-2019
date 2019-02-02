@@ -76,19 +76,19 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		//int bits;
 		//sUltrasonic1.setOversampleBits(10);
-		//bits = sUltrasonic1.getOversampleBits();
 		//sUltrasonic1.setAverageBits(10);
-		//bits = sUltrasonic1.getAverageBits();
 		AnalogInput.setGlobalSampleRate(62500);
 		raw = sUltrasonic1.getValue();
         volts = sUltrasonic1.getVoltage();
         averageRaw = sUltrasonic1.getAverageValue();
         averageVolts = sUltrasonic1.getAverageVoltage();
-		analogValue = averageRaw * 5;
-		
-        System.out.println(analogValue);
+		analogValue = raw * 5;
+		System.out.println(analogValue);
+		//System.out.println("Value:"+raw * 5);
+		//System.out.println("Voltage:"+volts * 5);
+		//System.out.println("AvgValue:"+averageRaw * 5);
+		//System.out.println("AvgVoltage:"+averageVolts * 5);
 	}
 
 	/**
