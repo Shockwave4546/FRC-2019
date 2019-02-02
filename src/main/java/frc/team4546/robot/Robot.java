@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
 		kRightMotor = new PWM(kMotorPort1);
 
 		cXbox = new XboxController(cXboxPort);
-		cJoystick = new Joystic(cJoystickPort);
+		cJoystick = new Joystick(cJoystickPort);
     }
 
 	@Override
