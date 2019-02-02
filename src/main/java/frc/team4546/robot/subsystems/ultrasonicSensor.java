@@ -5,12 +5,14 @@ public class ultrasonicSensor {
     private static final int sUltrasonic1Port = 0;
     private AnalogInput sUltrasonic1;
     private double analogValue;
-    //private int raw;
+    private double raw;
     //private double volts;
-    private int averageRaw;
+    //private double averageRaw;
     //private double averageVolts;
     private final int voltageInputWindowLength;
     private double[] voltageInputWindow;
+    private double conversion;
+    private boolean toInches = true;
 
     public ultrasonicSensor(){
         sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
@@ -26,11 +28,17 @@ public class ultrasonicSensor {
 
     public double getRange(){
 		AnalogInput.setGlobalSampleRate(62500);
-		//raw = sUltrasonic1.getValue();
+		raw = sUltrasonic1.getValue();
         //volts = sUltrasonic1.getVoltage();
-        averageRaw = sUltrasonic1.getAverageValue();
+        //averageRaw = sUltrasonic1.getAverageValue();
         //averageVolts = sUltrasonic1.getAverageVoltage();
-        analogValue = averageRaw;
+        conversion = 0.0393700787;
+        if(toInches == true){
+            analogValue = raw * conversion;
+        }else{
+            analogValue = raw;
+        }
+        
 
         // shift average window
         for(int i = 0; i < (voltageInputWindowLength - 1); i++){
