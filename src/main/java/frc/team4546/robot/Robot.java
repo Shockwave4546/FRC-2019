@@ -8,13 +8,8 @@
 package frc.team4546.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.PWM;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
-
-
+import frc.team4546.robot.subsystems.OIXbox;
+import frc.team4546.robot.subsystems.OIJoystick;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,39 +29,13 @@ public class Robot extends TimedRobot {
 
 
 	private int driverStationNumber = 0;
-	// Drivebase motors
-	private static final int kMotorPort0 = 0;
-	private PWM kLeftMotor;
-	private double kLeftMotorPos = .5;
-	private double kLeftMotorNeg = -.5;
 
-	private static final int kMotorPort1 = 1;
-	private PWM kRightMotor;
-	private double kRightMotorPos = .5;
-	private double kRightMotorNeg = -.5;
+	private OIXbox cXbox1 = new OIXbox();
+	private OIJoystick cJoystick = new OIJoystick();
 	
-	private static final int cXboxPort = 0;
-	private XboxController cXbox;
-	private double yAxisLeft;
-	private double xAxisLeft;
-	private double yAxisRight;
-	private double xAxisRight;
-
-	private static final int cJoystickPort = 1;
-	private Joystick cJoystick;
-	private double yAxis;
-	private double xAxis;
-	private double zAxis;
-	private double slider;
-
 	@Override
 	public void robotInit() {
-		kLeftMotor = new PWM(kMotorPort0);
 
-		kRightMotor = new PWM(kMotorPort1);
-
-		cXbox = new XboxController(cXboxPort);
-		cJoystick = new Joystick(cJoystickPort);
     }
 
 	@Override
