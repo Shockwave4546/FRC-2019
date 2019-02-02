@@ -8,6 +8,9 @@
 package frc.team4546.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.PWM;
+
 
 
 /**
@@ -28,7 +31,12 @@ public class Robot extends TimedRobot {
 
 
 	private int driverStationNumber = 0;
+	// Drivebase motors
+	private static final int kLeftMotorPort = 0;
+	private PWM kLeftMotor;
 
+	private static final int kRightMotorPort = 1;
+	private PWM kRightMotor;
 
 
 	@Override
