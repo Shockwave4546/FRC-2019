@@ -8,8 +8,7 @@
 package frc.team4546.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.Ultrasonic;
+import frc.team4546.robot.subsystems.ultrasonicSensor;
 
 
 /**
@@ -31,21 +30,13 @@ public class Robot extends TimedRobot {
 
 	private int driverStationNumber = 0;
 	
-    private static final int sUltrasonic1Port = 0;
-    private AnalogInput sUltrasonic1;
-	private double analogValue;
-	
-    private int bits;
-    private int raw;
-    private double volts;
-    private int averageRaw;
-    private double averageVolts;
+    private ultrasonicSensor sUltrasonic1 = new ultrasonicSensor();
 
 
 
 	@Override
 	public void robotInit() {
-        sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
+        
         
     }
 
@@ -76,19 +67,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		//sUltrasonic1.setOversampleBits(10);
-		//sUltrasonic1.setAverageBits(10);
-		AnalogInput.setGlobalSampleRate(62500);
-		raw = sUltrasonic1.getValue();
-        volts = sUltrasonic1.getVoltage();
-        averageRaw = sUltrasonic1.getAverageValue();
-        averageVolts = sUltrasonic1.getAverageVoltage();
-		analogValue = raw * 5;
-		System.out.println(analogValue);
-		//System.out.println("Value:"+raw * 5);
-		//System.out.println("Voltage:"+volts * 5);
-		//System.out.println("AvgValue:"+averageRaw * 5);
-		//System.out.println("AvgVoltage:"+averageVolts * 5);
+		System.out.println(sUltrasonic1.getRange());
 	}
 
 	/**
