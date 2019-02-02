@@ -9,6 +9,7 @@ package frc.team4546.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 
 /**
@@ -32,7 +33,8 @@ public class Robot extends TimedRobot {
 	
     private static final int sUltrasonic1Port = 0;
     private AnalogInput sUltrasonic1;
-    private double analogValue;
+	private double analogValue;
+	
     private int bits;
     private int raw;
     private double volts;
@@ -75,15 +77,17 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		//int bits;
-		sUltrasonic1.setOversampleBits(16);
+		//sUltrasonic1.setOversampleBits(10);
 		//bits = sUltrasonic1.getOversampleBits();
-		sUltrasonic1.setAverageBits(8);
+		//sUltrasonic1.setAverageBits(10);
 		//bits = sUltrasonic1.getAverageBits();
+		AnalogInput.setGlobalSampleRate(62500);
 		raw = sUltrasonic1.getValue();
         volts = sUltrasonic1.getVoltage();
         averageRaw = sUltrasonic1.getAverageValue();
         averageVolts = sUltrasonic1.getAverageVoltage();
-        analogValue = raw * 5;
+		analogValue = averageRaw * 5;
+		
         System.out.println(analogValue);
 	}
 
