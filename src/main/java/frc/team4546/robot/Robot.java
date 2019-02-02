@@ -4,6 +4,7 @@ import frc.team4546.robot.subsystems.ColorSensor;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 
+import frc.team4546.robot.Dashboard;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -46,10 +47,10 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     // Cameras.run(); // Runs Pixy2 and Microsoft Camera
     colorsensor.read();
-    System.out.println(colorsensor.getRed());
-    System.out.println(colorsensor.getGreen());
-    System.out.println(colorsensor.getBlue());
-    System.out.println(colorsensor.getProx());
+    Dashboard.getInstance().putNumber(false, "Red Value", colorsensor.getRed());
+    Dashboard.getInstance().putNumber(false, "Green Value", colorsensor.getGreen());
+    Dashboard.getInstance().putNumber(false, "Blue Value", colorsensor.getBlue());
+    Dashboard.getInstance().putNumber(false, "Prox Value", colorsensor.getProx());
     // boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
     // Cameras.light(PixyLightState); // Sends Current state of Toggle Button to
     // Pixy2
