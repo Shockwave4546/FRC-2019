@@ -32,10 +32,8 @@ public class Cameras {
         if (drive != null) {
             // drive.setVideoMode(PixelFormat.kBGR, 320, 240, 30);
             drive.setResolution(320, 240);
-            drive.setFPS(30);
-            drive.setWhiteBalanceManual(5000);
-            drive.setBrightness(50);
-            drive.setExposureManual(50);
+            drive.setFPS(60);
+            
         }
     }
 
