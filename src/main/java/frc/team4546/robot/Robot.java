@@ -8,7 +8,6 @@
 package frc.team4546.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.team4546.robot.subsystems.ultrasonicSensor;
 
 
 /**
@@ -30,7 +29,6 @@ public class Robot extends TimedRobot {
 
 	private int driverStationNumber = 0;
 	
-    private ultrasonicSensor sUltrasonic1 = new ultrasonicSensor();
 
 
 
@@ -67,7 +65,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		System.out.println(sUltrasonic1.getRange() + " " + sUltrasonic1.getRange() * 20 + " " + sUltrasonic1.getRangeVoltage());
 
 	}
 
