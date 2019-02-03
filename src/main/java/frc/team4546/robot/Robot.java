@@ -29,8 +29,8 @@ public class Robot extends TimedRobot {
 
 
 	private int driverStationNumber = 0;
-	private limitSwitch sLimitSwitch1 = new limitSwitch(0);
-
+	private limitSwitch sLimitSwitch1 = new limitSwitch(0, false);
+	private limitSwitch sLimitSwitch2 = new limitSwitch(1, true);
 
 	@Override
 	public void robotInit() {
@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		System.out.println(sLimitSwitch1.getValue());
+		System.out.println(sLimitSwitch2.getValue());
 	}
 
 	/**
