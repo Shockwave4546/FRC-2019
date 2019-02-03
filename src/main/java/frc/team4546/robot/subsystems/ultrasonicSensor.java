@@ -12,18 +12,33 @@ public class ultrasonicSensor {
     private final int voltageInputWindowLength;
     private double[] voltageInputWindow;
     private double conversion;
-    private boolean toInches = true;
+    private boolean toInches;
 
     public ultrasonicSensor(){
         sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
         voltageInputWindowLength = 5;
         voltageInputWindow = new double[voltageInputWindowLength];
+        toInches = false;
     }
     
     public ultrasonicSensor(final int averageWindowSize){
         sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
         voltageInputWindowLength = averageWindowSize;
         voltageInputWindow = new double[voltageInputWindowLength];
+    }
+
+    public ultrasonicSensor(final boolean convert){
+        sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
+        voltageInputWindowLength = 5;
+        voltageInputWindow = new double[voltageInputWindowLength];
+        toInches = convert;
+    }
+
+    public ultrasonicSensor(final int averageWindowSize, final boolean convert){
+        sUltrasonic1 = new AnalogInput(sUltrasonic1Port);
+        voltageInputWindowLength = averageWindowSize;
+        voltageInputWindow = new double[voltageInputWindowLength];
+        toInches = convert;
     }
 
     public double getRange(){
