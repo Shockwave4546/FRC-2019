@@ -8,6 +8,7 @@
 package frc.team4546.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.team4546.robot.subsystems.limitSwitch;
 
 
 /**
@@ -28,13 +29,11 @@ public class Robot extends TimedRobot {
 
 
 	private int driverStationNumber = 0;
-	
-
+	private limitSwitch sLimitSwitch1 = new limitSwitch(0);
 
 
 	@Override
 	public void robotInit() {
-        
         
     }
 
@@ -65,7 +64,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-
+		System.out.println(sLimitSwitch1.getValue());
 	}
 
 	/**
