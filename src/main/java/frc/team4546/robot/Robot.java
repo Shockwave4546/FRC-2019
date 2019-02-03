@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
 
 
 	private int driverStationNumber = 0;
-	private limitSwitch sLimitSwitch1 = new limitSwitch(0, false);
+	private limitSwitch sLimitSwitch1 = new limitSwitch(0);
 	private limitSwitch sLimitSwitch2 = new limitSwitch(1, true);
 
 	@Override
