@@ -67,7 +67,8 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		System.out.println(sUltrasonic1.getRange());
+		System.out.println(sUltrasonic1.getRange() + " " + sUltrasonic1.getRange() * 20 + " " + sUltrasonic1.getRangeVoltage());
+
 	}
 
 	/**
