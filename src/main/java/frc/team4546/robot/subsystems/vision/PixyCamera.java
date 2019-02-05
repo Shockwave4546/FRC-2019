@@ -1,10 +1,6 @@
 package frc.team4546.robot.subsystems.vision;
 
-//import java.util.ArrayList;
 
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC;
