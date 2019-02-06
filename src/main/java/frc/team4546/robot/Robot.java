@@ -7,7 +7,7 @@
 
 package frc.team4546.robot;
 
-import frc.team4546.robot.subsystems.vision.Cameras;
+//import frc.team4546.robot.subsystems.vision.Cameras;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -38,21 +38,21 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 
 		driverStationNumber = DriverStation.getInstance().getLocation();
-		Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
+		//Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
 
 		SmartDashboard.putBoolean("Pixy2 Light", false); // Addition of Pixy2 Lamp Toggle
 		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
-		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
+		//Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
 
 	}
 
 	@Override
 	public void robotPeriodic() {
-		Scheduler.getInstance().run();
-		Cameras.run(); // Runs Pixy2 and Microsoft Camera
+		//Scheduler.getInstance().run();
+		//Cameras.run(); // Runs Pixy2 and Microsoft Camera
 
 		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
-		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
+		//Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
 
 	}
 
