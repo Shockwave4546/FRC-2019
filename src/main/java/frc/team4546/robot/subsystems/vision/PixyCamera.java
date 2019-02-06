@@ -32,6 +32,11 @@ public class PixyCamera {
 
 			TargetBall.run(count); // Track Orange Ball Code Run
 
+
+			final int countt = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG3, 25);
+
+			TargetHatch.run(countt); // Track Orange Ball Code Run
+
 		}
 
 		// pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
