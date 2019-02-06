@@ -1,10 +1,6 @@
 package frc.team4546.robot.subsystems.vision;
 
-//import java.util.ArrayList;
 
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC;
@@ -35,6 +31,11 @@ public class PixyCamera {
 			final int count = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
 
 			TargetBall.run(count); // Track Orange Ball Code Run
+
+
+			final int countt = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG3, 25);
+
+			TargetHatch.run(countt); // Track Orange Ball Code Run
 
 		}
 

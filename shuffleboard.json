@@ -10,10 +10,10 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "10,0": {
+          "4,4": {
             "size": [
               2,
-              4
+              3
             ],
             "content": {
               "_type": "Toggle Button",
@@ -23,8 +23,8 @@
           },
           "0,0": {
             "size": [
-              1,
-              1
+              3,
+              2
             ],
             "content": {
               "_type": "Text View",
@@ -32,10 +32,10 @@
               "_title": "Ball X"
             }
           },
-          "1,0": {
+          "3,0": {
             "size": [
-              1,
-              1
+              3,
+              2
             ],
             "content": {
               "_type": "Text View",
@@ -43,10 +43,10 @@
               "_title": "Ball Y"
             }
           },
-          "2,0": {
+          "6,4": {
             "size": [
-              1,
-              1
+              2,
+              3
             ],
             "content": {
               "_type": "Text View",
@@ -54,10 +54,10 @@
               "_title": "Ball Box Width"
             }
           },
-          "3,0": {
+          "8,4": {
             "size": [
-              1,
-              1
+              2,
+              3
             ],
             "content": {
               "_type": "Text View",
@@ -65,9 +65,9 @@
               "_title": "Ball Box Height"
             }
           },
-          "5,0": {
+          "6,0": {
             "size": [
-              3,
+              2,
               2
             ],
             "content": {
@@ -76,7 +76,7 @@
               "_title": "/SmartDashboard/Ball Box Height"
             }
           },
-          "5,2": {
+          "4,2": {
             "size": [
               3,
               2
@@ -98,9 +98,9 @@
               "_title": "/SmartDashboard/Ball X"
             }
           },
-          "8,2": {
+          "7,2": {
             "size": [
-              2,
+              3,
               2
             ],
             "content": {
@@ -109,10 +109,10 @@
               "_title": "/SmartDashboard/Ball Y"
             }
           },
-          "1,2": {
+          "0,2": {
             "size": [
-              3,
-              3
+              4,
+              5
             ],
             "content": {
               "_type": "Simple Dial",
@@ -121,6 +121,69 @@
               "Range/Min": -30.0,
               "Range/Max": 30.0,
               "Visuals/Show value": true
+            }
+          },
+          "10,0": {
+            "size": [
+              6,
+              7
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://USB Camera 0",
+              "_title": "USB Camera 0",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": -1,
+              "imageWidth": 0,
+              "imageHeight": 0
+            }
+          },
+          "16,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Prox Value",
+              "_title": "Prox Value"
+            }
+          },
+          "16,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Red Value",
+              "_title": "Red Value"
+            }
+          },
+          "16,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Blue Value",
+              "_title": "Blue Value"
+            }
+          },
+          "16,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Green Value",
+              "_title": "Green Value"
             }
           }
         }
@@ -145,6 +208,34 @@
               "_type": "Subsystem Layout",
               "_source0": "network_table:///LiveWindow/Ungrouped",
               "_title": "Ungrouped",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[0,0]/Value",
+                  "_title": "/LiveWindow/Ungrouped/Solenoid[0,0]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[0,1]/Value",
+                  "_title": "/LiveWindow/Ungrouped/Solenoid[0,1]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                }
+              ]
+            }
+          },
+          "4,0": {
+            "size": [
+              4,
+              7
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/Pneumatics",
+              "_title": "Pneumatics",
               "Layout/Label position": "BOTTOM",
               "_children": []
             }

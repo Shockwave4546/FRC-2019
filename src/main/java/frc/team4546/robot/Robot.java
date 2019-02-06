@@ -12,7 +12,11 @@ import frc.team4546.robot.subsystems.vision.Cameras;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+
+import frc.team4546.robot.subsystems.limitSwitch;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,9 +32,14 @@ public class Robot extends TimedRobot {
 	 */
 
 	private int driverStationNumber = 0;
+	private limitSwitch sLimitSwitch1 = new limitSwitch(0);
+	private limitSwitch sLimitSwitch2 = new limitSwitch(1, true);
+
+
 
 	@Override
 	public void robotInit() {
+
 
 		driverStationNumber = DriverStation.getInstance().getLocation();
 		Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
@@ -42,6 +51,7 @@ public class Robot extends TimedRobot {
 	}
 
 	@Override
+
 	public void robotPeriodic() {
 		Scheduler.getInstance().run();
 		Cameras.run(); // Runs Pixy2 and Microsoft Camera
@@ -73,6 +83,9 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
+
+		System.out.println(sLimitSwitch2.getValue());
+
 	}
 
 	/**
