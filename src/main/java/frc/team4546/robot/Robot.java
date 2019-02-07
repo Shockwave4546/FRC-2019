@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
 	@Override
 
 	public void robotPeriodic() {
-		Scheduler.getInstance().run();
+		//Scheduler.getInstance().run();
 		Cameras.run(); // Runs Pixy2 and Microsoft Camera
 
 		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
