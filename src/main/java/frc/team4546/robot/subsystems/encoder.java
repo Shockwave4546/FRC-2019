@@ -7,15 +7,6 @@ public class encoder{
     private double dist;
     private double diameter;
 
-    private int count;
-    private double raw;
-    private double distance;
-    private double period;
-    private double rate;
-    private boolean direct; // True == up  ||  False == down
-    private String direction;
-    private boolean stopped;
-
     public encoder(final int port1, final int port2, final double diam){
         sEncoder = new Encoder(port1, port2, false, Encoder.EncodingType.k4X);
         sEncoder.reset();
@@ -23,32 +14,39 @@ public class encoder{
     }
 
     public int getCount(){
-        count = sEncoder.get();
+        int count = sEncoder.get();
         return count;
     }
     public double getRaw(){
-        raw = sEncoder.getRaw();
+        double raw = sEncoder.getRaw();
         return raw;
     }
     public double getDistance(){
-        distance = sEncoder.getDistance();
+        double distance = sEncoder.getDistance();
         return distance;
     }
+    public double getPeriod(){
+        double period = sEncoder.getPeriod();
+        return period;
+    }
     public double getRate(){
-        rate = sEncoder.getRate();
+        double rate = sEncoder.getRate();
         return rate;
     }
     public String getDirection(){
-        direct = sEncoder.getDirection();
+        boolean direct = sEncoder.getDirection();
+        String direction;
         if(direct == true){
             direction = "up";
         }else if(direct == false){
             direction = "down";
+        }else{
+            direction = "unknown";
         }
         return direction;
     }
-    public Boolean isStopped(){
-        stopped = sEncoder.getStopped();
+    public boolean isStopped(){
+        boolean stopped = sEncoder.getStopped();
         return stopped;
     }
 }
