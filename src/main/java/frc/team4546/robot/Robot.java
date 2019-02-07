@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 import frc.team4546.robot.subsystems.limitSwitch;
+import frc.team4546.robot.subsystems.encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
 	private int driverStationNumber = 0;
 	private limitSwitch sLimitSwitch1 = new limitSwitch(0);
 	private limitSwitch sLimitSwitch2 = new limitSwitch(1, true);
+	private encoder sEncoder1 = new encoder(0,1,1);
 
 
 
