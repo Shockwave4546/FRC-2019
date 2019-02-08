@@ -36,7 +36,10 @@ public class encoder{
     public String getDirection(){
         boolean direct = sEncoder.getDirection();
         String direction;
-        if(direct == true){
+        boolean stopped = sEncoder.getStopped();
+        if(stopped == true){
+            direction = "stopped";
+        }else if(direct == true){
             direction = "up";
         }else if(direct == false){
             direction = "down";
@@ -44,9 +47,5 @@ public class encoder{
             direction = "unknown";
         }
         return direction;
-    }
-    public boolean isStopped(){
-        boolean stopped = sEncoder.getStopped();
-        return stopped;
     }
 }

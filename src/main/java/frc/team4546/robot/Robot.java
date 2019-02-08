@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
 	private int driverStationNumber = 0;
 	private limitSwitch sLimitSwitch1 = new limitSwitch(0);
 	private limitSwitch sLimitSwitch2 = new limitSwitch(1, true);
-	private encoder sEncoder1 = new encoder(0,1,1);
+	private encoder sEncoder1 = new encoder(2,3,1);
 
 
 
@@ -42,12 +42,12 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 
 
-		driverStationNumber = DriverStation.getInstance().getLocation();
+		/*driverStationNumber = DriverStation.getInstance().getLocation();
 		Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
 
 		SmartDashboard.putBoolean("Pixy2 Light", false); // Addition of Pixy2 Lamp Toggle
 		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
-		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
+		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2*/
 
 	}
 
@@ -55,10 +55,10 @@ public class Robot extends TimedRobot {
 
 	public void robotPeriodic() {
 		//Scheduler.getInstance().run();
-		Cameras.run(); // Runs Pixy2 and Microsoft Camera
+		/*Cameras.run(); // Runs Pixy2 and Microsoft Camera
 
 		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
-		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
+		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2*/
 
 	}
 
@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 
-		System.out.println(sLimitSwitch2.getValue());
+		System.out.println(sEncoder1.getDirection());
 
 	}
 
