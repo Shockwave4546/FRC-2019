@@ -9,6 +9,7 @@ package frc.team4546.robot;
 
 //import frc.team4546.robot.subsystems.vision.Cameras;
 import frc.team4546.robot.Dashboard;
+import frc.team4546.robot.subsystems.talonMotor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -32,7 +33,8 @@ public class Robot extends TimedRobot {
 	public double negzangle = 360;
 
 	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
-
+	private talonMotor kTalonLeft = new talonMotor(14,.2,.2);
+	private talonMotor kTalonRight = new talonMotor(13,.2,.2);
 	@Override
 	public void robotInit() {
 		imu.calibrate();
@@ -107,7 +109,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-
+		//kTalonLeft.rotateClockwise(1);
 	}
 
 	/**
