@@ -7,16 +7,13 @@
 
 package frc.team4546.robot;
 
-import frc.team4546.robot.subsystems.vision.Cameras;
-
+//import frc.team4546.robot.subsystems.vision.Cameras;
+import frc.team4546.robot.Dashboard;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team4546.robot.subsystems.limitSwitch;
-import frc.team4546.robot.subsystems.IMU;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-
+import com.analog.adis16448.frc.ADIS16448_IMU;
+import java.lang.Math;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,21 +29,22 @@ public class Robot extends TimedRobot {
 	 */
 
 	private int driverStationNumber = 0;
-	private limitSwitch sLimitSwitch1 = new limitSwitch(0);
-	private limitSwitch sLimitSwitch2 = new limitSwitch(1, true);
+	public double negzangle = 360;
 
-
+	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
 
 	@Override
 	public void robotInit() {
-
+		imu.calibrate();
 
 		driverStationNumber = DriverStation.getInstance().getLocation();
-		Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
+		// Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
 
-		SmartDashboard.putBoolean("Pixy2 Light", false); // Addition of Pixy2 Lamp Toggle
-		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
-		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
+		// SmartDashboard.putBoolean("Pixy2 Light", false); // Addition of Pixy2 Lamp
+		// Toggle
+		// boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
+		// Cameras.light(PixyLightState); // Sends Current state of Toggle Button to
+		// Pixy2
 
 	}
 
@@ -54,13 +52,36 @@ public class Robot extends TimedRobot {
 
 	public void robotPeriodic() {
 		Scheduler.getInstance().run();
-		Cameras.run(); // Runs Pixy2 and Microsoft Camera
+		// Cameras.run(); // Runs Pixy2 and Microsoft Camera
+		if ((imu.getAngleZ() > 360)||(negzangle <= 0)) {
+			imu.reset();
+		} 
+		if (imu.getAngleZ() < 0) {
+			negzangle = imu.getAngleZ();
+			negzangle = (Math.abs(negzangle + 360));
+			Dashboard.getInstance().putNumber(false, "Gyro-Z", negzangle);
+		} else {
+			Dashboard.getInstance().putNumber(false, "Gyro-Z", imu.getAngleZ());
+		}
 
-		IMU.run();
+		Dashboard.getInstance().putNumber(false, "Gyro-X", imu.getAngleX());
+		Dashboard.getInstance().putNumber(false, "Gyro-Y", imu.getAngleY());
+		
 
-		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
-		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
+		Dashboard.getInstance().putNumber(false, "Accel-X", imu.getAccelX());
+		Dashboard.getInstance().putNumber(false, "Accel-Y", imu.getAccelY());
+		Dashboard.getInstance().putNumber(false, "Accel-Z", imu.getAccelZ());
 
+		Dashboard.getInstance().putNumber(false, "Pitch", imu.getPitch());
+		Dashboard.getInstance().putNumber(false, "Roll", imu.getRoll());
+		Dashboard.getInstance().putNumber(false, "Yaw", imu.getYaw());
+
+		Dashboard.getInstance().putNumber(false, "Pressure: ", imu.getBarometricPressure());
+		Dashboard.getInstance().putNumber(false, "Temperature: ", imu.getTemperature());
+
+		// boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
+		// Cameras.light(PixyLightState); // Sends Current state of Toggle Button to
+		// Pixy2
 
 	}
 
@@ -86,8 +107,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-
-		System.out.println(sLimitSwitch2.getValue());
 
 	}
 
