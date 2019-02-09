@@ -1,8 +1,8 @@
-package frc.team4546.robot.subsystems;
-import frc.team4546.robot.subsystems.motor;
+package frc.team4546.robot.subsystems.motors;
+import frc.team4546.robot.subsystems.motors.Motor;
 import edu.wpi.first.wpilibj.VictorSP;
 
-public class victorMotor extends motor{
+public class victorMotor extends Motor{
     private VictorSP kMotor;
     public victorMotor(final int port, final double pos, final double neg){
         super(port, pos, neg);

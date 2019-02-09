@@ -12,9 +12,10 @@ import frc.team4546.robot.subsystems.vision.Cameras;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.team4546.robot.subsystems.limitSwitch;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team4546.robot.subsystems.motors.talonMotor;
 
 
 
@@ -32,8 +33,8 @@ public class Robot extends TimedRobot {
 	 */
 
 	private int driverStationNumber = 0;
-	private limitSwitch sLimitSwitch1 = new limitSwitch(0);
-	private limitSwitch sLimitSwitch2 = new limitSwitch(1, true);
+	private talonMotor kLeftDrive = new talonMotor(12,.2,.2);
+	private talonMotor kRightDrive = new talonMotor(15,.2,.2);
 
 
 
@@ -41,23 +42,11 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 
 
-		driverStationNumber = DriverStation.getInstance().getLocation();
-		Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
-
-		SmartDashboard.putBoolean("Pixy2 Light", false); // Addition of Pixy2 Lamp Toggle
-		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
-		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
-
 	}
 
 	@Override
 
 	public void robotPeriodic() {
-		Scheduler.getInstance().run();
-		Cameras.run(); // Runs Pixy2 and Microsoft Camera
-
-		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
-		Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
 
 	}
 
@@ -84,7 +73,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 
-		System.out.println(sLimitSwitch2.getValue());
 
 	}
 

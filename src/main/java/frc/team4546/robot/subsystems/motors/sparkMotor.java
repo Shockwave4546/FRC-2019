@@ -1,8 +1,8 @@
-package frc.team4546.robot.subsystems;
-import frc.team4546.robot.subsystems.motor;
+package frc.team4546.robot.subsystems.motors;
+import frc.team4546.robot.subsystems.motors.Motor;
 import edu.wpi.first.wpilibj.Spark;;
 
-public class sparkMotor extends motor{
+public class sparkMotor extends Motor{
     private Spark kMotor;
     public sparkMotor(final int port, final double pos, final double neg){
         super(port, pos, neg);

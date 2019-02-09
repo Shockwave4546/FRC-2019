@@ -1,10 +1,10 @@
-package frc.team4546.robot.subsystems;
+package frc.team4546.robot.subsystems.motors;
 
-public abstract class motor{
+public abstract class Motor{
     protected int mPort;
     protected double mPos;
     protected double mNeg;
-    public motor(final int port, final double pos, final double neg){
+    public Motor(final int port, final double pos, final double neg){
         mPort = port;
         mPos = pos;
         mNeg = neg;
