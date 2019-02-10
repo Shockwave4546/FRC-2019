@@ -12,5 +12,6 @@ public abstract class Motor{
 
     public abstract void rotateClockwise(final double rotate);
     public abstract void rotateCounterClockwise(final double rotate);
+    public abstract void stopMotor();
     
 }

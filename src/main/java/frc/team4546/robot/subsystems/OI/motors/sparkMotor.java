@@ -14,4 +14,7 @@ public class sparkMotor extends Motor{
     public void rotateCounterClockwise(final double rotate){
         kMotor.set(rotate * -mNeg);
     }
+    public void stopMotor(){
+        kMotor.set(0);
+    }
 }
