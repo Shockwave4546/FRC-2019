@@ -7,8 +7,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import frc.team4546.robot.Dashboard;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 
 import edu.wpi.first.wpilibj.DriverStation;
 
@@ -20,9 +18,6 @@ public class Robot extends TimedRobot {
 
   public ColorSensor colorsensor;
 
-  public XboxController xbox;
-
-  public Joystick joystick;
 
   @Override
   public void robotInit() {
@@ -37,8 +32,7 @@ public class Robot extends TimedRobot {
 
     colorsensor = new ColorSensor(I2C.Port.kOnboard);
 
-    xbox = new XboxController(0);
-    joystick = new Joystick(1);
+
 
   }
 
