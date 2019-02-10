@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.team4546.robot.subsystems.limitSwitch;
-import frc.team4546.robot.subsystems.motors.talonMotor;
 
 
 
@@ -33,8 +32,7 @@ public class Robot extends TimedRobot {
 	 */
 
 	private int driverStationNumber = 0;
-	private talonMotor kLeftDrive = new talonMotor(12,.2,.2);
-	private talonMotor kRightDrive = new talonMotor(15,.2,.2);
+	
 
 
 

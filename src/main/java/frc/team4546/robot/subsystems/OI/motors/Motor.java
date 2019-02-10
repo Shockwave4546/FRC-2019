@@ -1,4 +1,4 @@
-package frc.team4546.robot.subsystems.motors;
+package frc.team4546.robot.subsystems.OI.motors;
 
 public abstract class Motor{
     protected int mPort;
