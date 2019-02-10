@@ -1,6 +1,6 @@
 package frc.team4546.robot.subsystems.OI.motors;
 import frc.team4546.robot.subsystems.OI.motors.Motor;
-import edu.wpi.first.wpilibj.Spark;;
+import edu.wpi.first.wpilibj.Spark;
 
 public class sparkMotor extends Motor{
     private Spark kMotor;
