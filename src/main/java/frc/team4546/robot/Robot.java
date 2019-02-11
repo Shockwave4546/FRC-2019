@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
 
 	private int driverStationNumber = 0;
 	
-
+	public static OI oi;
 
 
 	@Override
