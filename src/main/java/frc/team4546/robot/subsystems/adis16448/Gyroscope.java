@@ -15,9 +15,9 @@ public class Gyroscope {
 
     public double getAngle() {
         double angle = gyro.getAngleZ();
-        while (angle < 0) {
+        /*while (angle < 0) {
 
-        }
+        }*/
 
         angle %= 360;
 
