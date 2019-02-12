@@ -13,13 +13,17 @@ public class driveBase{
     public double cDriveRightY;
     public double cDriveRightX;
     public driveBase(){
-        kLeftDrive = new talonMotor(6,.2,.2);
-        kRightDrive = new talonMotor(7,.2,.2);
+        //kLeftDrive = new talonMotor(6,.2,.2);
+        //kRightDrive = new talonMotor(7,.2,.2);
         cDriveXbox = new shockwaveXbox(1);
     }
-    public void drive(){
+    public double drive(){
         cDriveLeftY = cDriveXbox.getLeftY();
-        kLeftDrive.rotateClockwise(cDriveLeftY);
-        kRightDrive.rotateCounterClockwise(cDriveLeftY);
+        cDriveLeftX = cDriveXbox.getLeftX();
+        cDriveRightY = cDriveXbox.getRightY();
+        cDriveRightX = cDriveXbox.getRightX();
+        //kLeftDrive.rotateClockwise(cDriveLeftY);
+        //kRightDrive.rotateCounterClockwise(cDriveLeftY);
+        return cDriveRightY;
     }
 }

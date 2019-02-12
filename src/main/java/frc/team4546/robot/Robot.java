@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.team4546.robot.subsystems.limitSwitch;
+import frc.team4546.robot.subsystems.OI.driveBase;
+import frc.team4546.robot.subsystems.OI.shockwaveXbox;
 
 
 
@@ -32,7 +34,7 @@ public class Robot extends TimedRobot {
 	 */
 
 	private int driverStationNumber = 0;
-	
+	private driveBase dRobot = new driveBase();
 
 
 
@@ -70,7 +72,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-
+		System.out.println(dRobot.drive());
 
 	}
 
