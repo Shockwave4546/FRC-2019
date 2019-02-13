@@ -19,6 +19,9 @@ import frc.team4546.robot.subsystems.OI.motors.talonMotor;
 import frc.team4546.robot.subsystems.adis16448.Gyroscope;
 import java.lang.Math;
 
+import frc.team4546.robot.commands.TogglePixy2LampCommand;
+import frc.team4546.robot.subsystems.vision.Pixy2USBJNI;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
