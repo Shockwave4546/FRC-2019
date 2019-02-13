@@ -13,11 +13,10 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import com.analog.adis16448.frc.ADIS16448_IMU;
-import frc.team4546.robot.subsystems.limitSwitch;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4546.robot.subsystems.OI.motors.talonMotor;
-import frc.team4546.robot.subsystems.adis16448.Gyroscope;
-import java.lang.Math;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,9 +32,9 @@ public class Robot extends TimedRobot {
 	 */
 
 	private int driverStationNumber = 0;
-	public double negzangle = 360;
-	public double currentZAngle = 360;
-	public double targetZAngle = 360;
+	public static double negzangle = 360;
+	public static double currentZAngle = 360;
+	public static double targetZAngle = 360;
 
 	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
 	public talonMotor kLeftDrive = new talonMotor(0, .2, .2);
@@ -43,6 +42,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
+		imu.reset();
 		imu.calibrate();
 		Dashboard.getInstance().putNumber(false, "Target-Z", 0.00);
 
@@ -61,20 +61,20 @@ public class Robot extends TimedRobot {
 
 	public void robotPeriodic() {
 		Scheduler.getInstance().run();
+		
+		//Dashboard.getInstance().putNumber(false, "Gyro-X", imu.getAngleX());
+		//Dashboard.getInstance().putNumber(false, "Gyro-Y", imu.getAngleY());
 
-		Dashboard.getInstance().putNumber(false, "Gyro-X", imu.getAngleX());
-		Dashboard.getInstance().putNumber(false, "Gyro-Y", imu.getAngleY());
+		//Dashboard.getInstance().putNumber(false, "Accel-X", imu.getAccelX());
+		//Dashboard.getInstance().putNumber(false, "Accel-Y", imu.getAccelY());
+		//Dashboard.getInstance().putNumber(false, "Accel-Z", imu.getAccelZ());
 
-		Dashboard.getInstance().putNumber(false, "Accel-X", imu.getAccelX());
-		Dashboard.getInstance().putNumber(false, "Accel-Y", imu.getAccelY());
-		Dashboard.getInstance().putNumber(false, "Accel-Z", imu.getAccelZ());
+		//Dashboard.getInstance().putNumber(false, "Pitch", imu.getPitch());
+		//Dashboard.getInstance().putNumber(false, "Roll", imu.getRoll());
+		//Dashboard.getInstance().putNumber(false, "Yaw", imu.getYaw());
 
-		Dashboard.getInstance().putNumber(false, "Pitch", imu.getPitch());
-		Dashboard.getInstance().putNumber(false, "Roll", imu.getRoll());
-		Dashboard.getInstance().putNumber(false, "Yaw", imu.getYaw());
-
-		Dashboard.getInstance().putNumber(false, "Pressure: ", imu.getBarometricPressure());
-		Dashboard.getInstance().putNumber(false, "Temperature: ", imu.getTemperature());
+		//Dashboard.getInstance().putNumber(false, "Pressure: ", imu.getBarometricPressure());
+		//Dashboard.getInstance().putNumber(false, "Temperature: ", imu.getTemperature());
 
 		// boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
 		// Cameras.light(PixyLightState); // Sends Current state of Toggle Button to
@@ -99,41 +99,27 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopInit() {
-		imu.reset();
+
 	}
 
 	@Override
 	public void teleopPeriodic() {
 		// Cameras.run(); // Runs Pixy2 and Microsoft Camera
-		if ((imu.getAngleZ() > 360) || (negzangle <= 0)) {
-			imu.reset();
-		}
+		double angle = imu.getAngleZ();
+        angle %= 360;
 
-		if (imu.getAngleZ() < 0) {
-			negzangle = imu.getAngleZ();
-			negzangle = (Math.abs(negzangle + 360));
-			Dashboard.getInstance().putNumber(false, "Gyro-Z", negzangle);
-		} else if ((imu.getAngleZ() <= 360) && (imu.getAngleZ() >= 0)) {
-			Dashboard.getInstance().putNumber(false, "Gyro-Z", imu.getAngleZ());
-		}
+		Dashboard.getInstance().putNumber(false, "Gyro-Z", angle);
+		
 
-		// Robot Movement Testing w/ GYRO
-		/*----------------------------------------------------------------------------*/
-		currentZAngle = SmartDashboard.getNumber("Gyro-Z", 500);
 		targetZAngle = SmartDashboard.getNumber("Target-Z", 500);
-		if (currentZAngle != 500) {
+		currentZAngle = SmartDashboard.getNumber("Gyro-Z", 500);
 
-			if (currentZAngle >= 360) {
-				imu.reset();
-			}
-			//if ((targetZAngle >= 10)||(targetZAngle <= 350)) {
-
-			} else if (targetZAngle > currentZAngle + 10) {
-				kLeftDrive.rotateClockwise(1);
-				kRightDrive.rotateClockwise(1);
-			} else if (targetZAngle < currentZAngle - 10) {
-				kLeftDrive.rotateCounterClockwise(1);
-				kRightDrive.rotateCounterClockwise(1);
+			if (targetZAngle > currentZAngle + 2) {
+				kLeftDrive.rotateClockwise(1.5);
+				kRightDrive.rotateClockwise(1.75);
+			} else if (targetZAngle < currentZAngle - 2) {
+				kLeftDrive.rotateCounterClockwise(1.5);
+				kRightDrive.rotateCounterClockwise(1.75);
 			} else {
 				kLeftDrive.rotateClockwise(0);
 				kRightDrive.rotateClockwise(0);
@@ -141,20 +127,7 @@ public class Robot extends TimedRobot {
 				kRightDrive.rotateCounterClockwise(0);
 			}
 
-			if ((Math.abs(targetZAngle - currentZAngle) > (Math.abs(targetZAngle + currentZAngle)))) {
-				System.out.println("Turn Left");
-				// kLeftDrive.rotateClockwise(1);
-				// kRightDrive.rotateClockwise(1);
-			} else if ((Math.abs(targetZAngle - currentZAngle) < (Math.abs(targetZAngle + currentZAngle)))) {
-				System.out.println("Turn Right");
-				// kLeftDrive.rotateCounterClockwise(1);
-				// kRightDrive.rotateCounterClockwise(1);
-			} else {
-				// kLeftDrive.rotateClockwise(0);
-				// kRightDrive.rotateClockwise(0);
-				// kLeftDrive.rotateCounterClockwise(0);
-				// kRightDrive.rotateCounterClockwise(0);
-			}
+			
 		}
 		/*----------------------------------------------------------------------------*/
 	//}
