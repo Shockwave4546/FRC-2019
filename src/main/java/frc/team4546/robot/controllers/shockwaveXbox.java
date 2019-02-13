@@ -1,11 +1,11 @@
-package frc.team4546.robot.subsystems.OI;
+package frc.team4546.robot.controllers;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 public class shockwaveXbox{
     private XboxController cXbox;
-    private double deafaultDeadzone = .2;
+    private double defaultDeadzone = .2;
     private double LeftY;
     private double deadzoneLeftY;
     private double LeftX;
@@ -14,12 +14,14 @@ public class shockwaveXbox{
     private double deadzoneRightY;
     private double RightX;
     private double deadzoneRightX;
+
+
     public shockwaveXbox(final int port){
         cXbox = new XboxController(port);
-        deadzoneLeftY = deafaultDeadzone;
-        deadzoneLeftX = deafaultDeadzone;
-        deadzoneRightY = deafaultDeadzone;
-        deadzoneRightX = deafaultDeadzone;
+        deadzoneLeftY = defaultDeadzone;
+        deadzoneLeftX = defaultDeadzone;
+        deadzoneRightY = defaultDeadzone;
+        deadzoneRightX = defaultDeadzone;
     }
     public shockwaveXbox(final int port, final double dead1, final double dead2, final double dead3, final double dead4){
         cXbox = new XboxController(port);
@@ -60,4 +62,5 @@ public class shockwaveXbox{
             return RightX;
         }
     }
+
 }

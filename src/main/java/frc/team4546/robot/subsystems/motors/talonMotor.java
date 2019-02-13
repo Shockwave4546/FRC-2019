@@ -1,5 +1,5 @@
-package frc.team4546.robot.subsystems.OI.motors;
-import frc.team4546.robot.subsystems.OI.motors.Motor;
+package frc.team4546.robot.subsystems.motors;
+import frc.team4546.robot.subsystems.motors.Motor;
 import edu.wpi.first.wpilibj.Talon;
 
 public class talonMotor extends Motor{

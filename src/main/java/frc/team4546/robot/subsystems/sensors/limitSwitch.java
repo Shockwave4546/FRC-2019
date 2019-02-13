@@ -1,4 +1,4 @@
-package frc.team4546.robot.subsystems;
+package frc.team4546.robot.subsystems.sensors;
 import edu.wpi.first.wpilibj.DigitalInput;
 /*
     when declaring a limit switch the first parameter is the port number.

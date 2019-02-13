@@ -1,8 +1,8 @@
-package frc.team4546.robot.subsystems.OI;
+package frc.team4546.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.team4546.robot.subsystems.OI.motors.*;
-import frc.team4546.robot.subsystems.OI.shockwaveXbox;
+import frc.team4546.robot.subsystems.motors.*;
+import frc.team4546.robot.controllers.shockwaveXbox;
 
 public class driveBase{
     private talonMotor kLeftDrive;

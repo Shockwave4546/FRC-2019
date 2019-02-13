@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.team4546.robot.subsystems.limitSwitch;
-import frc.team4546.robot.subsystems.OI.driveBase;
-import frc.team4546.robot.subsystems.OI.shockwaveXbox;
+import frc.team4546.robot.subsystems.sensors.limitSwitch;
+import frc.team4546.robot.commands.driveBase;
+import frc.team4546.robot.controllers.shockwaveXbox;
 
 
 
