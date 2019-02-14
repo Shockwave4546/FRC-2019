@@ -8,12 +8,19 @@ package frc.team4546.robot;
  */
 public class RobotMap {
     // Joystick Ports //
-    public static final int XboxDriver = 0;
-    public static final int XboxCoDriver = 1;
+        public static final int XboxDriver = 0;
+        public static final int XboxCoDriver = 1;
 
 
     // PWM Channels //
         // public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
+        public static final int LeftDrivePort = 0;
+        public static final int RightDrivePort = 1;
+        public static final int LeftIntakePort = 2;
+        public static final int RightIntakePort = 3;
+        public static final int LinearSlidePort = 4;
+        public static final int IntakePivotPort = 5;
+
 
     // CAN IDs //
         // public static final int PCMone = 0;
