@@ -7,7 +7,7 @@
 
 package frc.team4546.robot;
 
-//import frc.team4546.robot.subsystems.vision.Cameras;
+import frc.team4546.robot.subsystems.vision.Cameras;
 import frc.team4546.robot.Dashboard;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -30,7 +30,7 @@ import frc.team4546.robot.subsystems.vision.Pixy2USBJNI;
  * project.
  */
 public class Robot extends TimedRobot {
-
+	public static final Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
 	/**
 	 * DO NOT MODIFY
 	 */
@@ -50,7 +50,12 @@ public class Robot extends TimedRobot {
 		Dashboard.getInstance().putNumber(false, "Target-Z", 0.00);
 
 		driverStationNumber = DriverStation.getInstance().getLocation();
-		// Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
+
+		Thread pixy2USBThread = new Thread(pixy2USBJNI);
+		pixy2USBThread.setDaemon(true);
+		pixy2USBThread.start();
+
+		Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
 
 		// SmartDashboard.putBoolean("Pixy2 Light", false); // Addition of Pixy2 Lamp
 		// Toggle
@@ -107,60 +112,11 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		// Cameras.run(); // Runs Pixy2 and Microsoft Camera
-		if ((imu.getAngleZ() > 360) || (negzangle <= 0)) {
-			imu.reset();
-		}
+		Cameras.run(); // Runs Pixy2 and Microsoft Camera
 
-		if (imu.getAngleZ() < 0) {
-			negzangle = imu.getAngleZ();
-			negzangle = (Math.abs(negzangle + 360));
-			Dashboard.getInstance().putNumber(false, "Gyro-Z", negzangle);
-		} else if ((imu.getAngleZ() <= 360) && (imu.getAngleZ() >= 0)) {
-			Dashboard.getInstance().putNumber(false, "Gyro-Z", imu.getAngleZ());
-		}
-
-		// Robot Movement Testing w/ GYRO
-		/*----------------------------------------------------------------------------*/
-		currentZAngle = SmartDashboard.getNumber("Gyro-Z", 500);
-		targetZAngle = SmartDashboard.getNumber("Target-Z", 500);
-		if (currentZAngle != 500) {
-
-			if (currentZAngle >= 360) {
-				imu.reset();
-			}
-			//if ((targetZAngle >= 10)||(targetZAngle <= 350)) {
-
-			} else if (targetZAngle > currentZAngle + 10) {
-				kLeftDrive.rotateClockwise(1);
-				kRightDrive.rotateClockwise(1);
-			} else if (targetZAngle < currentZAngle - 10) {
-				kLeftDrive.rotateCounterClockwise(1);
-				kRightDrive.rotateCounterClockwise(1);
-			} else {
-				kLeftDrive.rotateClockwise(0);
-				kRightDrive.rotateClockwise(0);
-				kLeftDrive.rotateCounterClockwise(0);
-				kRightDrive.rotateCounterClockwise(0);
-			}
-
-			if ((Math.abs(targetZAngle - currentZAngle) > (Math.abs(targetZAngle + currentZAngle)))) {
-				System.out.println("Turn Left");
-				// kLeftDrive.rotateClockwise(1);
-				// kRightDrive.rotateClockwise(1);
-			} else if ((Math.abs(targetZAngle - currentZAngle) < (Math.abs(targetZAngle + currentZAngle)))) {
-				System.out.println("Turn Right");
-				// kLeftDrive.rotateCounterClockwise(1);
-				// kRightDrive.rotateCounterClockwise(1);
-			} else {
-				// kLeftDrive.rotateClockwise(0);
-				// kRightDrive.rotateClockwise(0);
-				// kLeftDrive.rotateCounterClockwise(0);
-				// kRightDrive.rotateCounterClockwise(0);
-			}
-		}
-		/*----------------------------------------------------------------------------*/
-	//}
+	}
+	/*----------------------------------------------------------------------------*/
+	// }
 
 	/**
 	 * Autonomous

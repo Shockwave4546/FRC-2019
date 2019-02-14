@@ -1,3 +1,6 @@
+import edu.wpi.first.gradlerio.frc.FRCPlugin
+import edu.wpi.first.toolchain.NativePlatforms
+
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2019.2.1"
@@ -36,7 +39,7 @@ deploy {
             targets << "roborio"
             directory = '/home/lvuser/deploy'
         }
-         fileCollectionArtifact('sharedObjectFileCollectionArtifact') {
+        fileCollectionArtifact('sharedObjectFileCollectionArtifact') {
             files = files(['libs/libpixy2.so', 'libs/libusb-1.0.so'])
             targets << "roborio"
             directory = FRCPlugin.LIB_DEPLOY_DIR
