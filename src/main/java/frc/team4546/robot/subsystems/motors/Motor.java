@@ -10,8 +10,16 @@ public abstract class Motor{
         mNeg = neg;
     }
 
-    public abstract void rotateClockwise(final double rotate);
-    public abstract void rotateCounterClockwise(final double rotate);
+    // Call to rotate motor clockwwise(positive)
+    public abstract void rotateClockwise(final double rotate); 
+    
+    // Call to rotate motor counterclockwise(negative)
+    public abstract void rotateCounterClockwise(final double rotate); 
+    
+    // Call to stop motor
     public abstract void stopMotor();
+
+    // Call to rotate motor, use this for user motor control
+    public abstract void rotateMotor(final double rotate);
     
 }
