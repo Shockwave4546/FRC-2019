@@ -13,14 +13,11 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import com.analog.adis16448.frc.ADIS16448_IMU;
-//import frc.team4546.robot.subsystems.limitSwitch;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4546.robot.subsystems.OI.motors.talonMotor;
-import frc.team4546.robot.subsystems.adis16448.Gyroscope;
-import java.lang.Math;
 
 import frc.team4546.robot.commands.TogglePixy2LampCommand;
 import frc.team4546.robot.subsystems.vision.Pixy2USBJNI;
+import frc.team4546.robot.subsystems.vision.Block;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +28,7 @@ import frc.team4546.robot.subsystems.vision.Pixy2USBJNI;
  */
 public class Robot extends TimedRobot {
 	public static final Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
+	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
 	/**
 	 * DO NOT MODIFY
 	 */
@@ -40,20 +38,19 @@ public class Robot extends TimedRobot {
 	public double currentZAngle = 360;
 	public double targetZAngle = 360;
 
-	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
 	public talonMotor kLeftDrive = new talonMotor(0, .2, .2);
 	public talonMotor kRightDrive = new talonMotor(1, .2, .2);
 
 	@Override
 	public void robotInit() {
+		Thread pixy2USBThread = new Thread(pixy2USBJNI);
+		pixy2USBThread.setDaemon(true);
+		pixy2USBThread.start();
+
 		imu.calibrate();
 		Dashboard.getInstance().putNumber(false, "Target-Z", 0.00);
 
 		driverStationNumber = DriverStation.getInstance().getLocation();
-
-		Thread pixy2USBThread = new Thread(pixy2USBJNI);
-		pixy2USBThread.setDaemon(true);
-		pixy2USBThread.start();
 
 		Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
 
@@ -88,6 +85,12 @@ public class Robot extends TimedRobot {
 		// Cameras.light(PixyLightState); // Sends Current state of Toggle Button to
 		// Pixy2
 
+		Block[] blocks = pixy2USBJNI.blocksBuffer.poll();
+		if (blocks != null) {
+			for (Block b : blocks) {
+				System.out.println(b.toString());
+			}
+		}
 	}
 
 	/**
