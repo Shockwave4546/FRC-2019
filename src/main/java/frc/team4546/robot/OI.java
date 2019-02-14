@@ -152,7 +152,7 @@ public class OI {
          * @return A DPAD direction 
          */ 
         public DPAD getDirection() { 
-            return DPAD.getEnum(angle()); 
+			return DPAD.getEnum(angle()); 
         } 
     } 
 
