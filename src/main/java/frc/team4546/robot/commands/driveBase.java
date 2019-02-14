@@ -1,8 +1,8 @@
 package frc.team4546.robot.commands;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.team4546.robot.subsystems.motors.*;
 import frc.team4546.robot.controllers.shockwaveXbox;
+import frc.team4546.robot.RobotMap;
 
 public class driveBase{
     private talonMotor kLeftDrive;
@@ -13,17 +13,17 @@ public class driveBase{
     public double cDriveRightY;
     public double cDriveRightX;
     public driveBase(){
-        //kLeftDrive = new talonMotor(6,.2,.2);
-        //kRightDrive = new talonMotor(7,.2,.2);
+        kLeftDrive = new talonMotor(6,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
+        kRightDrive = new talonMotor(7,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
         cDriveXbox = new shockwaveXbox(1);
     }
-    public double drive(){
+    public void drive(){
         cDriveLeftY = cDriveXbox.getLeftY();
         cDriveLeftX = cDriveXbox.getLeftX();
         cDriveRightY = cDriveXbox.getRightY();
         cDriveRightX = cDriveXbox.getRightX();
-        //kLeftDrive.rotateClockwise(cDriveLeftY);
-        //kRightDrive.rotateCounterClockwise(cDriveLeftY);
-        return cDriveRightY;
+        
+        kLeftDrive.rotateClockwise(cDriveLeftY);
+        kRightDrive.rotateClockwise(cDriveLeftY);
     }
 }
