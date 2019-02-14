@@ -13,17 +13,17 @@ public class driveBase{
     public double cDriveRightY;
     public double cDriveRightX;
     public driveBase(){
-        kLeftDrive = new talonMotor(6,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
-        kRightDrive = new talonMotor(7,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
-        cDriveXbox = new shockwaveXbox(1);
+        kLeftDrive = new talonMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
+        kRightDrive = new talonMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
+        cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
     }
     public void drive(){
         cDriveLeftY = cDriveXbox.getLeftY();
         cDriveLeftX = cDriveXbox.getLeftX();
         cDriveRightY = cDriveXbox.getRightY();
         cDriveRightX = cDriveXbox.getRightX();
-        
-        kLeftDrive.rotateClockwise(cDriveLeftY);
-        kRightDrive.rotateClockwise(cDriveLeftY);
+
+        kLeftDrive.rotateMotor(cDriveLeftY);
+        kRightDrive.rotateMotor(cDriveLeftY);
     }
 }
