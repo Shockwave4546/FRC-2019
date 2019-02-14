@@ -112,7 +112,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		Cameras.run(); // Runs Pixy2 and Microsoft Camera
+		//Cameras.run(); // Runs Pixy2 and Microsoft Camera
 
 	}
 	/*----------------------------------------------------------------------------*/
