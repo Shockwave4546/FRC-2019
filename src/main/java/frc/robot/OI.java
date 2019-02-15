@@ -1,13 +1,13 @@
 
-package frc.team4546.robot;
+package frc.robot;
 
-import frc.team4546.robot.commands.driveBase;
+import frc.robot.commands.driveBase;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.team4546.robot.controllers.DPad;
-import frc.team4546.robot.RobotMap;
+import frc.robot.controllers.DPad;
+import frc.robot.RobotMap;
 /**
  * The glue that binds the controls on the physical operator interface to the
  * commands and command groups that allow control of the robot.
