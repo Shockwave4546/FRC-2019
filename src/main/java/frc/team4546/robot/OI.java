@@ -2,9 +2,12 @@ package frc.team4546.robot;
 
 import frc.team4546.robot.commands.driveBase;
 
+import java.io.Console;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.team4546.robot.controllers.DPad;
 import frc.team4546.robot.RobotMap;
 /**
@@ -12,6 +15,33 @@ import frc.team4546.robot.RobotMap;
  * commands and command groups that allow control of the robot.
  */
 public class OI {
+
+	public enum Direction {
+		UP(0), UPRIGHT(45), RIGHT(90), DOWNRIGHT(135), DOWN(180), DOWNLEFT(225), LEFT(270), UPLEFT(315);
+
+		int direction;
+
+		private Direction(int direction) {
+			this.direction = direction;
+		}
+	}
+
+	public class DPadButton{
+
+		Joystick joystick;
+		Direction direction;
+	
+		public DPadButton(Joystick joystick, Direction direction) {
+			this.joystick = joystick;
+			this.direction = direction;
+		}
+	
+		public void getDirection() {
+			int dPadValue = joystick.getPOV();
+			Dashboard.getInstance().putNumber(false, "Direction", dPadValue);
+		}
+	
+	}
 
 	// DRIVER
 	private Joystick driver = new Joystick(RobotMap.XboxDriver);
