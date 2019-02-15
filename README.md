@@ -1,38 +1,11 @@
-# FRC-2019
-For FRC Season 2018-2019
+# TestPixy2USBCameraServer
+TestPixy2USBCameraServer uses the Pixy2 USB libraries compiled specifically for the roboRIO.
 
-*Deep Space*
+This code is still an active work-in-progress and as such still has some glitchiness when it comes to deploying the code for the first time.
 
-# Contributors:
-- Jadon
-- Dilan
-- Gabe
-- Sage
-- Harrison
+## Getting started
 
-# Index of FRC-2019
-- [Main Robot Code]()
-- [N/A]()
-    - [N/A]()
-    - [N/A]()
-    - [N/A]()
-    - [N/A]()
-    - [N/A]()
-- [N/A]()
+This code seems to be mostly working, but it might have some bugs. I once had to delete the file /usr/local/frc/third-party/lib/libusb-1.0.so
+after a fresh restart, but I'm not sure if that was just a remnant of my having tested this library before.
 
-
-## Important Debug Notes
-Useful debug info
--Roborio IP: roboRIO-4546-FRC.local
-
--Radio IP: 10.45.46.1
-
--Ping the robot to check connection
-
-In admin command prompt, type "ping roboRIO-4546-FRC.local" If this fails, try above steps.
-
--Access roboRIO webdash
-
-In Internet Explorer* go to "http://roboRIO-4546-FRC.local/" For login, username "admin" leave password blank
-
-This works in any of the ways the robot can be connected (Wireless, Ethernet, USB A-B)
+Don't forget that the robot must be enabled in order to Send any commands like the ToggleLampCommand.

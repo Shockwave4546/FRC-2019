@@ -1,27 +1,27 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team4546.robot.commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team4546.robot.Robot;
+import frc.robot.Robot;
 
-public class TogglePixy2LampCommand extends Command {
-
-  public TogglePixy2LampCommand() {
+/**
+ * An example command.  You can replace me with your own command.
+ */
+public class ExampleCommand extends Command {
+  public ExampleCommand() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.m_subsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("Initialize Toggle...");
-    Robot.pixy2USBJNI.toggleLamp.set(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -32,7 +32,7 @@ public class TogglePixy2LampCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

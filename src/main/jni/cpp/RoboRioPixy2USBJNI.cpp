@@ -61,8 +61,8 @@ JNIEXPORT void JNICALL Java_frc_robot_vision_Pixy2USBJNI_pixy2USBStartCameraServ
 {
    std::cout << "Starting CameraServer..." << std::endl;
    // Uncomment these to get more regular USB cameras
-//   camera = frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
-//   camera.SetResolution(640, 480);
+  camera = frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
+  camera.SetResolution(320, 240);
 //   camera1 = frc::CameraServer::GetInstance()->StartAutomaticCapture(1);
 //   camera1.SetResolution(640, 480);
    
@@ -70,7 +70,7 @@ JNIEXPORT void JNICALL Java_frc_robot_vision_Pixy2USBJNI_pixy2USBStartCameraServ
    // Note, you can call getRawFrame multiple times after calling stop().
    // That is, you don't need to call stop() each time.
    pixy.m_link.stop();
-   outputStreamStd = frc::CameraServer::GetInstance()->PutVideo("Target Reticle", PIXY2_RAW_FRAME_WIDTH, PIXY2_RAW_FRAME_HEIGHT);
+   outputStreamStd = frc::CameraServer::GetInstance()->PutVideo("Pixy 2 Camera", PIXY2_RAW_FRAME_WIDTH, PIXY2_RAW_FRAME_HEIGHT);
 }
 
 JNIEXPORT void JNICALL Java_frc_robot_vision_Pixy2USBJNI_pixy2USBLoopCameraServer(JNIEnv *env, jobject thisObj)

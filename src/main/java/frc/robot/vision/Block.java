@@ -1,4 +1,4 @@
-package frc.team4546.robot.subsystems.vision;
+package frc.robot.vision;
 
 public class Block {
     public int sig;
@@ -9,7 +9,7 @@ public class Block {
     public int index;
     public int age;
 
-    public Block(int sig, int x, int y, int width, int height, int index, int age) {
+    public Block(int sig, int x, int y, int width, int height, int index, int age) { 
         this.sig = sig;
         this.x = x;
         this.y = y;

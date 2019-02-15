@@ -10,105 +10,6 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "4,4": {
-            "size": [
-              2,
-              3
-            ],
-            "content": {
-              "_type": "Toggle Button",
-              "_source0": "network_table:///SmartDashboard/Pixy2 Light",
-              "_title": "Pixy2 Light"
-            }
-          },
-          "0,0": {
-            "size": [
-              3,
-              2
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Ball X",
-              "_title": "Ball X"
-            }
-          },
-          "3,0": {
-            "size": [
-              3,
-              2
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Ball Y",
-              "_title": "Ball Y"
-            }
-          },
-          "6,4": {
-            "size": [
-              2,
-              3
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Ball Box Width",
-              "_title": "Ball Box Width"
-            }
-          },
-          "8,4": {
-            "size": [
-              2,
-              3
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Ball Box Height",
-              "_title": "Ball Box Height"
-            }
-          },
-          "6,0": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Ball Box Height",
-              "_title": "/SmartDashboard/Ball Box Height"
-            }
-          },
-          "4,2": {
-            "size": [
-              3,
-              2
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Ball Box Width",
-              "_title": "/SmartDashboard/Ball Box Width"
-            }
-          },
-          "8,0": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Ball X",
-              "_title": "/SmartDashboard/Ball X"
-            }
-          },
-          "7,2": {
-            "size": [
-              3,
-              2
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Ball Y",
-              "_title": "/SmartDashboard/Ball Y"
-            }
-          },
           "0,2": {
             "size": [
               4,
@@ -121,25 +22,6 @@
               "Range/Min": -30.0,
               "Range/Max": 30.0,
               "Visuals/Show value": true
-            }
-          },
-          "10,0": {
-            "size": [
-              6,
-              7
-            ],
-            "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://USB Camera 0",
-              "_title": "USB Camera 0",
-              "Crosshair/Show crosshair": true,
-              "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": true,
-              "Controls/Rotation": "NONE",
-              "compression": -1.0,
-              "fps": -1,
-              "imageWidth": 0,
-              "imageHeight": 0
             }
           },
           "16,0": {
@@ -185,6 +67,99 @@
               "_source0": "network_table:///SmartDashboard/Green Value",
               "_title": "Green Value"
             }
+          },
+          "16,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto mode",
+              "_title": "Auto mode"
+            }
+          },
+          "16,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Target-Z",
+              "_title": "Target-Z"
+            }
+          },
+          "16,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro-X",
+              "_title": "Gyro-X"
+            }
+          },
+          "10,0": {
+            "size": [
+              6,
+              7
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://Pixy 2 Camera",
+              "_title": "Pixy 2 Camera",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": 7,
+              "imageWidth": -1,
+              "imageHeight": -1
+            }
+          },
+          "4,0": {
+            "size": [
+              6,
+              7
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://USB Camera 0",
+              "_title": "USB Camera 0",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": 7,
+              "imageWidth": 0,
+              "imageHeight": 0
+            }
+          },
+          "2,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Toggle Button",
+              "_source0": "network_table:///SmartDashboard/Toggle Lamp/running",
+              "_title": "SmartDashboard/Toggle Lamp/running"
+            }
+          },
+          "0,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Toggle Lamp",
+              "_title": "Toggle Lamp"
+            }
           }
         }
       }
@@ -213,16 +188,80 @@
                 {
                   "_type": "Boolean Box",
                   "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[0,0]/Value",
-                  "_title": "/LiveWindow/Ungrouped/Solenoid[0,0]/Value",
+                  "_title": "Solenoid[0,0]/Value",
                   "Colors/Color when true": "#7CFC00FF",
                   "Colors/Color when false": "#8B0000FF"
                 },
                 {
                   "_type": "Boolean Box",
                   "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[0,1]/Value",
-                  "_title": "/LiveWindow/Ungrouped/Solenoid[0,1]/Value",
+                  "_title": "Solenoid[0,1]/Value",
                   "Colors/Color when true": "#7CFC00FF",
                   "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[10]/Value",
+                  "_title": "DigitalInput[10]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[18]/Value",
+                  "_title": "DigitalInput[18]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/Value",
+                  "_title": "ADIS16448_IMU/Value"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/Pitch",
+                  "_title": "ADIS16448_IMU/Pitch"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/Roll",
+                  "_title": "ADIS16448_IMU/Roll"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/Yaw",
+                  "_title": "ADIS16448_IMU/Yaw"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AccelX",
+                  "_title": "ADIS16448_IMU/AccelX"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AccelY",
+                  "_title": "ADIS16448_IMU/AccelY"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AccelZ",
+                  "_title": "ADIS16448_IMU/AccelZ"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AngleX",
+                  "_title": "ADIS16448_IMU/AngleX"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AngleY",
+                  "_title": "ADIS16448_IMU/AngleY"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADIS16448_IMU/AngleZ",
+                  "_title": "ADIS16448_IMU/AngleZ"
                 }
               ]
             }
@@ -236,6 +275,19 @@
               "_type": "Subsystem Layout",
               "_source0": "network_table:///LiveWindow/Pneumatics",
               "_title": "Pneumatics",
+              "Layout/Label position": "BOTTOM",
+              "_children": []
+            }
+          },
+          "8,0": {
+            "size": [
+              4,
+              7
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/ExampleSubsystem",
+              "_title": "ExampleSubsystem",
               "Layout/Label position": "BOTTOM",
               "_children": []
             }
