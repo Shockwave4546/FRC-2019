@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team4546.robot.controllers.DPad;
 import frc.team4546.robot.RobotMap;
-
 /**
  * The glue that binds the controls on the physical operator interface to the
  * commands and command groups that allow control of the robot.
@@ -30,6 +29,11 @@ public class OI {
 	private Button driverDPadDown = new DPad(driver, DPad.Direction.down);
 	private Button driverDPadRight = new DPad(driver, DPad.Direction.right);
 	private Button driverDPadLeft = new DPad(driver, DPad.Direction.left);
+	private Button driverDPadUpRight = new DPad(driver, DPad.Direction.up);
+	private Button driverDPadUpLeft = new DPad(driver, DPad.Direction.down);
+	private Button driverDPadDownRight = new DPad(driver, DPad.Direction.right);
+	private Button driverDPadDownLeft = new DPad(driver, DPad.Direction.left);
+
 
 	// CO-DRIVER
 	private Joystick coDriver = new Joystick(RobotMap.XboxCoDriver);
