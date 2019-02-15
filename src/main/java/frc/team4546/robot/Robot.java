@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
 	 */
 
 	private int driverStationNumber = 0;
-	private driveBase dRobot = new driveBase();
+	public static driveBase dRobot = new driveBase();
   public static Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
