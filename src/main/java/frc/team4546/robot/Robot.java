@@ -8,6 +8,13 @@
 package frc.team4546.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team4546.robot.OI;
+import frc.team4546.robot.subsystems.sensors.limitSwitch;
+import frc.team4546.robot.commands.driveBase;
+import frc.team4546.robot.controllers.shockwaveXbox;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -34,13 +41,17 @@ import frc.team4546.robot.vision.Block;
  * project.
  */
 public class Robot extends TimedRobot {
+
+
+	/**
+	 * DO NOT MODIFY
+	 */
+
+	private int driverStationNumber = 0;
+	private driveBase dRobot = new driveBase();
   public static Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
-  public boolean currentCam;
-  UsbCamera mainCamera;
-  UsbCamera intakeCamera;
-  VideoSink server;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

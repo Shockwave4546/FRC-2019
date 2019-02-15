@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -14,13 +15,50 @@ package frc.team4546.robot;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
+    // Joystick Ports //
+        public static final int XboxDriver = 0;
+        public static final int XboxCoDriver = 1;
 
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
+
+    // PWM Channels //
+        // public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
+        public static final int LeftDrivePort = 0;
+        public static final int RightDrivePort = 1;
+        public static final int LeftIntakePort = 2;
+        public static final int RightIntakePort = 3;
+        public static final int LinearSlidePort = 4;
+        public static final int IntakePivotPort = 5;
+
+
+    // CAN IDs //
+        // public static final int PCMone = 0;
+        // public static final int PCMtwo = 1;
+
+    // Digital Channels //
+        // public static final int DRIVE_LEFT_ENCODER = 1;
+        // public static final int DRIVE_RIGHT_ENCODER = 2;
+
+    // Solenoid Channels //
+
+    // Drive Train Motor Speeds (POS & NEG) //
+        public static final double LeftDrivePos = .3;
+        public static final double LeftDriveNeg = .3;
+        public static final double RightDrivePos = .3;
+        public static final double RightDriveNeg = .3;
+
+    // Misc Motor Speeds //
+
+    // Lift Positions //
+         public static final int GroundLevelBall = 1420; 
+
+        public static final int LowHatchPanelHeight = 1420; // Same as Ground Level for Alliance Station and Cargo Ship and First Level Rocket.
+        public static final int MidHatchPanelHeight = 1420;
+        public static final int HighHatchPanelHeight = 1420;
+
+        public static final int CargoShipBallHeight = 1420; // Cargo Ship Ball Height
+        public static final int RocketLowBallHeight = 1420; // Rocket Ball Low
+        public static final int RocketMidBallHeight = 1420; // Rocket Ball Mid
+        public static final int RocketHighBallHeight = 1420; // Rocket Ball High
+
 }
+

@@ -1,42 +1,86 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
 
 package frc.team4546.robot;
 
+import frc.team4546.robot.commands.driveBase;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team4546.robot.controllers.DPad;
+import frc.team4546.robot.RobotMap;
 /**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
+ * The glue that binds the controls on the physical operator interface to the
+ * commands and command groups that allow control of the robot.
  */
 public class OI {
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
+	// DRIVER
+	private Joystick driver = new Joystick(RobotMap.XboxDriver);
+	private Button driverA = new JoystickButton(driver, 1);
+	private Button driverB = new JoystickButton(driver, 2);
+	private Button driverX = new JoystickButton(driver, 3);
+	private Button driverY = new JoystickButton(driver, 4);
+	private Button driverLB = new JoystickButton(driver, 5);
+	private Button driverRB = new JoystickButton(driver, 6);
+	private Button driverBack = new JoystickButton(driver, 7);
+	private Button driverStart = new JoystickButton(driver, 8);
+	private Button driverLS = new JoystickButton(driver, 9);
+	private Button driverRS = new JoystickButton(driver, 10);
+	private Button driverDPadUp = new DPad(driver, DPad.Direction.up);
+	private Button driverDPadDown = new DPad(driver, DPad.Direction.down);
+	private Button driverDPadRight = new DPad(driver, DPad.Direction.right);
+	private Button driverDPadLeft = new DPad(driver, DPad.Direction.left);
+	private Button driverDPadUpRight = new DPad(driver, DPad.Direction.up);
+	private Button driverDPadUpLeft = new DPad(driver, DPad.Direction.down);
+	private Button driverDPadDownRight = new DPad(driver, DPad.Direction.right);
+	private Button driverDPadDownLeft = new DPad(driver, DPad.Direction.left);
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
 
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
+	// CO-DRIVER
+	private Joystick coDriver = new Joystick(RobotMap.XboxCoDriver);
+	private Button coDriverA = new JoystickButton(coDriver, 1);
+	private Button coDriverB = new JoystickButton(coDriver, 2);
+	private Button coDriverX = new JoystickButton(coDriver, 3);
+	private Button coDriverY = new JoystickButton(coDriver, 4);
+	private Button coDriverLB = new JoystickButton(coDriver, 5);
+	private Button coDriverRB = new JoystickButton(coDriver, 6);
+	private Button coDriverBack = new JoystickButton(coDriver, 7);
+	private Button coDriverStart = new JoystickButton(coDriver, 8);
+	private Button coDriverLS = new JoystickButton(coDriver, 9);
+	private Button coDriverRS = new JoystickButton(coDriver, 10);
+	private Button coDriverDPadUp = new DPad(coDriver, DPad.Direction.up);
+	private Button coDriverDPadDown = new DPad(coDriver, DPad.Direction.down);
+	private Button coDriverDPadRight = new DPad(coDriver, DPad.Direction.right);
+	private Button coDriverDPadLeft = new DPad(coDriver, DPad.Direction.left);
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
+	// Climber - positive climb/roll-in; negative unclimb/roll-out
+	public OI() {
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+		// Buttons
+		// driverA.whenPressed();
+		// driverA.whenReleased();
+		// driverX.whenPressed();
+
+		// driverBack.whenPressed(new Shoot());
+
+		// driverB.whenPressed();
+		// driverB.whenReleased();
+
+		// driverX.whenReleased();
+		// driverY.whenPressed();
+
+		// coDriverRB.whenPressed();
+		// coDriverLB.whenPressed();
+
+		// coDriverA.whenPressed();
+		// coDriverY.whenReleased();
+		// coDriverB.whenPressed();
+		// coDriverY.whenPressed();
+
+		// driverStart.whenPressed();
+		// driverStart.whenReleased();
+
+	}
+
+
 }
