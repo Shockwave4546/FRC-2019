@@ -33,10 +33,10 @@ public class RobotMap {
     // Solenoid Channels //
 
     // Drive Train Motor Speeds (POS & NEG) //
-        public static final double LeftDrivePos = .2;
-        public static final double LeftDriveNeg = .2;
-        public static final double RightDrivePos = .2;
-        public static final double RightDriveNeg = .2;
+        public static final double LeftDrivePos = .3;
+        public static final double LeftDriveNeg = .3;
+        public static final double RightDrivePos = .3;
+        public static final double RightDriveNeg = .3;
 
     // Misc Motor Speeds //
 
