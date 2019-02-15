@@ -72,6 +72,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
+		dRobot.drive();
 
 	}
 
@@ -97,6 +98,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void testPeriodic() {
+
 	}
 
 	public int getDriveStationNumber() {

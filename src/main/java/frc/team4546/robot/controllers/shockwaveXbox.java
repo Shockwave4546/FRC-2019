@@ -35,7 +35,7 @@ public class shockwaveXbox{
         if(-deadzoneLeftY <= LeftY && LeftY <= deadzoneLeftY){
             return 0;
         }else{
-            return LeftY;
+            return -LeftY;
         }
     }
     public double getLeftX(){
@@ -43,7 +43,7 @@ public class shockwaveXbox{
         if(-deadzoneLeftX <= LeftX && LeftX <= deadzoneLeftX){
             return 0;
         }else{
-            return LeftX;
+            return -LeftX;
         }
     }
     public double getRightY(){
