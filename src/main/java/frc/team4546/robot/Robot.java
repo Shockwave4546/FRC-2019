@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.team4546.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.TogglePixy2LampCommand;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.vision.Pixy2USBJNI;
+import frc.team4546.robot.commands.ExampleCommand;
+import frc.team4546.robot.commands.TogglePixy2LampCommand;
+import frc.team4546.robot.subsystems.ExampleSubsystem;
+import frc.team4546.robot.vision.Pixy2USBJNI;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.cscore.CvSource;
@@ -24,7 +24,7 @@ import org.opencv.core.Mat;
 import edu.wpi.cscore.UsbCamera;
 import org.opencv.imgproc.Imgproc;
 import edu.wpi.cscore.VideoSink;
-import frc.robot.vision.Block;
+import frc.team4546.robot.vision.Block;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,7 +34,7 @@ import frc.robot.vision.Block;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static final Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
+  public static Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
   public boolean currentCam;
@@ -58,10 +58,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    //SmartDashboard.putData("Toggle Lamp", new TogglePixy2LampCommand());
-
-
-
+    // SmartDashboard.putData("Toggle Lamp", new TogglePixy2LampCommand());
 
   }
 
@@ -76,7 +73,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-
+    Block[] blocks = pixy2USBJNI.blocksBuffer.poll();
+    if (blocks != null) {
+      for (Block b : blocks) {
+        System.out.println(b.toString());
+      }
+    }
   }
 
   /**
