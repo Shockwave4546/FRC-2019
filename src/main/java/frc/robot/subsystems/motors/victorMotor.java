@@ -5,6 +5,7 @@ import frc.robot.subsystems.motors.Motor;
 import edu.wpi.first.wpilibj.VictorSP;
 
 
+
 public class victorMotor extends Motor{
     private VictorSP kMotor;
     public victorMotor(final int port, final double pos, final double neg){
