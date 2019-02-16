@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+
 import edu.wpi.first.wpilibj.TimedRobot;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -23,8 +24,38 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TogglePixy2LampCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.vision.Pixy2USBJNI;
-
 import frc.robot.vision.Block;
+//import frc.team4546.robot.subsystems.vision.Cameras;
+import frc.robot.Dashboard;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import com.analog.adis16448.frc.ADIS16448_IMU;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
+import frc.robot.OI;
+import frc.robot.commands.driveBase;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.TogglePixy2LampCommand;
+import frc.robot.controllers.shockwaveXbox;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.sensors.limitSwitch;
+import frc.robot.vision.Block;
+import frc.robot.vision.Pixy2USBJNI;
+
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,13 +73,21 @@ public class Robot extends TimedRobot {
 
 	private int driverStationNumber = 0;
 	public static driveBase dRobot = new driveBase();
+	public static double negzangle = 360;
+	public static double currentZAngle = 360;
+	public static double targetZAngle = 360;
+
+	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
+  
+  
+  private driveBase dRobot = new driveBase();
   public static Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+  
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -62,7 +101,21 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
     SmartDashboard.putData("Toggle Lamp", new TogglePixy2LampCommand());
+    
+    imu.reset();
+		imu.calibrate();
+		Dashboard.getInstance().putNumber(false, "Target-Z", 0.00);
+
+		driverStationNumber = DriverStation.getInstance().getLocation();
+		// Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
+
+		// SmartDashboard.putBoolean("Pixy2 Light", false); // Addition of Pixy2 Lamp
+		// Toggle
+		// boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
+		// Cameras.light(PixyLightState); // Sends Current state of Toggle Button to
+		// Pixy2
 
   }
 
@@ -77,12 +130,36 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
    /* Block[] blocks = pixy2USBJNI.blocksBuffer.poll();
+
+    Block[] blocks = pixy2USBJNI.blocksBuffer.poll();
+
     if (blocks != null) {
       for (Block b : blocks) {
         System.out.println(b.toString());
       }
+
     }*/
+
+    
+    //Dashboard.getInstance().putNumber(false, "Gyro-X", imu.getAngleX());
+		//Dashboard.getInstance().putNumber(false, "Gyro-Y", imu.getAngleY());
+
+		//Dashboard.getInstance().putNumber(false, "Accel-X", imu.getAccelX());
+		//Dashboard.getInstance().putNumber(false, "Accel-Y", imu.getAccelY());
+		//Dashboard.getInstance().putNumber(false, "Accel-Z", imu.getAccelZ());
+
+		//Dashboard.getInstance().putNumber(false, "Pitch", imu.getPitch());
+		//Dashboard.getInstance().putNumber(false, "Roll", imu.getRoll());
+		//Dashboard.getInstance().putNumber(false, "Yaw", imu.getYaw());
+
+		//Dashboard.getInstance().putNumber(false, "Pressure: ", imu.getBarometricPressure());
+		//Dashboard.getInstance().putNumber(false, "Temperature: ", imu.getTemperature());
+
+		// boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
+		// Cameras.light(PixyLightState); // Sends Current state of Toggle Button to
+		// Pixy2
   }
 
   /**
@@ -151,9 +228,29 @@ public class Robot extends TimedRobot {
    * This function is called periodically during operator control.
    */
   @Override
-  public void teleopPeriodic() {
-    Scheduler.getInstance().run();
-  }
+	public void teleopPeriodic() {
+  Scheduler.getInstance().run();
+		// Cameras.run(); // Runs Pixy2 and Microsoft Camera
+		double angle = imu.getAngleZ();
+        angle %= 360;
+
+		Dashboard.getInstance().putNumber(false, "Gyro-Z", angle);
+		
+
+		targetZAngle = SmartDashboard.getNumber("Target-Z", 500);
+		currentZAngle = SmartDashboard.getNumber("Gyro-Z", 500);
+
+			if (targetZAngle > currentZAngle + 2) {
+				//turn left
+			} else if (targetZAngle < currentZAngle - 2) {
+				//turn right
+			} else {
+				//no turn
+			}
+
+			
+		}
+
 
   /**
    * This function is called periodically during test mode.
@@ -161,4 +258,9 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+  public int getDriveStationNumber() {
+		return driverStationNumber;
+	}
+
 }

@@ -2,17 +2,18 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.motors.*;
 import frc.robot.controllers.shockwaveXbox;
-import edu.wpi.first.wpilibj.command.Subsystem;
+
 import frc.robot.RobotMap;
 
-public class driveBase {
+public class driveBase{
     private talonMotor kLeftDrive;
     private talonMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
-    public double cDriveLeftY;
+    private double cDriveLeftY;
     //public double cDriveLeftX;
     //public double cDriveRightY;
-    public double cDriveRightX;
+    private double cDriveRightX;
+
     public driveBase(){
         kLeftDrive = new talonMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new talonMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
