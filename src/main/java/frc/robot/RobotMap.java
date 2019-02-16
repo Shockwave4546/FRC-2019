@@ -22,15 +22,17 @@ public class RobotMap {
 
     // PWM Channels //
         // public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
-        public static final int LeftDrivePort = 0;
-        public static final int RightDrivePort = 1;
-        public static final int LeftIntakePort = 2;
-        public static final int RightIntakePort = 3;
-        public static final int LinearSlidePort = 4;
-        public static final int IntakePivotPort = 5;
+
+        public static final int LeftIntakePort = 0;
+        public static final int RightIntakePort = 1;
+
+        public static final int LinearSlidePort = 2;
+        public static final int IntakePivotPort = 3;
 
 
     // CAN IDs //
+        public static final int LeftDrivePort = 1;
+        public static final int RightDrivePort = 2;
         // public static final int PCMone = 0;
         // public static final int PCMtwo = 1;
 

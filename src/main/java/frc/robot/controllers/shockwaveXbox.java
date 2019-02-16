@@ -14,13 +14,17 @@ public class shockwaveXbox{
     private double deadzoneRightY;
     private double RightX;
     private double deadzoneRightX;
+
     private boolean leftBumper;
     private boolean rightBumper;
+
     private boolean Abutton;
     private boolean Bbutton;
     private boolean Ybutton;
     private boolean Xbutton;
 
+    private double leftTrigger;
+    private double rightTrigger;
 
     public shockwaveXbox(final int port){
         cXbox = new XboxController(port);
@@ -94,5 +98,14 @@ public class shockwaveXbox{
     public boolean getXbutton(){
         Xbutton = cXbox.getXButton();
         return Xbutton;
+    }
+
+    public double getLeftTrigger(){
+        leftTrigger = cXbox.getTriggerAxis(Hand.kLeft);
+        return leftTrigger;
+    }
+    public double getRightTrigger(){
+        rightTrigger = cXbox.getTriggerAxis(Hand.kRight);
+        return rightTrigger;
     }
 }
