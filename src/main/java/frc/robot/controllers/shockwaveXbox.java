@@ -26,6 +26,9 @@ public class shockwaveXbox{
     private double leftTrigger;
     private double rightTrigger;
 
+    private boolean backButton;
+    private boolean startButton;
+
     public shockwaveXbox(final int port){
         cXbox = new XboxController(port);
         deadzoneLeftY = defaultDeadzone;
@@ -99,7 +102,14 @@ public class shockwaveXbox{
         Xbutton = cXbox.getXButton();
         return Xbutton;
     }
-
+    public boolean getStartButton(){
+        startButton = cXbox.getStartButton();
+        return startButton;
+    }
+    public boolean getBackButton(){
+        backButton = cXbox.getBackButton();
+        return backButton;
+    }
     public double getLeftTrigger(){
         leftTrigger = cXbox.getTriggerAxis(Hand.kLeft);
         return leftTrigger;
