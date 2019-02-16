@@ -57,6 +57,9 @@ public class RobotMap {
 
         public static final double LinearSlidePos = .5;
         public static final double LinearSlideNeg = .5;
+
+        public static final double ArmPivotPos = .2;
+        public static final double ArmPivotNeg = .2;
         
     // Lift Positions //
          public static final int GroundLevelBall = 1420; 
