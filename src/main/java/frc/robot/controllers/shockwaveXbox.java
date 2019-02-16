@@ -14,6 +14,12 @@ public class shockwaveXbox{
     private double deadzoneRightY;
     private double RightX;
     private double deadzoneRightX;
+    private boolean leftBumper;
+    private boolean rightBumper;
+    private boolean Abutton;
+    private boolean Bbutton;
+    private boolean Ybutton;
+    private boolean Xbutton;
 
 
     public shockwaveXbox(final int port){
@@ -30,6 +36,7 @@ public class shockwaveXbox{
         deadzoneRightY = dead3;
         deadzoneRightX = dead4;
     }
+
     public double getLeftY(){
         LeftY = cXbox.getY(Hand.kLeft);
         if(-deadzoneLeftY <= LeftY && LeftY <= deadzoneLeftY){
@@ -63,4 +70,29 @@ public class shockwaveXbox{
         }
     }
 
+    public boolean getLeftBumper(){
+        leftBumper = cXbox.getBumper(Hand.kLeft);
+        return leftBumper;
+    }
+    public boolean getRightBumper(){
+        rightBumper = cXbox.getBumper(Hand.kRight);
+        return rightBumper;
+    }
+
+    public boolean getAButton(){
+        Abutton = cXbox.getAButton();
+        return Abutton;
+    }
+    public boolean getBbutton(){
+        Bbutton = cXbox.getBButton();
+        return Bbutton;
+    }
+    public boolean getYbutton(){
+        Ybutton = cXbox.getYButton();
+        return Ybutton;
+    }
+    public boolean getXbutton(){
+        Xbutton = cXbox.getXButton();
+        return Xbutton;
+    }
 }
