@@ -5,7 +5,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import frc.robot.commands.driveBase;
+import frc.robot.commands.Driver;
+import frc.robot.commands.coDriver;
 import frc.robot.RobotMap;
 /**
  * The glue that binds the controls on the physical operator interface to the

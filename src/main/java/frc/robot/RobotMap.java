@@ -51,8 +51,12 @@ public class RobotMap {
     // Misc Motor Speeds //
         public static final double LeftIntakePos = .5;
         public static final double LeftIntakeNeg = .5;
+
         public static final double RightIntakePos = .5;
         public static final double RightIntakeNeg = .5;
+
+        public static final double LinearSlidePos = .5;
+        public static final double LinearSlideNeg = .5;
         
     // Lift Positions //
          public static final int GroundLevelBall = 1420; 

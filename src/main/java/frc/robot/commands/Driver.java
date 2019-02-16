@@ -4,7 +4,7 @@ import frc.robot.subsystems.motors.*;
 import frc.robot.controllers.shockwaveXbox;
 import frc.robot.RobotMap;
 
-public class driveBase{
+public class Driver{
     private talonMotor kLeftDrive;
     private talonMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
@@ -12,7 +12,7 @@ public class driveBase{
     //public double cDriveLeftX;
     //public double cDriveRightY;
     private double cDriveRightX;
-    public driveBase(){
+    public Driver(){
         kLeftDrive = new talonMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new talonMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);

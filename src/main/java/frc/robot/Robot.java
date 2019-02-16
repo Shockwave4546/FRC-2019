@@ -29,7 +29,8 @@ import edu.wpi.cscore.VideoSink;
 
 
 import frc.robot.OI;
-import frc.robot.commands.driveBase;
+import frc.robot.commands.coDriver;
+import frc.robot.commands.Driver;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TogglePixy2LampCommand;
 import frc.robot.controllers.shockwaveXbox;
@@ -64,7 +65,8 @@ public class Robot extends TimedRobot {
 	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
   
   
-  private driveBase dRobot = new driveBase();
+  private Driver dRover1 = new Driver();
+  private coDriver dRover2 = new coDriver();
   public static Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;

@@ -4,19 +4,22 @@ import frc.robot.subsystems.motors.*;
 import frc.robot.controllers.shockwaveXbox;
 import frc.robot.RobotMap;
 
-public class intake{
+public class coDriver{
     private victorMotor kIntakeLeft;
     private victorMotor kIntakeRight;
+    private victorMotor kLinearSlide;
     private shockwaveXbox cCoDriverXbox;
     private boolean cIntakeLeft;
     private boolean cIntakeRight;
-    public intake(){
+    private double cLinearSlide;
+    public coDriver(){
         kIntakeLeft = new victorMotor(RobotMap.LeftIntakePort, RobotMap.LeftIntakePos, RobotMap.LeftIntakeNeg);
         kIntakeRight = new victorMotor(RobotMap.RightIntakePort, RobotMap.RightIntakePos, RobotMap.RightIntakeNeg);
+        kLinearSlide = new victorMotor(RobotMap.LinearSlidePort, RobotMap.LinearSlidePos, RobotMap.LinearSlideNeg);
         cCoDriverXbox = new shockwaveXbox(RobotMap.XboxCoDriver);
     }
 
-    public void intakeControl(){
+    private void intakeControl(){
         cIntakeLeft = cCoDriverXbox.getLeftBumper();
         cIntakeRight = cCoDriverXbox.getRightBumper();
         if(cIntakeLeft == true){
@@ -30,5 +33,15 @@ public class intake{
         }else{
             kIntakeRight.stopMotor();
         }
+    }
+
+    private void slideControl(){
+        cLinearSlide = cCoDriverXbox.getLeftY();
+        kLinearSlide.rotateMotor(cLinearSlide);
+    }
+
+    public void coDrive(){
+        intakeControl();
+        slideControl();
     }
 }
