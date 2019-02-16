@@ -1,4 +1,4 @@
-package frc.team4546.robot.subsystems.vision;
+package frc.robot.vision;
 
 
 
@@ -31,11 +31,6 @@ public class PixyCamera {
 			final int count = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
 
 			TargetBall.run(count); // Track Orange Ball Code Run
-
-
-			final int countt = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG3, 25);
-
-			TargetHatch.run(countt); // Track Orange Ball Code Run
 
 		}
 

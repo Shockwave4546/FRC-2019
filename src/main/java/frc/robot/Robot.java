@@ -5,15 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team4546.robot;
+package frc.robot;
 
-import frc.team4546.robot.subsystems.vision.Cameras;
-
-import edu.wpi.first.wpilibj.DriverStation;
+import frc.robot.vision.Cameras;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Scheduler;
-
-import frc.team4546.robot.subsystems.limitSwitch;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -31,17 +26,14 @@ public class Robot extends TimedRobot {
 	 * DO NOT MODIFY
 	 */
 
-	private int driverStationNumber = 0;
-	private limitSwitch sLimitSwitch1 = new limitSwitch(0);
-	private limitSwitch sLimitSwitch2 = new limitSwitch(1, true);
+
+
 
 
 
 	@Override
 	public void robotInit() {
 
-
-		driverStationNumber = DriverStation.getInstance().getLocation();
 		Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
 
 		SmartDashboard.putBoolean("Pixy2 Light", false); // Addition of Pixy2 Lamp Toggle
@@ -53,7 +45,6 @@ public class Robot extends TimedRobot {
 	@Override
 
 	public void robotPeriodic() {
-		Scheduler.getInstance().run();
 		Cameras.run(); // Runs Pixy2 and Microsoft Camera
 
 		boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
@@ -84,7 +75,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 
-		System.out.println(sLimitSwitch2.getValue());
+
 
 	}
 
@@ -112,8 +103,5 @@ public class Robot extends TimedRobot {
 	public void testPeriodic() {
 	}
 
-	public int getDriveStationNumber() {
-		return driverStationNumber;
-	}
 
 }

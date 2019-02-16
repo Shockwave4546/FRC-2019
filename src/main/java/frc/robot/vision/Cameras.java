@@ -1,4 +1,4 @@
-package frc.team4546.robot.subsystems.vision;
+package frc.robot.vision;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
