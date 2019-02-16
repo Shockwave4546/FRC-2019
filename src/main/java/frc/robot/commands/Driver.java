@@ -26,14 +26,20 @@ public class Driver{
             kRightDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
         }
     }
-    private double getLeftEncoder(){
-        return kLeftDrive.getEncoder();
-    }
-    private double getRightEncoder(){
-        return kRightDrive.getEncoder();
-    }
-
     public void drive(){
         drivebaseControl();
+    }
+
+    public void remoteLeftDrive(final double leftMotor){
+        kLeftDrive.rotateMotor(leftMotor);
+    }
+    public double getLeftEncoder(){
+        return kLeftDrive.getEncoder();
+    }
+    public void remoteRightDrive(final double rightMotor){
+        kLeftDrive.rotateMotor(rightMotor);
+    }
+    public double getRightEncoder(){
+        return kRightDrive.getEncoder();
     }
 }

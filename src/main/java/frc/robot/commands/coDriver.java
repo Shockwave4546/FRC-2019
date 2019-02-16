@@ -24,13 +24,17 @@ public class coDriver{
         cIntakeRight = cCoDriverXbox.getRightBumper();
         if(cIntakeLeft == true){
             kIntakeLeft.rotateClockwise(1);
+            kIntakeRight.rotateCounterClockwise(1);
         }else{
             kIntakeLeft.stopMotor();
+            kIntakeRight.stopMotor();
         }
 
         if(cIntakeRight == true){
-            kIntakeRight.rotateCounterClockwise(1);
+            kIntakeLeft.rotateCounterClockwise(1);
+            kIntakeRight.rotateClockwise(1);
         }else{
+            kIntakeLeft.stopMotor();
             kIntakeRight.stopMotor();
         }
     }
@@ -43,5 +47,12 @@ public class coDriver{
     public void coDrive(){
         intakeControl();
         slideControl();
+    }
+    public void remoteIntake(final double speed){
+        kIntakeLeft.rotateMotor(speed);
+        kIntakeRight.rotateMotor(speed);
+    }
+    public void remoteSlide(final double speed){
+        kLinearSlide.rotateMotor(speed);
     }
 }
