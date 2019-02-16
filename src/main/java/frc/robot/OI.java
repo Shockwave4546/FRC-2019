@@ -15,7 +15,7 @@ import frc.robot.RobotMap;
 public class OI {
 
 	// DRIVER
-	private Joystick driver = new Joystick(RobotMap.XboxDriver);
+	/*private Joystick driver = new Joystick(RobotMap.XboxDriver);
 	private Button driverA = new JoystickButton(driver, 1);
 	private Button driverB = new JoystickButton(driver, 2);
 	private Button driverX = new JoystickButton(driver, 3);
@@ -25,11 +25,11 @@ public class OI {
 	private Button driverBack = new JoystickButton(driver, 7);
 	private Button driverStart = new JoystickButton(driver, 8);
 	private Button driverLS = new JoystickButton(driver, 9);
-	private Button driverRS = new JoystickButton(driver, 10);
+	private Button driverRS = new JoystickButton(driver, 10);*/
 
 
 	// CO-DRIVER
-	private Joystick coDriver = new Joystick(RobotMap.XboxCoDriver);
+	/*private Joystick coDriver = new Joystick(RobotMap.XboxCoDriver);
 	private Button coDriverA = new JoystickButton(coDriver, 1);
 	private Button coDriverB = new JoystickButton(coDriver, 2);
 	private Button coDriverX = new JoystickButton(coDriver, 3);
@@ -39,7 +39,7 @@ public class OI {
 	private Button coDriverBack = new JoystickButton(coDriver, 7);
 	private Button coDriverStart = new JoystickButton(coDriver, 8);
 	private Button coDriverLS = new JoystickButton(coDriver, 9);
-	private Button coDriverRS = new JoystickButton(coDriver, 10);
+	private Button coDriverRS = new JoystickButton(coDriver, 10);*/
 
 	// Climber - positive climb/roll-in; negative unclimb/roll-out
 	public OI() {

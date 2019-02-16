@@ -9,18 +9,14 @@ public class Driver{
     private talonMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
     private double cDriveLeftY;
-    //public double cDriveLeftX;
-    //public double cDriveRightY;
     private double cDriveRightX;
     public Driver(){
         kLeftDrive = new talonMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new talonMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
     }
-    public void drive(){
+    private void drivebaseControl(){
         cDriveLeftY = cDriveXbox.getLeftY();
-        //cDriveLeftX = cDriveXbox.getLeftX();
-        //cDriveRightY = cDriveXbox.getRightY();
         cDriveRightX = cDriveXbox.getRightX();
         if(cDriveLeftY == 0){
             kLeftDrive.rotateMotor(cDriveRightX);
@@ -31,22 +27,7 @@ public class Driver{
         }
     }
 
-    public double testdriveLeft(){
-        cDriveLeftY = cDriveXbox.getLeftY();
-        cDriveRightX = cDriveXbox.getRightX();
-        if(cDriveLeftY == 0){
-            return(cDriveRightX);
-        }else{
-            return(cDriveLeftY + cDriveRightX);
-        }
-    }
-    public double testdriveRight(){
-        cDriveLeftY = cDriveXbox.getLeftY();
-        cDriveRightX = cDriveXbox.getRightX();
-        if(cDriveLeftY == 0){
-            return(cDriveRightX);
-        }else{
-            return(cDriveLeftY - cDriveRightX);
-        }
+    public void drive(){
+        drivebaseControl();
     }
 }
