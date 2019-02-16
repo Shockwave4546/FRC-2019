@@ -5,14 +5,14 @@ import frc.robot.controllers.shockwaveXbox;
 import frc.robot.RobotMap;
 
 public class Driver{
-    private talonMotor kLeftDrive;
-    private talonMotor kRightDrive;
+    private sparkMotor kLeftDrive;
+    private sparkMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
     private double cDriveLeftY;
     private double cDriveRightX;
     public Driver(){
-        kLeftDrive = new talonMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
-        kRightDrive = new talonMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
+        kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
+        kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
     }
     private void drivebaseControl(){
@@ -25,6 +25,12 @@ public class Driver{
             kLeftDrive.rotateMotor(cDriveLeftY + cDriveRightX);
             kRightDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
         }
+    }
+    private double getLeftEncoder(){
+        return kLeftDrive.getEncoder();
+    }
+    private double getRightEncoder(){
+        return kRightDrive.getEncoder();
     }
 
     public void drive(){
