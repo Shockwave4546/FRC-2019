@@ -1,21 +1,16 @@
-package frc.team4546.robot.vision;
+package frc.robot.vision;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.ArrayList;
-
-import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
-
 import edu.wpi.first.hal.NotifierJNI;
-import edu.wpi.first.wpilibj.RobotController;
+import java.util.Scanner;
 
 public class Pixy2USBJNI implements Runnable {
     static {
-        System.loadLibrary("pixy2_usb");
+       System.loadLibrary("pixy2_usb");
     }
-
-    // Declare an instance native method sayHello() which receives no parameter and
-    // returns void
+  
+    // Declare an instance native method sayHello() which receives no parameter and returns void
     private native int pixy2USBInit();
 
     private native void pixy2USBGetVersion();
@@ -30,15 +25,14 @@ public class Pixy2USBJNI implements Runnable {
 
     private native String pixy2USBGetBlocks();
 
-    private native String pixy2USBGetBlocksString();
+    private Pixy2USBJNI pixy2USBJNI;
+    private int cycleCounter = 0;
+    private final int m_notifier = NotifierJNI.initializeNotifier();
+    private double m_expirationTime;
+    private final double m_period = .05;
 
     private static Block[] blocks;
     public static final ArrayBlockingQueue<Block[]> blocksBuffer = new ArrayBlockingQueue<>(2);
-
-    private double m_expirationTime;
-    private final int m_notifier = NotifierJNI.initializeNotifier();
-    private final double m_period = .05; // Milliseconds?
-    private Pixy2USBJNI pixy2USBJNI;
 
     public AtomicBoolean toggleLamp = new AtomicBoolean(false);
     private boolean lampOn = false;
@@ -63,25 +57,16 @@ public class Pixy2USBJNI implements Runnable {
             pixy2USBJNI.pixy2USBGetVersion();
             pixy2USBJNI.pixy2USBLampOn();
             lampOn = true;
-
+            if (toggleLamp.get()) {
+                toggleLamp();
+                toggleLamp.set(false);
+            }
+    
             pixy2USBJNI.pixy2USBStartCameraServer();
-
-            System.out.println("Starting Thread");
-
-            m_expirationTime = RobotController.getFPGATime() * 1e-6 + m_period;
-            updateAlarm();
-
-            while (true) {
-
-                if (toggleLamp.get()) {
-                    toggleLamp();
-                    toggleLamp.set(false);
-                }
-
-                pixy2USBJNI.pixy2USBLoopCameraServer();
-
+    
+            while(true) {
                 long curTime = NotifierJNI.waitForNotifierAlarm(m_notifier);
-                if (curTime == 0) {
+                if(curTime == 0){
                     break;
                 }
 
@@ -89,28 +74,35 @@ public class Pixy2USBJNI implements Runnable {
                 updateAlarm();
 
                 loopfunc();
-
+                pixy2USBJNI.pixy2USBLoopCameraServer();
             }
         } else {
             System.err.println("[WARNING] is the Pixy2 plugged in???");
         }
     }
 
-    private void loopfunc() {
-        String visionStuffs = pixy2USBJNI.pixy2USBGetBlocksString();
+    private void loopfunc(){
+        String visionStuffs = pixy2USBJNI.pixy2USBGetBlocks();
         if (visionStuffs.equals("")) {
-            return;
+            if (++cycleCounter > 100) {
+                cycleCounter = 0;
+                System.out.println("[INFO] No blocks detected");
+            }
+           return;
         }
+
+        // Reset counter if there are blocks present
+        cycleCounter = 0;
+
         String[] visionParts = visionStuffs.split("\n");
         blocks = new Block[visionParts.length];
-
+        
         int arrayIndex = 0;
-
+        
         for (String s : visionParts) {
-
-            if (!s.isEmpty() && !s.isBlank() && !s.equals(null) && !s.equals("")) {
-
-                try {
+           
+            if(!s.isEmpty() && !s.isBlank() && !s.equals(null) && !s.equals("")) {
+                try{
                     Scanner sc = new Scanner(s);
                     sc.next();
                     sc.next();
@@ -129,7 +121,7 @@ public class Pixy2USBJNI implements Runnable {
                     int index = sc.nextInt();
                     sc.next();
                     int age = sc.nextInt();
-                    sc.close();
+
                     blocks[arrayIndex++] = new Block(sig, x, y, width, height, index, age);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -137,39 +129,22 @@ public class Pixy2USBJNI implements Runnable {
             }
         }
 
-        /*
-         * for (Block b: blocks){ System.out.println(b.toString()); }
-         */
-        synchronized (blocksBuffer) {
-            if (blocksBuffer.remainingCapacity() == 0) {
+        /*for (Block b: blocks){
+           System.out.println(b.toString());
+        }*/
+        synchronized(blocksBuffer) {
+            if(blocksBuffer.remainingCapacity()==0) {
                 blocksBuffer.remove();
             }
             try {
                 blocksBuffer.put(blocks);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e){
                 e.printStackTrace();
             }
         }
     }
 
-    private void updateAlarm() {
+    private void updateAlarm(){
         NotifierJNI.updateNotifierAlarm(m_notifier, (long) (m_expirationTime * 1e6));
     }
-
-    public boolean ballExists() {
-        boolean ballExists = false;
-        try {
-
-            for (Block b : blocksBuffer.poll()) {
-                if (b.sig == 1) {
-                    ballExists = true;
-                    break;
-                }
-            }
-        } catch (Exception e) {
-        }
-        return ballExists;
-
-    }
-
 }

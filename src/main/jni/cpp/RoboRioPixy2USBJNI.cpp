@@ -28,7 +28,7 @@
 
 Pixy2 pixy;
 cs::UsbCamera camera;
-cs::UsbCamera camera1;
+//cs::UsbCamera camera1;
 uint8_t *bayerFrame;
 cs::CvSource outputStreamStd;
 cv::Mat bayerMat(PIXY2_RAW_FRAME_HEIGHT, PIXY2_RAW_FRAME_WIDTH, CV_8U);
@@ -62,7 +62,7 @@ JNIEXPORT void JNICALL Java_frc_robot_vision_Pixy2USBJNI_pixy2USBStartCameraServ
    std::cout << "Starting CameraServer..." << std::endl;
    // Uncomment these to get more regular USB cameras
   camera = frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
-  camera.SetResolution(320, 240);
+  camera.SetResolution(640, 480);
 //   camera1 = frc::CameraServer::GetInstance()->StartAutomaticCapture(1);
 //   camera1.SetResolution(640, 480);
    

@@ -5,11 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team4546.robot.commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team4546.robot.Robot;
-import frc.team4546.robot.vision.Block;
+import frc.robot.Robot;
+import frc.robot.vision.Block;
 
 public class FollowBall extends Command {
     public FollowBall() {
@@ -44,7 +44,7 @@ public class FollowBall extends Command {
     protected void interrupted() {
     }
   
-    public double getClosestBallPos(){
+   /* public double getClosestBallPos(){
       int closestPos = 99999;
       Block[] blocks = Robot.pixy2USBJNI.blocksBuffer.poll();
       if((blocks!= null) && blocks.length > 0){
@@ -57,5 +57,5 @@ public class FollowBall extends Command {
       }
   
       return closestPos;
-    }
+    }*/
   }

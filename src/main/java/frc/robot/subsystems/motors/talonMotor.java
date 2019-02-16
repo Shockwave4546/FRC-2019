@@ -1,15 +1,15 @@
-package frc.team4546.robot.subsystems.motors;
+package frc.robot.subsystems.motors;
 
-import frc.team4546.robot.subsystems.motors.Motor;
+import frc.robot.subsystems.motors.Motor;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.Talon;
 
-public class sparkMotor extends Motor{
-    private CANSparkMax kMotor;
-    public sparkMotor(final int port, final double pos, final double neg){
+
+public class talonMotor extends Motor{
+    private Talon kMotor;
+    public talonMotor(final int port, final double pos, final double neg){
         super(port, pos, neg);
-        kMotor = new CANSparkMax(port, MotorType.kBrushless);
+        kMotor = new Talon(port);
     }
 
     public void rotateClockwise(final double rotate){

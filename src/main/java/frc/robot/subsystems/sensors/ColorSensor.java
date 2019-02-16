@@ -1,4 +1,4 @@
-package frc.team4546.robot.subsystems.sensors;
+package frc.robot.subsystems.sensors;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.*;

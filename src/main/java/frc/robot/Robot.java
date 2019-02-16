@@ -5,33 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team4546.robot;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team4546.robot.OI;
-import frc.team4546.robot.subsystems.sensors.limitSwitch;
-import frc.team4546.robot.commands.driveBase;
-import frc.team4546.robot.controllers.shockwaveXbox;
+import frc.robot.OI;
+import frc.robot.subsystems.sensors.limitSwitch;
+import frc.robot.commands.driveBase;
+import frc.robot.controllers.shockwaveXbox;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team4546.robot.commands.ExampleCommand;
-import frc.team4546.robot.commands.TogglePixy2LampCommand;
-import frc.team4546.robot.subsystems.ExampleSubsystem;
-import frc.team4546.robot.vision.Pixy2USBJNI;
-import edu.wpi.cscore.CvSink;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.cscore.CvSource;
-import org.opencv.core.Mat;
-import edu.wpi.cscore.UsbCamera;
-import org.opencv.imgproc.Imgproc;
-import edu.wpi.cscore.VideoSink;
-import frc.team4546.robot.vision.Block;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.TogglePixy2LampCommand;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.vision.Pixy2USBJNI;
+
+import frc.robot.vision.Block;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -69,7 +62,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    // SmartDashboard.putData("Toggle Lamp", new TogglePixy2LampCommand());
+    SmartDashboard.putData("Toggle Lamp", new TogglePixy2LampCommand());
 
   }
 
@@ -84,12 +77,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    Block[] blocks = pixy2USBJNI.blocksBuffer.poll();
+   /* Block[] blocks = pixy2USBJNI.blocksBuffer.poll();
     if (blocks != null) {
       for (Block b : blocks) {
         System.out.println(b.toString());
       }
-    }
+    }*/
   }
 
   /**
