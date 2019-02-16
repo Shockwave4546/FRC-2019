@@ -15,6 +15,7 @@
 *.pch
 
 # Compiled Dynamic libraries
+*.so
 *.dylib
 *.dll
 
@@ -155,8 +156,5 @@ gradle-app.setting
 .settings/
 bin/
 
-# Intellij Project folders and files
-.idea/
-*.iml
 
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
