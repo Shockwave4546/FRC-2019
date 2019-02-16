@@ -39,14 +39,14 @@ public class coDriver{
         }
     }
 
-    private void slideControl(){
+    public void slideControl(){
         cLinearSlide = cCoDriverXbox.getLeftY();
         kLinearSlide.rotateMotor(cLinearSlide);
     }
 
     public void coDrive(){
         intakeControl();
-        slideControl();
+        //slideControl();
     }
     public void remoteIntake(final double speed){
         kIntakeLeft.rotateMotor(speed);
