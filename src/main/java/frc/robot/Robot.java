@@ -15,11 +15,6 @@ import frc.robot.OI;
 import frc.robot.commands.driveBase;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.TogglePixy2LampCommand;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.vision.Pixy2USBJNI;
-import frc.robot.vision.Block;
 import frc.robot.Dashboard;
 import edu.wpi.first.wpilibj.DriverStation;
 import com.analog.adis16448.frc.ADIS16448_IMU;
@@ -44,8 +39,6 @@ public class Robot extends TimedRobot {
   public static double targetZAngle = 360;
 
   public static final ADIS16448_IMU imu = new ADIS16448_IMU();
-  public static Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -57,15 +50,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    Thread pixy2USBThread = new Thread(pixy2USBJNI);
-    pixy2USBThread.setDaemon(true);
-    pixy2USBThread.start();
-    m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
 
-    // SmartDashboard.putData("Toggle Lamp", new TogglePixy2LampCommand());
+    m_oi = new OI();
+    
 
     imu.reset();
     imu.calibrate();
@@ -86,6 +73,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
 
   }
 
