@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+
 //import frc.team4546.robot.subsystems.vision.Cameras;
 import frc.robot.Dashboard;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -14,7 +15,31 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
 
+
+import frc.robot.OI;
+import frc.robot.commands.driveBase;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.TogglePixy2LampCommand;
+import frc.robot.controllers.shockwaveXbox;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.sensors.limitSwitch;
+import frc.robot.vision.Block;
+import frc.robot.vision.Pixy2USBJNI;
+
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 
 
 /**
@@ -26,6 +51,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
 
+
 	/**
 	 * DO NOT MODIFY
 	 */
@@ -36,11 +62,36 @@ public class Robot extends TimedRobot {
 	public static double targetZAngle = 360;
 
 	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
+  
+  
+  private driveBase dRobot = new driveBase();
+  public static Pixy2USBJNI pixy2USBJNI = new Pixy2USBJNI();
+  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static OI m_oi;
 
+  Command m_autonomousCommand;
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	@Override
-	public void robotInit() {
-		imu.reset();
+	
+
+	
+
+  /**
+   * This function is run when the robot is first started up and should be used
+   * for any initialization code.
+   */
+  @Override
+  public void robotInit() {
+    Thread pixy2USBThread = new Thread(pixy2USBJNI);
+    pixy2USBThread.setDaemon(true);
+    pixy2USBThread.start();
+    m_oi = new OI();
+    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    // chooser.addOption("My Auto", new MyAutoCommand());
+    SmartDashboard.putData("Auto mode", m_chooser);
+    // SmartDashboard.putData("Toggle Lamp", new TogglePixy2LampCommand());
+    
+    imu.reset();
 		imu.calibrate();
 		Dashboard.getInstance().putNumber(false, "Target-Z", 0.00);
 
@@ -53,14 +104,27 @@ public class Robot extends TimedRobot {
 		// Cameras.light(PixyLightState); // Sends Current state of Toggle Button to
 		// Pixy2
 
-	}
+  }
 
-	@Override
-
-	public void robotPeriodic() {
-		Scheduler.getInstance().run();
-		
-		//Dashboard.getInstance().putNumber(false, "Gyro-X", imu.getAngleX());
+  /**
+   * This function is called every robot packet, no matter the mode. Use this for
+   * items like diagnostics that you want ran during disabled, autonomous,
+   * teleoperated and test.
+   *
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and SmartDashboard integrated updating.
+   */
+  @Override
+  public void robotPeriodic() {
+    Block[] blocks = pixy2USBJNI.blocksBuffer.poll();
+    if (blocks != null) {
+      for (Block b : blocks) {
+        System.out.println(b.toString());
+      }
+    }
+    
+    //Dashboard.getInstance().putNumber(false, "Gyro-X", imu.getAngleX());
 		//Dashboard.getInstance().putNumber(false, "Gyro-Y", imu.getAngleY());
 
 		//Dashboard.getInstance().putNumber(false, "Accel-X", imu.getAccelX());
@@ -77,30 +141,74 @@ public class Robot extends TimedRobot {
 		// boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
 		// Cameras.light(PixyLightState); // Sends Current state of Toggle Button to
 		// Pixy2
+  }
 
-	}
+  /**
+   * This function is called once each time the robot enters Disabled mode. You
+   * can use it to reset any subsystem information you want to clear when the
+   * robot is disabled.
+   */
+  @Override
+  public void disabledInit() {
+  }
 
-	/**
-	 * Disabled
-	 */
-	@Override
-	public void disabledInit() {
+  @Override
+  public void disabledPeriodic() {
+    Scheduler.getInstance().run();
+  }
 
-	}
+  /**
+   * This autonomous (along with the chooser code above) shows how to select
+   * between different autonomous modes using the dashboard. The sendable chooser
+   * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+   * remove all of the chooser code and uncomment the getString code to get the
+   * auto name from the text box below the Gyro
+   *
+   * <p>
+   * You can add additional auto modes by adding additional commands to the
+   * chooser code above (like the commented example) or additional comparisons to
+   * the switch structure below with additional strings & commands.
+   */
+  @Override
+  public void autonomousInit() {
+    m_autonomousCommand = m_chooser.getSelected();
 
-	@Override
-	public void disabledPeriodic() {
-	}
+    /*
+     * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+     * switch(autoSelected) { case "My Auto": autonomousCommand = new
+     * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
+     * ExampleCommand(); break; }
+     */
 
-	/**
-	 * Teleoperated
-	 */
-	@Override
-	public void teleopInit() {
+    // schedule the autonomous command (example)
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.start();
+    }
+  }
 
-	}
+  /**
+   * This function is called periodically during autonomous.
+   */
+  @Override
+  public void autonomousPeriodic() {
+    Scheduler.getInstance().run();
+  }
 
-	@Override
+  @Override
+  public void teleopInit() {
+    // This makes sure that the autonomous stops running when
+    // teleop starts running. If you want the autonomous to
+    // continue until interrupted by another command, remove
+    // this line or comment it out.
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
+  }
+
+  /**
+   * This function is called periodically during operator control.
+   */
+  @Override
 	public void teleopPeriodic() {
 		// Cameras.run(); // Runs Pixy2 and Microsoft Camera
 		double angle = imu.getAngleZ();
@@ -122,35 +230,15 @@ public class Robot extends TimedRobot {
 
 			
 		}
-		/*----------------------------------------------------------------------------*/
-	//}
 
-	/**
-	 * Autonomous
-	 */
-	@Override
-	public void autonomousInit() {
+  /**
+   * This function is called periodically during test mode.
+   */
+  @Override
+  public void testPeriodic() {
+  }
 
-	}
-
-	@Override
-	public void autonomousPeriodic() {
-	}
-
-	/**
-	 * Test
-	 */
-	@Override
-	public void testInit() {
-
-	}
-
-	@Override
-	public void testPeriodic() {
-	}
-
-	public int getDriveStationNumber() {
+  public int getDriveStationNumber() {
 		return driverStationNumber;
 	}
-
 }
