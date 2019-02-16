@@ -5,16 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team4546.robot;
+package frc.robot;
 
 //import frc.team4546.robot.subsystems.vision.Cameras;
-import frc.team4546.robot.Dashboard;
+import frc.robot.Dashboard;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team4546.robot.subsystems.OI.motors.talonMotor;
 
 
 
@@ -37,8 +36,7 @@ public class Robot extends TimedRobot {
 	public static double targetZAngle = 360;
 
 	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
-	public talonMotor kLeftDrive = new talonMotor(0, .2, .2);
-	public talonMotor kRightDrive = new talonMotor(1, .2, .2);
+
 
 	@Override
 	public void robotInit() {
@@ -115,16 +113,11 @@ public class Robot extends TimedRobot {
 		currentZAngle = SmartDashboard.getNumber("Gyro-Z", 500);
 
 			if (targetZAngle > currentZAngle + 2) {
-				kLeftDrive.rotateClockwise(1.5);
-				kRightDrive.rotateClockwise(1.75);
+				//turn left
 			} else if (targetZAngle < currentZAngle - 2) {
-				kLeftDrive.rotateCounterClockwise(1.5);
-				kRightDrive.rotateCounterClockwise(1.75);
+				//turn right
 			} else {
-				kLeftDrive.rotateClockwise(0);
-				kRightDrive.rotateClockwise(0);
-				kLeftDrive.rotateCounterClockwise(0);
-				kRightDrive.rotateCounterClockwise(0);
+				//no turn
 			}
 
 			
