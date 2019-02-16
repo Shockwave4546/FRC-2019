@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.motors.*;
 import frc.robot.controllers.shockwaveXbox;
+
 import frc.robot.RobotMap;
 
 public class driveBase{
@@ -12,6 +13,7 @@ public class driveBase{
     //public double cDriveLeftX;
     //public double cDriveRightY;
     private double cDriveRightX;
+
     public driveBase(){
         kLeftDrive = new talonMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new talonMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);

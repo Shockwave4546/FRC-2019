@@ -70,6 +70,7 @@ public class shockwaveXbox{
         }
     }
 
+
     public boolean getLeftBumper(){
         leftBumper = cXbox.getBumper(Hand.kLeft);
         return leftBumper;
@@ -95,4 +96,5 @@ public class shockwaveXbox{
         Xbutton = cXbox.getXButton();
         return Xbutton;
     }
+
 }

@@ -1,10 +1,13 @@
 
 package frc.robot;
 
+import frc.robot.commands.driveBase;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+import frc.robot.controllers.DPad;
+import frc.robot.commands.*;
 import frc.robot.commands.driveBase;
 import frc.robot.RobotMap;
 /**
@@ -26,6 +29,12 @@ public class OI {
 	private Button driverLS = new JoystickButton(driver, 9);
 	private Button driverRS = new JoystickButton(driver, 10);
 
+	private Button driverDPadUp = new DPad(driver, DPad.Direction.up);
+	private Button driverDPadDown = new DPad(driver, DPad.Direction.down);
+	private Button driverDPadRight = new DPad(driver, DPad.Direction.right);
+	private Button driverDPadLeft = new DPad(driver, DPad.Direction.left);
+
+
 
 	// CO-DRIVER
 	private Joystick coDriver = new Joystick(RobotMap.XboxCoDriver);
@@ -40,10 +49,12 @@ public class OI {
 	private Button coDriverLS = new JoystickButton(coDriver, 9);
 	private Button coDriverRS = new JoystickButton(coDriver, 10);
 
+
 	// Climber - positive climb/roll-in; negative unclimb/roll-out
 	public OI() {
 
 		// Buttons
+    
 		// driverA.whenPressed();
 		// driverA.whenReleased();
 		// driverX.whenPressed();
