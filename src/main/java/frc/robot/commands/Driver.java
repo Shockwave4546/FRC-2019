@@ -26,6 +26,9 @@ public class Driver{
             kRightDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
         }
     }
+    private void intakeToggle(){
+        
+    }
     public void drive(){
         drivebaseControl();
     }

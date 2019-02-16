@@ -27,7 +27,11 @@ public class RobotMap {
         public static final int RightIntakePort = 1;
 
         public static final int LinearSlidePort = 2;
-        public static final int IntakePivotPort = 3;
+
+        public static final int ClimbDriveLeft = 3;
+        public static final int ClimbDriveRight = 4;
+
+        public static final int ClimbPivotPort = 5;
 
 
     // CAN IDs //
@@ -45,6 +49,7 @@ public class RobotMap {
     // Drive Train Motor Speeds (POS & NEG) //
         public static final double LeftDrivePos = .3;
         public static final double LeftDriveNeg = .3;
+
         public static final double RightDrivePos = .3;
         public static final double RightDriveNeg = .3;
 
@@ -58,20 +63,32 @@ public class RobotMap {
         public static final double LinearSlidePos = .5;
         public static final double LinearSlideNeg = .5;
 
+        public static final double LeftClimbDrivePos = .3;
+        public static final double LeftClimbDriveNeg = .3;
+
+        public static final double RightClimbDrivePos = .3;
+        public static final double RightClimbDriveNeg = .3;
         public static final double ArmPivotPos = .2;
         public static final double ArmPivotNeg = .2;
         
     // Lift Positions //
-         public static final int GroundLevelBall = 1420; 
-
+        public static final int GroundLevelBall = 1420; 
+        
+        // Ground Hatch             - 1'7"
         public static final int LowHatchPanelHeight = 1420; // Same as Ground Level for Alliance Station and Cargo Ship and First Level Rocket.
+        // Rocket Hatch Mid         - 3'11"
         public static final int MidHatchPanelHeight = 1420;
+        // Rocket Hatch High        - 6'3"
         public static final int HighHatchPanelHeight = 1420;
-
-        public static final int CargoShipBallHeight = 1420; // Cargo Ship Ball Height
-        public static final int RocketLowBallHeight = 1420; // Rocket Ball Low
-        public static final int RocketMidBallHeight = 1420; // Rocket Ball Mid
-        public static final int RocketHighBallHeight = 1420; // Rocket Ball High
+        
+        // Cargo Ship Ball Height   - > 2'7.5"
+        public static final int CargoShipBallHeight = 1420;
+        // Rocket Ball Low          - 2'3.5"
+        public static final int RocketLowBallHeight = 1420;
+        // Rocket Ball Mid          - 4'7.5"
+        public static final int RocketMidBallHeight = 1420;
+        // Rocket Ball High         - 6'11.5"
+        public static final int RocketHighBallHeight = 1420;
 
 }
 
