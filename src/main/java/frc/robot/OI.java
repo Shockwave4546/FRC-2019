@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import frc.robot.commands.driveBase;
-import frc.robot.controllers.DPad;
 import frc.robot.RobotMap;
 /**
  * The glue that binds the controls on the physical operator interface to the
@@ -26,14 +25,6 @@ public class OI {
 	private Button driverStart = new JoystickButton(driver, 8);
 	private Button driverLS = new JoystickButton(driver, 9);
 	private Button driverRS = new JoystickButton(driver, 10);
-	private Button driverDPadUp = new DPad(driver, DPad.Direction.up);
-	private Button driverDPadDown = new DPad(driver, DPad.Direction.down);
-	private Button driverDPadRight = new DPad(driver, DPad.Direction.right);
-	private Button driverDPadLeft = new DPad(driver, DPad.Direction.left);
-	private Button driverDPadUpRight = new DPad(driver, DPad.Direction.up);
-	private Button driverDPadUpLeft = new DPad(driver, DPad.Direction.down);
-	private Button driverDPadDownRight = new DPad(driver, DPad.Direction.right);
-	private Button driverDPadDownLeft = new DPad(driver, DPad.Direction.left);
 
 
 	// CO-DRIVER
@@ -48,10 +39,6 @@ public class OI {
 	private Button coDriverStart = new JoystickButton(coDriver, 8);
 	private Button coDriverLS = new JoystickButton(coDriver, 9);
 	private Button coDriverRS = new JoystickButton(coDriver, 10);
-	private Button coDriverDPadUp = new DPad(coDriver, DPad.Direction.up);
-	private Button coDriverDPadDown = new DPad(coDriver, DPad.Direction.down);
-	private Button coDriverDPadRight = new DPad(coDriver, DPad.Direction.right);
-	private Button coDriverDPadLeft = new DPad(coDriver, DPad.Direction.left);
 
 	// Climber - positive climb/roll-in; negative unclimb/roll-out
 	public OI() {
