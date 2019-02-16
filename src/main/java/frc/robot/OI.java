@@ -6,17 +6,19 @@ import frc.robot.commands.driveBase;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.controllers.DPad;
+import frc.robot.controllers.DPadButton;
 import frc.robot.commands.*;
-import frc.robot.commands.driveBase;
 import frc.robot.RobotMap;
+
 /**
  * The glue that binds the controls on the physical operator interface to the
  * commands and command groups that allow control of the robot.
  */
 public class OI {
 
-	// DRIVER
+	/**
+	 * MAIN DRIVER CONTROLS (XBOX CONTROLLER 1)
+	 */
 	private Joystick driver = new Joystick(RobotMap.XboxDriver);
 	private Button driverA = new JoystickButton(driver, 1);
 	private Button driverB = new JoystickButton(driver, 2);
@@ -28,15 +30,19 @@ public class OI {
 	private Button driverStart = new JoystickButton(driver, 8);
 	private Button driverLS = new JoystickButton(driver, 9);
 	private Button driverRS = new JoystickButton(driver, 10);
+	// DPad Buttoms
+	private Button driverDPadUp = new DPadButton(driver, DPadButton.Direction.UP);
+	private Button driverDPadDown = new DPadButton(driver, DPadButton.Direction.DOWN);
+	private Button driverDPadRight = new DPadButton(driver, DPadButton.Direction.RIGHT);
+	private Button driverDPadLeft = new DPadButton(driver, DPadButton.Direction.LEFT);
+	private Button driverDPadUpLeft = new DPadButton(driver, DPadButton.Direction.UP_LEFT);
+	private Button driverDPadUpRight = new DPadButton(driver, DPadButton.Direction.UP_RIGHT);
+	private Button driverDPadDownLeft = new DPadButton(driver, DPadButton.Direction.DOWN_LEFT);
+	private Button driverDPadDownRight = new DPadButton(driver, DPadButton.Direction.DOWN_RIGHT);
 
-	private Button driverDPadUp = new DPad(driver, DPad.Direction.up);
-	private Button driverDPadDown = new DPad(driver, DPad.Direction.down);
-	private Button driverDPadRight = new DPad(driver, DPad.Direction.right);
-	private Button driverDPadLeft = new DPad(driver, DPad.Direction.left);
-
-
-
-	// CO-DRIVER
+	/**
+	 * Co Driver CONTROLS (XBOX CONTROLLER 2)
+	 */
 	private Joystick coDriver = new Joystick(RobotMap.XboxCoDriver);
 	private Button coDriverA = new JoystickButton(coDriver, 1);
 	private Button coDriverB = new JoystickButton(coDriver, 2);
@@ -48,13 +54,21 @@ public class OI {
 	private Button coDriverStart = new JoystickButton(coDriver, 8);
 	private Button coDriverLS = new JoystickButton(coDriver, 9);
 	private Button coDriverRS = new JoystickButton(coDriver, 10);
-
+	// DPad Buttoms
+	private Button coDriverDPadUp = new DPadButton(coDriver, DPadButton.Direction.UP);
+	private Button coDriverDPadDown = new DPadButton(coDriver, DPadButton.Direction.DOWN);
+	private Button coDriverDPadRight = new DPadButton(coDriver, DPadButton.Direction.RIGHT);
+	private Button coDriverDPadLeft = new DPadButton(coDriver, DPadButton.Direction.LEFT);
+	private Button coDriverDPadUpLeft = new DPadButton(coDriver, DPadButton.Direction.UP_LEFT);
+	private Button coDriverDPadUpRight = new DPadButton(coDriver, DPadButton.Direction.UP_RIGHT);
+	private Button coDriverDPadDownLeft = new DPadButton(coDriver, DPadButton.Direction.DOWN_LEFT);
+	private Button coDriverDPadDownRight = new DPadButton(coDriver, DPadButton.Direction.DOWN_RIGHT);
 
 	// Climber - positive climb/roll-in; negative unclimb/roll-out
 	public OI() {
 
 		// Buttons
-    
+
 		// driverA.whenPressed();
 		// driverA.whenReleased();
 		// driverX.whenPressed();
@@ -79,6 +93,5 @@ public class OI {
 		// driverStart.whenReleased();
 
 	}
-
 
 }
