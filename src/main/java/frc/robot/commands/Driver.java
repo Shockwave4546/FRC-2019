@@ -9,14 +9,16 @@ public class Driver{
     private sparkMotor kLeftDrive;
     private sparkMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
+    private shockwaveSolenoid pBallIntake;
     private double cDriveLeftY;
     private double cDriveRightX;
-    private boolean intakeToggle = false;
+    private boolean intakeToggle;
     private boolean cDriveAButton;
     private boolean cDriveBButton;
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
+        pBallIntake = new shockwaveSolenoid(RobotMap.pIntakeBallF, RobotMap.pIntakeBallR);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
     }
     private void drivebaseControl(){
@@ -39,9 +41,11 @@ public class Driver{
             intakeToggle = false;
         }
         if(intakeToggle = true){
-            // Forward on pneumatics
+            pBallIntake.forward();
         }else if(intakeToggle = false){
-            // Reverse on pneumatics
+            pBallIntake.reverse();
+        }else{
+            pBallIntake.off();
         }
 
 

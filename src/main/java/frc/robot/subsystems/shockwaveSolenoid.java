@@ -14,4 +14,7 @@ public class shockwaveSolenoid{
     public void reverse(){
         pSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
+    public void off(){
+        pSolenoid.set(DoubleSolenoid.Value.kOff);
+    }
 }

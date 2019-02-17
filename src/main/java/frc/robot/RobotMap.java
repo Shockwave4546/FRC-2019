@@ -50,6 +50,17 @@ public class RobotMap {
         public static final int sLimitSwitch1 = 4;      // Linear Slide Reset Switch???
 
     // Solenoid Channels //
+        public static final int pIntakeBallF = 0;       // Ball Intake pneumatic port 1     -Forward
+        public static final int pIntakeBallR = 1;       // Ball Intake pneumatic port 2     -Reverse
+
+        public static final int pIntakeHatchF = 2;      // Hatch Intake pneumatic port 1    -Forward
+        public static final int pIntakeHatchR = 3;      // Hatch Intake pneumatic port 2    -Reverse
+
+        public static final int pClimbLeftF = 4;        // Left Climb pneumatic port 1      -Forward
+        public static final int pClimbLeftR = 5;        // Left Climb pneumatic port 2      -Reverse
+
+        public static final int pClimbRightF = 6;       // Right Climb pneumatic port 1     -Forward
+        public static final int pClimbRightR = 7;       // Right Climb pneumatic port 2     -Reverse
 
     // Drive Train Motor Speeds (POS & NEG) //
         public static final double LeftDrivePos = .3;
