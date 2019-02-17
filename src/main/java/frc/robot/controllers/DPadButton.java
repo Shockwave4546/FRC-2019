@@ -28,5 +28,17 @@ public class DPadButton extends Button {
         return (DPadValue == direction.direction) || (DPadValue == (direction.direction + 45) % 360)
                 || (DPadValue == (direction.direction + 315) % 360);
     }
+/**
+ * DPAD:
+-1: No Thumbpad Button
+0: North Thumbpad Button
+45: North-East Thumbpad Button
+90: East Thumbpad Button
+135: South-East Thumbpad Button
+180: South Thumbpad Button
+225: South-West Thumbpad Button
+270: West Thumbpad Button
+315: North-West Thumbpad Button
 
+ */
 }
