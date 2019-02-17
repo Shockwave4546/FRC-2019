@@ -23,26 +23,31 @@ public class RobotMap {
     // PWM Channels //
         // public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
 
-        public static final int LeftIntakePort = 0;
-        public static final int RightIntakePort = 1;
+        public static final int LeftIntakePort = 0;     // Motor Controller n/a -PDP: 5
+        public static final int RightIntakePort = 1;    // Motor Controller 1   -PDP: 7
 
-        public static final int LinearSlidePort = 2;
+        public static final int LinearSlidePort = 2;    // Motor Controller 2   -PDP: 0
 
-        public static final int ClimbDriveLeft = 3;
-        public static final int ClimbDriveRight = 4;
+        public static final int ClimbDriveLeft = 3;     // Motor Controller 3   -PDP: 1
+        public static final int ClimbDriveRight = 4;    // Motor Controller 4   -PDP: 2
 
-        public static final int ClimbPivotPort = 5;
+        public static final int ClimbPivotPort = 5;     // Motor Controller 5   -PDP: 3
 
 
     // CAN IDs //
-        public static final int LeftDrivePort = 1;
-        public static final int RightDrivePort = 2;
+        public static final int LeftDrivePort = 1;      // SparkMax Motor 1     -PDP: 12
+        public static final int RightDrivePort = 2;     // SparkMax Motor 2     -PDP: 14
         // public static final int PCMone = 0;
         // public static final int PCMtwo = 1;
 
     // Digital Channels //
-        // public static final int DRIVE_LEFT_ENCODER = 1;
-        // public static final int DRIVE_RIGHT_ENCODER = 2;
+        public static final int sSlideEncoder1 = 0;     // Linear Slide Encoder
+        public static final int sSlideEncoder2 = 1;
+
+        public static final int sClimbEncoder1 = 2;     // Climb Mechanism Encoder
+        public static final int sClimbEncoder2 = 3;
+
+        public static final int sLimitSwitch1 = 4;      // Linear Slide Reset Switch???
 
     // Solenoid Channels //
 
@@ -68,6 +73,7 @@ public class RobotMap {
 
         public static final double RightClimbDrivePos = .3;
         public static final double RightClimbDriveNeg = .3;
+
         public static final double ArmPivotPos = .2;
         public static final double ArmPivotNeg = .2;
         
