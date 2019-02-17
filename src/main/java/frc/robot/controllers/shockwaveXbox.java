@@ -86,7 +86,7 @@ public class shockwaveXbox{
         return rightBumper;
     }
 
-    public boolean getAButton(){
+    public boolean getAbutton(){
         Abutton = cXbox.getAButton();
         return Abutton;
     }

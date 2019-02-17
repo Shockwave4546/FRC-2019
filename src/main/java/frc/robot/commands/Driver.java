@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.motors.*;
+import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.controllers.shockwaveXbox;
 import frc.robot.RobotMap;
 
@@ -10,6 +11,9 @@ public class Driver{
     private shockwaveXbox cDriveXbox;
     private double cDriveLeftY;
     private double cDriveRightX;
+    private boolean intakeToggle = false;
+    private boolean cDriveAButton;
+    private boolean cDriveBButton;
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
@@ -27,10 +31,24 @@ public class Driver{
         }
     }
     private void intakeToggle(){
-        
+        cDriveAButton = cDriveXbox.getAbutton();
+        cDriveBButton = cDriveXbox.getBbutton();
+        if((cDriveAButton == true)&&(cDriveBButton == false)){
+            intakeToggle = true;
+        }else if((cDriveAButton == false)&&(cDriveBButton == true)){
+            intakeToggle = false;
+        }
+        if(intakeToggle = true){
+            // Forward on pneumatics
+        }else if(intakeToggle = false){
+            // Reverse on pneumatics
+        }
+
+
     }
     public void drive(){
         drivebaseControl();
+        intakeToggle();
     }
 
     public void remoteLeftDrive(final double leftMotor){
