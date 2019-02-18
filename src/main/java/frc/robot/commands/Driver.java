@@ -1,15 +1,15 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.motors.*;
-import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.controllers.shockwaveXbox;
+import frc.robot.commands.pneumatics;
 import frc.robot.RobotMap;
 
 public class Driver{
     private sparkMotor kLeftDrive;
     private sparkMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
-    private shockwaveSolenoid pBallIntake;
+    private pneumatics pSolenoidControl;
     private double cDriveLeftY;
     private double cDriveRightX;
     private boolean intakeToggle;
@@ -18,7 +18,7 @@ public class Driver{
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
-        pBallIntake = new shockwaveSolenoid(RobotMap.pIntakeBallF, RobotMap.pIntakeBallR);
+        pSolenoidControl = new pneumatics();
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
     }
     private void drivebaseControl(){
@@ -41,11 +41,11 @@ public class Driver{
             intakeToggle = false;
         }
         if(intakeToggle = true){
-            pBallIntake.forward();
+            pSolenoidControl.BallControl("forward");
         }else if(intakeToggle = false){
-            pBallIntake.reverse();
+            pSolenoidControl.BallControl("reverse");
         }else{
-            pBallIntake.off();
+            pSolenoidControl.BallControl("off");
         }
 
 

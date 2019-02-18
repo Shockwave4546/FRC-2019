@@ -1,8 +1,8 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.motors.*;
-import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.controllers.shockwaveXbox;
+import frc.robot.commands.pneumatics;
 import frc.robot.RobotMap;
 
 public class coDriver{
@@ -10,7 +10,7 @@ public class coDriver{
     private victorMotor kIntakeRight;
     private victorMotor kLinearSlide;
     private shockwaveXbox cCoDriverXbox;
-    private shockwaveSolenoid pHatchIntake;
+    private pneumatics pSolenoidContorl;
     private boolean cIntakeLeft;
     private boolean cIntakeRight;
     private double cLinearSlide;
@@ -19,7 +19,7 @@ public class coDriver{
         kIntakeLeft = new victorMotor(RobotMap.LeftIntakePort, RobotMap.LeftIntakePos, RobotMap.LeftIntakeNeg);
         kIntakeRight = new victorMotor(RobotMap.RightIntakePort, RobotMap.RightIntakePos, RobotMap.RightIntakeNeg);
         kLinearSlide = new victorMotor(RobotMap.LinearSlidePort, RobotMap.LinearSlidePos, RobotMap.LinearSlideNeg);
-        pHatchIntake = new shockwaveSolenoid(RobotMap.pIntakeHatchF, RobotMap.pIntakeHatchR);
+        pSolenoidContorl = new pneumatics();
         cCoDriverXbox = new shockwaveXbox(RobotMap.XboxCoDriver);
     }
 
@@ -51,9 +51,9 @@ public class coDriver{
     public void intakeHatchControl(){
         cDriveYButton = cCoDriverXbox.getYbutton();
         if(cDriveYButton == true){
-            pHatchIntake.forward();
+            pSolenoidContorl.HatchControl("forward");
         }else{
-            pHatchIntake.reverse();
+            pSolenoidContorl.HatchControl("reverse");
         }
     }
 
