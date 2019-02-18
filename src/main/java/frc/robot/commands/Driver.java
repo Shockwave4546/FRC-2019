@@ -3,7 +3,10 @@ package frc.robot.commands;
 import frc.robot.subsystems.motors.*;
 import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.controllers.shockwaveXbox;
+import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.sensors.ColorSensor;
+import frc.robot.Dashboard;
 
 public class Driver{
     private sparkMotor kLeftDrive;
@@ -15,6 +18,8 @@ public class Driver{
     private boolean intakeToggle;
     private boolean cDriveAButton;
     private boolean cDriveBButton;
+    public static shockwaveXbox xController;
+    public static ColorSensor colorSensor;
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
@@ -55,6 +60,13 @@ public class Driver{
         intakeToggle();
     }
 
+    public void detectLine(){
+        double leftTrigger = xController.getLeftTrigger();
+        Dashboard.getInstance().putNumber(false, "LT Value", leftTrigger);
+        if (leftTrigger > 0){
+            colorSensor.onLine();
+        }
+    }
     public void remoteLeftDrive(final double leftMotor){
         kLeftDrive.rotateMotor(leftMotor);
     }

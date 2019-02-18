@@ -40,8 +40,8 @@ public class Robot extends TimedRobot {
   public static shockwaveXbox xController;
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
-  private Driver dRover1 = new Driver();
-  private coDriver dRover2 = new coDriver();
+ // private Driver dRover1 = new Driver();
+ // private coDriver dRover2 = new coDriver();
 
   /**
    * This function is run when the robot is first started up and should be used
