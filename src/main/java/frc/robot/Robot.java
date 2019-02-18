@@ -102,7 +102,7 @@ public class Robot extends TimedRobot {
 
     currentZAngle = SmartDashboard.getNumber("Current-Z", -1);
 
-    if (targetZAngle == -1) {
+    /*if (targetZAngle == -1) {
       kLeftDrive.stopMotor();
       kRightDrive.stopMotor();
 
@@ -208,7 +208,7 @@ public class Robot extends TimedRobot {
 
         }
       }
-    }
+    }*/
 
     Cameras.run(); // Runs Pixy2 and Microsoft Camera
     boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
