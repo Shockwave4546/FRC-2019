@@ -19,7 +19,6 @@ public class Driver{
     private boolean cDriveAButton;
     private boolean cDriveBButton;
     public static shockwaveXbox xController;
-    public static ColorSensor colorSensor;
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
@@ -60,13 +59,6 @@ public class Driver{
         intakeToggle();
     }
 
-    public void detectLine(){
-        double leftTrigger = xController.getLeftTrigger();
-        Dashboard.getInstance().putNumber(false, "LT Value", leftTrigger);
-        if (leftTrigger > 0){
-            colorSensor.onLine();
-        }
-    }
     public void remoteLeftDrive(final double leftMotor){
         kLeftDrive.rotateMotor(leftMotor);
     }
