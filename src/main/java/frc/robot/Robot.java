@@ -8,15 +8,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.driveBase;
-//import frc.robot.controllers.DPadButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.Dashboard;
-import edu.wpi.first.wpilibj.DriverStation;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import frc.robot.subsystems.motors.talonMotor;
 import frc.robot.controllers.shockwaveXbox;
@@ -34,7 +30,6 @@ public class Robot extends TimedRobot {
    * DO NOT MODIFY
    */
 
-  // public static driveBase dRobot = new driveBase();
 
   public static final ADIS16448_IMU imu = new ADIS16448_IMU();
   public boolean straight = false;
@@ -310,17 +305,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    /*
-     * Block[] blocks = pixy2USBJNI.blocksBuffer.poll();
-     * 
-     * Block[] blocks = pixy2USBJNI.blocksBuffer.poll();
-     * 
-     * if (blocks != null) { for (Block b : blocks) {
-     * System.out.println(b.toString()); }
-     * 
-     * }
-     */
-
     // Dashboard.getInstance().putNumber(false, "Gyro-X", imu.getAngleX());
     // Dashboard.getInstance().putNumber(false, "Gyro-Y", imu.getAngleY());
 
