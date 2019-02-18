@@ -26,9 +26,9 @@ public class PixyCamera {
 		final int pixystatus = pixy.init(PixyResult); // Checks for Pixy2 Error (If issue, Robot is Not Effected)
 		if (pixystatus == 0) {
 
-			final int count = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
+			//final int count = pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
 
-			TargetBall.run(count); // Track Orange Ball Code Run
+			//TargetBall.run(count); // Track Orange Ball Code Run
 
 		}
 

@@ -36,11 +36,11 @@ public class Robot extends TimedRobot {
   public static double currentZAngle = 0;
   public static String targetDirection = "NODIRECTION";
   public static double targetZAngle = -1;
-  public static double angle = 0;
+  public static double angle = 0;  
   public static shockwaveXbox xController;
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
- // private Driver dRover1 = new Driver();
+  private Driver dRover1 = new Driver();
  // private coDriver dRover2 = new coDriver();
 
   /**
@@ -71,6 +71,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    dRover1.detectLine();
+
     angle = (((imu.getAngleZ() + 36000) % 360));
 
     Dashboard.getInstance().putString(false, "DPad Value", xController.getDPadDirection().toString());
