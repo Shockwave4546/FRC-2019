@@ -50,7 +50,7 @@ public class coDriver{
 
     public void intakeHatchControl(){
         cDriveYButton = cCoDriverXbox.getYbutton();
-        if(cDriveAButton == true){
+        if(cDriveYButton == true){
             pHatchIntake.forward();
         }else{
             pHatchIntake.reverse();
