@@ -7,16 +7,13 @@
 
 package frc.robot;
 
-
-import frc.team4546.robot.subsystems.vision.Cameras;
+import frc.robot.subsystems.vision.Cameras;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import frc.robot.commands.coDriver;
 import frc.robot.commands.Driver;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.Dashboard;
 import frc.robot.subsystems.motors.talonMotor;
 import frc.robot.controllers.shockwaveXbox;
@@ -34,8 +31,6 @@ public class Robot extends TimedRobot {
    * DO NOT MODIFY
    */
 
-
-
   public static final ADIS16448_IMU imu = new ADIS16448_IMU();
   public boolean straight = false;
   public static double currentZAngle = 0;
@@ -47,8 +42,7 @@ public class Robot extends TimedRobot {
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
   private Driver dRover1 = new Driver();
   private coDriver dRover2 = new coDriver();
-  
-  
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -59,6 +53,11 @@ public class Robot extends TimedRobot {
     imu.reset();
 
     xController = new shockwaveXbox(0);
+
+    Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
+    SmartDashboard.putBoolean("Pixy2 Light", false); // Addition of Pixy2 Lamp Toggle
+    boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
+    Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
   }
 
   /**
@@ -210,6 +209,11 @@ public class Robot extends TimedRobot {
         }
       }
     }
+
+    Cameras.run(); // Runs Pixy2 and Microsoft Camera
+    boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
+    Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
+
   }
 
   /**
@@ -240,7 +244,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-   
+
   }
 
   /**
@@ -257,9 +261,6 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
     imu.reset();
   }
 
