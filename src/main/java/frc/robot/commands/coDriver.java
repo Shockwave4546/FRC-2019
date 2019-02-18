@@ -14,7 +14,7 @@ public class coDriver{
     private boolean cIntakeLeft;
     private boolean cIntakeRight;
     private double cLinearSlide;
-    private boolean cDriveAButton;
+    private boolean cDriveYButton;
     public coDriver(){
         kIntakeLeft = new victorMotor(RobotMap.LeftIntakePort, RobotMap.LeftIntakePos, RobotMap.LeftIntakeNeg);
         kIntakeRight = new victorMotor(RobotMap.RightIntakePort, RobotMap.RightIntakePos, RobotMap.RightIntakeNeg);
@@ -49,7 +49,7 @@ public class coDriver{
     }
 
     public void intakeHatchControl(){
-        cDriveAButton = cCoDriverXbox.getAbutton();
+        cDriveYButton = cCoDriverXbox.getYbutton();
         if(cDriveAButton == true){
             pHatchIntake.forward();
         }else{
