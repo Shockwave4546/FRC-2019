@@ -92,6 +92,7 @@ public class ColorSensor {
 		if (red > 20 && green > 30 && blue > 20){
 			kLeftDrive.stopMotor();
 			kRightDrive.stopMotor();
+			Dashboard.getInstance().putBoolean(false, "LT Value", onTheLine);
 		}
 	}
 
