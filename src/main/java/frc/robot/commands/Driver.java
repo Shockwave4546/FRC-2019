@@ -58,13 +58,13 @@ public class Driver{
     public void remoteLeftDrive(final double leftMotor){
         kLeftDrive.rotateMotor(leftMotor);
     }
-    public double getLeftEncoder(){
-        return kLeftDrive.getEncoder();
+    public double getLeftEncoderPos(){
+        return kLeftDrive.getEncoderPosition();
     }
     public void remoteRightDrive(final double rightMotor){
         kLeftDrive.rotateMotor(rightMotor);
     }
-    public double getRightEncoder(){
-        return kRightDrive.getEncoder();
+    public double getRightEncoderPos(){
+        return kRightDrive.getEncoderPosition();
     }
 }
