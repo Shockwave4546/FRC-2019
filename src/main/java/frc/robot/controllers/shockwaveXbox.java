@@ -15,13 +15,21 @@ public class shockwaveXbox {
     private double deadzoneRightY;
     private double RightX;
     private double deadzoneRightX;
+
     private boolean leftBumper;
     private boolean rightBumper;
+
     private boolean Abutton;
     private boolean Bbutton;
     private boolean Ybutton;
     private boolean Xbutton;
     // private DPadButton dpad;
+    private double leftTrigger;
+    private double rightTrigger;
+
+    private boolean backButton;
+    private boolean startButton;
+
 
     public shockwaveXbox(final int port) {
         cXbox = new XboxController(port);
@@ -29,7 +37,6 @@ public class shockwaveXbox {
         deadzoneLeftX = defaultDeadzone;
         deadzoneRightY = defaultDeadzone;
         deadzoneRightX = defaultDeadzone;
-        // dpad = new DPadButton(this);
 
     }
 
@@ -120,7 +127,8 @@ public class shockwaveXbox {
         return rightBumper;
     }
 
-    public boolean getAButton() {
+
+    public boolean getAbutton() {
         Abutton = cXbox.getAButton();
         return Abutton;
     }
@@ -140,4 +148,20 @@ public class shockwaveXbox {
         return Xbutton;
     }
 
+    public boolean getStartButton(){
+        startButton = cXbox.getStartButton();
+        return startButton;
+    }
+    public boolean getBackButton(){
+        backButton = cXbox.getBackButton();
+        return backButton;
+    }
+    public double getLeftTrigger(){
+        leftTrigger = cXbox.getTriggerAxis(Hand.kLeft);
+        return leftTrigger;
+    }
+    public double getRightTrigger(){
+        rightTrigger = cXbox.getTriggerAxis(Hand.kRight);
+        return rightTrigger;
+    }
 }

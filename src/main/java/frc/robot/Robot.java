@@ -7,13 +7,17 @@
 
 package frc.robot;
 
+
+import frc.team4546.robot.subsystems.vision.Cameras;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import com.analog.adis16448.frc.ADIS16448_IMU;
+import frc.robot.commands.coDriver;
+import frc.robot.commands.Driver;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.Dashboard;
-import com.analog.adis16448.frc.ADIS16448_IMU;
 import frc.robot.subsystems.motors.talonMotor;
 import frc.robot.controllers.shockwaveXbox;
 
@@ -31,6 +35,7 @@ public class Robot extends TimedRobot {
    */
 
 
+
   public static final ADIS16448_IMU imu = new ADIS16448_IMU();
   public boolean straight = false;
   public static double currentZAngle = 0;
@@ -38,13 +43,12 @@ public class Robot extends TimedRobot {
   public static double targetZAngle = -1;
   public static double angle = 0;
   public static shockwaveXbox xController;
-
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
-
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+  private Driver dRover1 = new Driver();
+  private coDriver dRover2 = new coDriver();
+  
+  
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -110,7 +114,6 @@ public class Robot extends TimedRobot {
           if ((currentZAngle >= 350) || (currentZAngle <= 10)) {
             kLeftDrive.stopMotor();
             kRightDrive.stopMotor();
-            System.out.println("STOP UP");
           } else if ((currentZAngle) <= 180) {
             kLeftDrive.rotateCounterClockwise(0.5);
             kRightDrive.rotateCounterClockwise(0.5);
@@ -126,56 +129,45 @@ public class Robot extends TimedRobot {
           } else if ((currentZAngle >= 225) || (currentZAngle < 40)) {
             kLeftDrive.rotateCounterClockwise(-0.5);
             kRightDrive.rotateCounterClockwise(-0.5);
-            // System.out.println(targetZAngle);
           } else {
             kLeftDrive.rotateClockwise(-0.5);
             kRightDrive.rotateClockwise(-0.5);
-            // System.out.println(targetZAngle);
           }
 
         } else if (targetZAngle == 90) {
           if ((currentZAngle >= 85) && (currentZAngle <= 95)) {
             kLeftDrive.stopMotor();
             kRightDrive.stopMotor();
-            System.out.println("STOP R");
           } else if ((currentZAngle >= 270) || (currentZAngle < 85)) {
             kLeftDrive.rotateCounterClockwise(-0.5);
             kRightDrive.rotateCounterClockwise(-0.5);
-            // System.out.println(targetZAngle);
           } else {
             kLeftDrive.rotateClockwise(-0.5);
             kRightDrive.rotateClockwise(-0.5);
-            // System.out.println(targetZAngle);
           }
 
         } else if (targetZAngle == 135) {
           if ((currentZAngle >= 130) && (currentZAngle <= 140)) {
             kLeftDrive.stopMotor();
             kRightDrive.stopMotor();
-            System.out.println("STOP DR");
           } else if ((currentZAngle >= 315) || (currentZAngle < 130)) {
             kLeftDrive.rotateCounterClockwise(-0.5);
             kRightDrive.rotateCounterClockwise(-0.5);
-            // System.out.println(targetZAngle);
           } else {
             kLeftDrive.rotateClockwise(-0.5);
             kRightDrive.rotateClockwise(-0.5);
-            // System.out.println(targetZAngle);
           }
 
         } else if (targetZAngle == 180) {
           if ((currentZAngle >= 175) && (currentZAngle <= 185)) {
             kLeftDrive.stopMotor();
             kRightDrive.stopMotor();
-            System.out.println("STOP D");
           } else if ((currentZAngle < 175)) {
             kLeftDrive.rotateCounterClockwise(-0.5);
             kRightDrive.rotateCounterClockwise(-0.5);
-            // System.out.println(targetZAngle);
           } else {
             kLeftDrive.rotateClockwise(-0.5);
             kRightDrive.rotateClockwise(-0.5);
-            // System.out.println(targetZAngle);
           }
 
         } else if (targetZAngle == 225) {
@@ -186,41 +178,33 @@ public class Robot extends TimedRobot {
           } else if ((currentZAngle > 45) && (currentZAngle < 220)) {
             kLeftDrive.rotateCounterClockwise(-0.5);
             kRightDrive.rotateCounterClockwise(-0.5);
-            // System.out.println(targetZAngle);
           } else {
             kLeftDrive.rotateClockwise(-0.5);
             kRightDrive.rotateClockwise(-0.5);
-            // System.out.println(targetZAngle);
           }
 
         } else if (targetZAngle == 270) {
           if ((currentZAngle >= 260) && (currentZAngle <= 280)) {
             kLeftDrive.stopMotor();
             kRightDrive.stopMotor();
-            System.out.println("STOP L");
           } else if ((currentZAngle > 90) && (currentZAngle < 260)) {
             kLeftDrive.rotateCounterClockwise(-0.5);
             kRightDrive.rotateCounterClockwise(-0.5);
-            // System.out.println(targetZAngle);
           } else {
             kLeftDrive.rotateClockwise(-0.5);
             kRightDrive.rotateClockwise(-0.5);
-            // System.out.println(targetZAngle);
           }
 
         } else if (targetZAngle == 315) {
           if ((currentZAngle >= 305) && (currentZAngle <= 325)) {
             kLeftDrive.stopMotor();
             kRightDrive.stopMotor();
-            System.out.println("STOP UL");
           } else if ((currentZAngle > 135) && (currentZAngle < 320)) {
             kLeftDrive.rotateCounterClockwise(-0.5);
             kRightDrive.rotateCounterClockwise(-0.5);
-            // System.out.println(targetZAngle);
           } else {
             kLeftDrive.rotateClockwise(-0.5);
             kRightDrive.rotateClockwise(-0.5);
-            // System.out.println(targetZAngle);
           }
 
         }
@@ -256,19 +240,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
-
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-     * switch(autoSelected) { case "My Auto": autonomousCommand = new
-     * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-     * ExampleCommand(); break; }
-     */
-
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    }
+   
   }
 
   /**

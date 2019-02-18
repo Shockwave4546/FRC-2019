@@ -5,6 +5,7 @@ import frc.robot.subsystems.motors.Motor;
 import edu.wpi.first.wpilibj.Talon;
 
 
+
 public class talonMotor extends Motor{
     private Talon kMotor;
     public talonMotor(final int port, final double pos, final double neg){
