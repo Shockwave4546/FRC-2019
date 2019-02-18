@@ -1,4 +1,3 @@
-
 package frc.robot;
 
 import frc.robot.commands.driveBase;
@@ -6,7 +5,7 @@ import frc.robot.commands.driveBase;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.controllers.DPadButton;
+//import frc.robot.controllers.DPadButton;
 import frc.robot.commands.*;
 import frc.robot.RobotMap;
 
@@ -31,15 +30,11 @@ public class OI {
 	private Button driverLS = new JoystickButton(driver, 9);
 	private Button driverRS = new JoystickButton(driver, 10);
 	// DPad Buttoms
-	private Button driverDPadUp = new DPadButton(driver, DPadButton.Direction.UP);
+	/*private Button driverDPadUp = new DPadButton(driver, DPadButton.Direction.UP);
 	private Button driverDPadDown = new DPadButton(driver, DPadButton.Direction.DOWN);
 	private Button driverDPadRight = new DPadButton(driver, DPadButton.Direction.RIGHT);
 	private Button driverDPadLeft = new DPadButton(driver, DPadButton.Direction.LEFT);
-	private Button driverDPadUpLeft = new DPadButton(driver, DPadButton.Direction.UP_LEFT);
-	private Button driverDPadUpRight = new DPadButton(driver, DPadButton.Direction.UP_RIGHT);
-	private Button driverDPadDownLeft = new DPadButton(driver, DPadButton.Direction.DOWN_LEFT);
-	private Button driverDPadDownRight = new DPadButton(driver, DPadButton.Direction.DOWN_RIGHT);
-
+	*/
 	/**
 	 * Co Driver CONTROLS (XBOX CONTROLLER 2)
 	 */
@@ -55,15 +50,17 @@ public class OI {
 	private Button coDriverLS = new JoystickButton(coDriver, 9);
 	private Button coDriverRS = new JoystickButton(coDriver, 10);
 	// DPad Buttoms
-	private Button coDriverDPadUp = new DPadButton(coDriver, DPadButton.Direction.UP);
+	/*private Button coDriverDPadUp = new DPadButton(coDriver, DPadButton.Direction.UP);
 	private Button coDriverDPadDown = new DPadButton(coDriver, DPadButton.Direction.DOWN);
 	private Button coDriverDPadRight = new DPadButton(coDriver, DPadButton.Direction.RIGHT);
 	private Button coDriverDPadLeft = new DPadButton(coDriver, DPadButton.Direction.LEFT);
-	private Button coDriverDPadUpLeft = new DPadButton(coDriver, DPadButton.Direction.UP_LEFT);
+	*/
+    /*
+    private Button coDriverDPadUpLeft = new DPadButton(coDriver, DPadButton.Direction.UP_LEFT);
 	private Button coDriverDPadUpRight = new DPadButton(coDriver, DPadButton.Direction.UP_RIGHT);
 	private Button coDriverDPadDownLeft = new DPadButton(coDriver, DPadButton.Direction.DOWN_LEFT);
 	private Button coDriverDPadDownRight = new DPadButton(coDriver, DPadButton.Direction.DOWN_RIGHT);
-
+    */
 	// Climber - positive climb/roll-in; negative unclimb/roll-out
 	public OI() {
 

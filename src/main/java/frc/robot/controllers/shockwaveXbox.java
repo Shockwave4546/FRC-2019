@@ -3,8 +3,9 @@ package frc.robot.controllers;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
-public class shockwaveXbox{
-    private XboxController cXbox;
+
+public class shockwaveXbox {
+    private static XboxController cXbox;
     private double defaultDeadzone = .2;
     private double LeftY;
     private double deadzoneLeftY;
@@ -20,16 +21,20 @@ public class shockwaveXbox{
     private boolean Bbutton;
     private boolean Ybutton;
     private boolean Xbutton;
+    // private DPadButton dpad;
 
-
-    public shockwaveXbox(final int port){
+    public shockwaveXbox(final int port) {
         cXbox = new XboxController(port);
         deadzoneLeftY = defaultDeadzone;
         deadzoneLeftX = defaultDeadzone;
         deadzoneRightY = defaultDeadzone;
         deadzoneRightX = defaultDeadzone;
+        // dpad = new DPadButton(this);
+
     }
-    public shockwaveXbox(final int port, final double dead1, final double dead2, final double dead3, final double dead4){
+
+    public shockwaveXbox(final int port, final double dead1, final double dead2, final double dead3,
+            final double dead4) {
         cXbox = new XboxController(port);
         deadzoneLeftY = dead1;
         deadzoneLeftX = dead2;
@@ -37,62 +42,100 @@ public class shockwaveXbox{
         deadzoneRightX = dead4;
     }
 
-    public double getLeftY(){
+    public enum DPadDirection {
+        NODIRECTION, UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT;
+
+    }
+
+    public DPadDirection getDPadDirection() {
+
+        final int currentPOV = cXbox.getPOV();
+        if (currentPOV == -1) {
+            return DPadDirection.NODIRECTION;
+        } else if ((currentPOV >= 355) || (currentPOV <= 5)) {
+            return DPadDirection.UP;
+        } else if ((currentPOV >= 5) && (currentPOV <= 85)) {
+            return DPadDirection.UP_RIGHT;
+        } else if ((currentPOV > 85) && (currentPOV < 95)) {
+            return DPadDirection.RIGHT;
+        } else if ((currentPOV >= 95) && (currentPOV <= 175)) {
+            return DPadDirection.DOWN_RIGHT;
+        } else if ((currentPOV > 175) && (currentPOV < 185)) {
+            return DPadDirection.DOWN;
+        } else if ((currentPOV >= 185) && (currentPOV <= 265)) {
+            return DPadDirection.DOWN_LEFT;
+        } else if ((currentPOV > 265) && (currentPOV < 275)) {
+            return DPadDirection.LEFT;
+        } else if ((currentPOV >= 275) && (currentPOV < 355)) {
+            return DPadDirection.UP_LEFT;
+        } else {
+            return DPadDirection.NODIRECTION;
+        }
+
+    }
+
+    public double getLeftY() {
         LeftY = cXbox.getY(Hand.kLeft);
-        if(-deadzoneLeftY <= LeftY && LeftY <= deadzoneLeftY){
+        if (-deadzoneLeftY <= LeftY && LeftY <= deadzoneLeftY) {
             return 0;
-        }else{
+        } else {
             return -LeftY;
         }
     }
-    public double getLeftX(){
+
+    public double getLeftX() {
         LeftX = cXbox.getX(Hand.kLeft);
-        if(-deadzoneLeftX <= LeftX && LeftX <= deadzoneLeftX){
+        if (-deadzoneLeftX <= LeftX && LeftX <= deadzoneLeftX) {
             return 0;
-        }else{
+        } else {
             return -LeftX;
         }
     }
-    public double getRightY(){
+
+    public double getRightY() {
         RightY = cXbox.getY(Hand.kRight);
-        if(-deadzoneRightY <= RightY && RightY <= deadzoneRightY){
+        if (-deadzoneRightY <= RightY && RightY <= deadzoneRightY) {
             return 0;
-        }else{
+        } else {
             return RightY;
         }
     }
-    public double getRightX(){
+
+    public double getRightX() {
         RightX = cXbox.getX(Hand.kRight);
-        if(-deadzoneRightX <= RightX && RightX <= deadzoneRightX){
+        if (-deadzoneRightX <= RightX && RightX <= deadzoneRightX) {
             return 0;
-        }else{
+        } else {
             return RightX;
         }
     }
 
-
-    public boolean getLeftBumper(){
+    public boolean getLeftBumper() {
         leftBumper = cXbox.getBumper(Hand.kLeft);
         return leftBumper;
     }
-    public boolean getRightBumper(){
+
+    public boolean getRightBumper() {
         rightBumper = cXbox.getBumper(Hand.kRight);
         return rightBumper;
     }
 
-    public boolean getAButton(){
+    public boolean getAButton() {
         Abutton = cXbox.getAButton();
         return Abutton;
     }
-    public boolean getBbutton(){
+
+    public boolean getBbutton() {
         Bbutton = cXbox.getBButton();
         return Bbutton;
     }
-    public boolean getYbutton(){
+
+    public boolean getYbutton() {
         Ybutton = cXbox.getYButton();
         return Ybutton;
     }
-    public boolean getXbutton(){
+
+    public boolean getXbutton() {
         Xbutton = cXbox.getXButton();
         return Xbutton;
     }
