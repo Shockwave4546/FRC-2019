@@ -11,13 +11,13 @@ import frc.robot.subsystems.vision.Cameras;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import com.analog.adis16448.frc.ADIS16448_IMU;
-import frc.robot.commands.coDriver;
-import frc.robot.commands.Driver;
+//import frc.robot.commands.coDriver;
+//import frc.robot.commands.Driver;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Dashboard;
 import frc.robot.subsystems.motors.talonMotor;
 import frc.robot.controllers.shockwaveXbox;
-import frc.robot.subsystems.sensors.ColorSensor;
+//import frc.robot.subsystems.sensors.ColorSensor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -41,9 +41,9 @@ public class Robot extends TimedRobot {
   public static shockwaveXbox xController;
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
-  private Driver dRover1 = new Driver();
-  public static ColorSensor colorSensor;
-  double leftTrigger = xController.getLeftTrigger();
+  //private Driver dRover1 = new Driver();
+  //public static ColorSensor colorSensor;
+  //double leftTrigger = xController.getLeftTrigger();
  // private coDriver dRover2 = new coDriver();
 
   /**
@@ -74,12 +74,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    dRover1.detectLine();
-    Dashboard.getInstance().putNumber(false, "LT Value", leftTrigger);
-    colorSensor.read();
-    if (leftTrigger > 0){
-        colorSensor.onLine();
-
+ 
     angle = (((imu.getAngleZ() + 36000) % 360));
 
     Dashboard.getInstance().putString(false, "DPad Value", xController.getDPadDirection().toString());
@@ -182,7 +177,6 @@ public class Robot extends TimedRobot {
           if ((currentZAngle >= 215) && (currentZAngle <= 235)) {
             kLeftDrive.stopMotor();
             kRightDrive.stopMotor();
-            System.out.println("STOP DL");
           } else if ((currentZAngle > 45) && (currentZAngle < 220)) {
             kLeftDrive.rotateCounterClockwise(-0.5);
             kRightDrive.rotateCounterClockwise(-0.5);
