@@ -5,8 +5,13 @@ import frc.robot.RobotMap;
 
 public class shockwaveEncoder{
     private int count;
-    private boolean direction;
+    private boolean directionEncoder;
     private Encoder sEncoder;
+    private enum direction{
+        clockwise,
+        counterclockwise,
+        unknown
+    }
     public shockwaveEncoder(final int port1, final int port2){
         sEncoder = new Encoder(RobotMap.sSlideEncoder1, RobotMap.sSlideEncoder2);
     }
@@ -16,13 +21,13 @@ public class shockwaveEncoder{
         return count;
     }
     public String getDirection(){
-        direction = sEncoder.getDirection();
-        if(direction == true){
-            return "clockwise";
-        }else if(direction == false){
-            return "counter-clockwise";
+        directionEncoder = sEncoder.getDirection();
+        if(directionEncoder == true){
+            return direction.clockwise.toString();
+        }else if(directionEncoder == false){
+            return direction.clockwise.toString();
         }else{
-            return "unknown";
+            return direction.clockwise.toString();
         }
     }
     public void resetEncoder(){

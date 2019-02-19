@@ -12,7 +12,7 @@ public class Driver{
     private pneumatics pSolenoidControl;
     private double cDriveLeftY;
     private double cDriveRightX;
-    private boolean intakeToggle;
+    private boolean toggleIntake;
     private boolean cDriveAButton;
     private boolean cDriveBButton;
     public Driver(){
@@ -36,16 +36,16 @@ public class Driver{
         cDriveAButton = cDriveXbox.getAbutton();
         cDriveBButton = cDriveXbox.getBbutton();
         if((cDriveAButton == true)&&(cDriveBButton == false)){
-            intakeToggle = true;
+            toggleIntake = true;
         }else if((cDriveAButton == false)&&(cDriveBButton == true)){
-            intakeToggle = false;
+            toggleIntake = false;
         }
-        if(intakeToggle = true){
-            pSolenoidControl.BallControl("forward");
-        }else if(intakeToggle = false){
-            pSolenoidControl.BallControl("reverse");
+        if(toggleIntake = true){
+            pSolenoidControl.BallControl(1);
+        }else if(toggleIntake = false){
+            pSolenoidControl.BallControl(0);
         }else{
-            pSolenoidControl.BallControl("off");
+            pSolenoidControl.BallControl(2);
         }
 
 

@@ -51,9 +51,9 @@ public class coDriver{
     public void intakeHatchControl(){
         cDriveYButton = cCoDriverXbox.getYbutton();
         if(cDriveYButton == true){
-            pSolenoidContorl.HatchControl("forward");
+            pSolenoidContorl.HatchControl(1);
         }else{
-            pSolenoidContorl.HatchControl("reverse");
+            pSolenoidContorl.HatchControl(0);
         }
     }
 

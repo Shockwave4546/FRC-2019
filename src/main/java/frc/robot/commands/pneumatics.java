@@ -20,10 +20,10 @@ public class pneumatics{
     private void pBallOff(){
         pBallIntake.off();
     }
-    public void BallControl(final String mode){
-        if(mode == "forward"){
+    public void BallControl(final int mode){
+        if(mode == 1){
             pBallForward();
-        }else if(mode == "reverse"){
+        }else if(mode == 0){
             pBallReverse();
         }else{
             pBallOff();
@@ -39,10 +39,10 @@ public class pneumatics{
     private void pHatchOff(){
         pHatchIntake.off();
     }
-    public void HatchControl(final String mode){
-        if(mode == "forward"){
+    public void HatchControl(final int mode){
+        if(mode == 1){
             pHatchForward();
-        }else if(mode == "reverse"){
+        }else if(mode == 0){
             pHatchReverse();
         }else{
             pHatchOff();
