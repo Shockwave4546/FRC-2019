@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Dashboard;
 import frc.robot.subsystems.motors.talonMotor;
 import frc.robot.controllers.shockwaveXbox;
+import frc.robot.subsystems.sensors.colorSensor;
 //import frc.robot.subsystems.sensors.ColorSensor;
 
 /**
@@ -37,14 +38,18 @@ public class Robot extends TimedRobot {
   public static double currentZAngle = 0;
   public static String targetDirection = "NODIRECTION";
   public static double targetZAngle = -1;
-  public static double angle = 0;  
+  public static double angle = 0;
   public static shockwaveXbox xController;
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
-  //private Driver dRover1 = new Driver();
-  //public static ColorSensor colorSensor;
-  //double leftTrigger = xController.getLeftTrigger();
- // private coDriver dRover2 = new coDriver();
+  public static colorSensor ColorSensor;
+  public int red = ColorSensor.getRed();
+  public int green = ColorSensor.getGreen();
+  public int blue = ColorSensor.getBlue();
+  // private Driver dRover1 = new Driver();
+  // public static ColorSensor colorSensor;
+  // double leftTrigger = xController.getLeftTrigger();
+  // private coDriver dRover2 = new coDriver();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -74,7 +79,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
- 
+
     angle = (((imu.getAngleZ() + 36000) % 360));
 
     Dashboard.getInstance().putString(false, "DPad Value", xController.getDPadDirection().toString());
@@ -216,6 +221,12 @@ public class Robot extends TimedRobot {
     Cameras.run(); // Runs Pixy2 and Microsoft Camera
     boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
     Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
+
+    ColorSensor.read();
+    if (red > 20 && green > 30 && blue > 20) {
+      kLeftDrive.stopMotor();
+      kRightDrive.stopMotor();
+    }
 
   }
 

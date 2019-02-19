@@ -5,12 +5,13 @@ import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.controllers.shockwaveXbox;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.sensors.colorSensor;
 //import frc.robot.subsystems.sensors.ColorSensor;
 import frc.robot.Dashboard;
 
 public class Driver{
-    private sparkMotor kLeftDrive;
-    private sparkMotor kRightDrive;
+    private talonMotor kLeftDrive;
+    private talonMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
     private shockwaveSolenoid pBallIntake;
     private double cDriveLeftY;
@@ -20,8 +21,7 @@ public class Driver{
     private boolean cDriveBButton;
     public static shockwaveXbox xController;
     public Driver(){
-        kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
-        kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
+        
         pBallIntake = new shockwaveSolenoid(RobotMap.pIntakeBallF, RobotMap.pIntakeBallR);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
     }
@@ -51,14 +51,13 @@ public class Driver{
         }else{
             pBallIntake.off();
         }
-
-
     }
     public void drive(){
         drivebaseControl();
         intakeToggle();
     }
 
+    /*
     public void remoteLeftDrive(final double leftMotor){
         kLeftDrive.rotateMotor(leftMotor);
     }
@@ -71,4 +70,5 @@ public class Driver{
     public double getRightEncoder(){
         return kRightDrive.getEncoder();
     }
+    */
 }
