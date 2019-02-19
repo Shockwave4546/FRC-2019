@@ -18,6 +18,7 @@ import frc.robot.Dashboard;
 import frc.robot.subsystems.motors.talonMotor;
 import frc.robot.controllers.shockwaveXbox;
 import frc.robot.subsystems.sensors.ColorSensor;
+import edu.wpi.first.wpilibj.I2C;
 //import frc.robot.subsystems.sensors.ColorSensor;
 
 /**
@@ -42,10 +43,11 @@ public class Robot extends TimedRobot {
   public static shockwaveXbox xController;
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
-  public static ColorSensor ColorSensor;
-  public double red;
-  public double green;
-  public double blue;
+  public static ColorSensor colorsensor;
+  public static int red;
+  public static int blue;
+  public static int green;
+
 
   // private Driver dRover1 = new Driver();
   // public static ColorSensor colorSensor;
@@ -60,7 +62,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     imu.calibrate();
     imu.reset();
-
+    colorsensor = new ColorSensor(I2C.Port.kOnboard);
     xController = new shockwaveXbox(0);
 
     Cameras.setup(); // Setup and Connection to Pixy2 and Microsoft Camera
@@ -80,9 +82,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    red = ColorSensor.getRed();
-    green = ColorSensor.getGreen();
-    blue = ColorSensor.getBlue();
+    colorsensor.read();
+    red = colorsensor.getRed();
+    green = colorsensor.getGreen();
+    blue = colorsensor.getBlue();
 
     angle = (((imu.getAngleZ() + 36000) % 360));
 
@@ -226,12 +229,15 @@ public class Robot extends TimedRobot {
     boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
     Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
 
-    Dashboard.getInstance().putNumber(false, "Red", ColorSensor.getRed());
-    Dashboard.getInstance().putNumber(false, "Blue", ColorSensor.getGreen());
-    Dashboard.getInstance().putNumber(false, "Green", ColorSensor.getBlue());
-    if (red > 20 && green > 30 && blue > 20) {
-      kLeftDrive.stopMotor();
-      kRightDrive.stopMotor();
+    Dashboard.getInstance().putNumber(false, "Red", colorsensor.getRed());
+    Dashboard.getInstance().putNumber(false, "Blue", colorsensor.getGreen());
+    Dashboard.getInstance().putNumber(false, "Green", colorsensor.getBlue());
+    Dashboard.getInstance().putNumber(false, "Proximity", colorsensor.getProx());
+
+    if (red > 20 && green > 30 && blue > 20){
+      Dashboard.getInstance().putBoolean(false, "Line Detected", true);
+    }else{
+      Dashboard.getInstance().putBoolean(false, "Line Detected", false);
     }
 
   }

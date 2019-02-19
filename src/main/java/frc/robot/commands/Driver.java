@@ -5,7 +5,6 @@ import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.controllers.shockwaveXbox;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.sensors.colorSensor;
 //import frc.robot.subsystems.sensors.ColorSensor;
 import frc.robot.Dashboard;
 
