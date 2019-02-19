@@ -3,7 +3,10 @@ package frc.robot.commands;
 import frc.robot.subsystems.motors.*;
 import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.controllers.shockwaveXbox;
+import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.sensors.ColorSensor;
+import frc.robot.Dashboard;
 
 public class Driver{
     private sparkMotor kLeftDrive;
@@ -15,10 +18,7 @@ public class Driver{
     private boolean intakeToggle;
     private boolean cDriveAButton;
     private boolean cDriveBButton;
-<<<<<<< HEAD
     public static shockwaveXbox xController;
-=======
->>>>>>> parent of 91270c8... Added line detection
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
