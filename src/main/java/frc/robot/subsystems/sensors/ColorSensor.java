@@ -305,7 +305,6 @@ public class ColorSensor extends SendableBase {
 		if (red > 20 && green > 30 && blue > 20){
 			kLeftDrive.stopMotor();
 			kRightDrive.stopMotor();
-<<<<<<< HEAD
 			Dashboard.getInstance().putBoolean(false, "LT Value", onTheLine);
 =======
 	public void setInterrupt(boolean intrpt) throws Exception {
@@ -315,8 +314,6 @@ public class ColorSensor extends SendableBase {
 		} else {
 			r &= ~ColorSensor_ENABLE_AIEN;
 >>>>>>> parent of 91270c8... Added line detection
-=======
->>>>>>> parent of ae30c8b... fixed some stuff
 		}
 		this.write8(ColorSensor_ENABLE, r);
 	}

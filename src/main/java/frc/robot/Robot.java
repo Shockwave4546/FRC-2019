@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Dashboard;
 import frc.robot.subsystems.motors.talonMotor;
 import frc.robot.controllers.shockwaveXbox;
+import frc.robot.subsystems.sensors.ColorSensor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -40,14 +41,10 @@ public class Robot extends TimedRobot {
   public static shockwaveXbox xController;
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
-<<<<<<< HEAD
   private Driver dRover1 = new Driver();
 <<<<<<< HEAD
   public static ColorSensor colorSensor;
   double leftTrigger = xController.getLeftTrigger();
-=======
- // private Driver dRover1 = new Driver();
->>>>>>> parent of ae30c8b... fixed some stuff
  // private coDriver dRover2 = new coDriver();
 =======
   private coDriver dRover2 = new coDriver();
@@ -81,15 +78,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-<<<<<<< HEAD
     dRover1.detectLine();
     Dashboard.getInstance().putNumber(false, "LT Value", leftTrigger);
     colorSensor.read();
     if (leftTrigger > 0){
         colorSensor.onLine();
 
-=======
->>>>>>> parent of ae30c8b... fixed some stuff
     angle = (((imu.getAngleZ() + 36000) % 360));
 
     Dashboard.getInstance().putString(false, "DPad Value", xController.getDPadDirection().toString());

@@ -17,12 +17,8 @@ public class Driver{
     private boolean cDriveBButton;
 <<<<<<< HEAD
     public static shockwaveXbox xController;
-<<<<<<< HEAD
 =======
 >>>>>>> parent of 91270c8... Added line detection
-=======
-    public static ColorSensor colorSensor;
->>>>>>> parent of ae30c8b... fixed some stuff
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
@@ -63,13 +59,6 @@ public class Driver{
         intakeToggle();
     }
 
-    public void detectLine(){
-        double leftTrigger = xController.getLeftTrigger();
-        Dashboard.getInstance().putNumber(false, "LT Value", leftTrigger);
-        if (leftTrigger > 0){
-            colorSensor.onLine();
-        }
-    }
     public void remoteLeftDrive(final double leftMotor){
         kLeftDrive.rotateMotor(leftMotor);
     }
