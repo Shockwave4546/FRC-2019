@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Dashboard;
 import frc.robot.subsystems.motors.talonMotor;
 import frc.robot.controllers.shockwaveXbox;
-import frc.robot.subsystems.sensors.colorSensor;
+import frc.robot.subsystems.sensors.ColorSensor;
 //import frc.robot.subsystems.sensors.ColorSensor;
 
 /**
@@ -42,10 +42,11 @@ public class Robot extends TimedRobot {
   public static shockwaveXbox xController;
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
-  public static colorSensor ColorSensor;
-  public int red = ColorSensor.getRed();
-  public int green = ColorSensor.getGreen();
-  public int blue = ColorSensor.getBlue();
+  public static ColorSensor ColorSensor;
+  public double red = ColorSensor.getRed();
+  public double green = ColorSensor.getGreen();
+  public double blue = ColorSensor.getBlue();
+
   // private Driver dRover1 = new Driver();
   // public static ColorSensor colorSensor;
   // double leftTrigger = xController.getLeftTrigger();
@@ -222,7 +223,9 @@ public class Robot extends TimedRobot {
     boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
     Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2
 
-    ColorSensor.read();
+    Dashboard.getInstance().putNumber(false, "Red", ColorSensor.getRed());
+    Dashboard.getInstance().putNumber(false, "Blue", ColorSensor.getGreen());
+    Dashboard.getInstance().putNumber(false, "Green", ColorSensor.getBlue());
     if (red > 20 && green > 30 && blue > 20) {
       kLeftDrive.stopMotor();
       kRightDrive.stopMotor();

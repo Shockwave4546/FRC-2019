@@ -3,9 +3,8 @@ package frc.robot.subsystems.sensors;
 import edu.wpi.first.wpilibj.I2C;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import frc.robot.*;
 
-public class colorSensor {
+public class ColorSensor {
 	protected final static int CMD = 0x80;
 	protected final static int MULTI_BYTE_BIT = 0x20;
 	protected final static int ENABLE_REGISTER = 0x00;
@@ -34,7 +33,7 @@ public class colorSensor {
 
 	public int red = 0, green = 0, blue = 0, prox = 0;
 
-	public colorSensor(I2C.Port port) {
+	public ColorSensor(I2C.Port port) {
 		buffy.order(ByteOrder.LITTLE_ENDIAN);
 		sensor = new I2C(port, 0x39); // 0x39 is the address of the Vex ColorSensor V2
 
@@ -78,23 +77,20 @@ public class colorSensor {
 		return buffy.get(0);
 	}
 
-
-	public int getRed(){
-		Dashboard.getInstance().putNumber(false, "Red", red);
+	public int getRed() {
 		return red;
 	}
-	public int getGreen(){
-		Dashboard.getInstance().putNumber(false, "Green", green);
+
+	public int getGreen() {
 		return green;
 	}
-	public int getBlue(){
-		Dashboard.getInstance().putNumber(false, "Blue", blue);
+
+	public int getBlue() {
 		return blue;
 	}
-	public int getProx(){
-		Dashboard.getInstance().putNumber(false, "Proximity", prox);
+
+	public int getProx() {
 		return prox;
 	}
-
 
 }
