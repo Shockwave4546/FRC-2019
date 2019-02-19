@@ -43,9 +43,9 @@ public class Robot extends TimedRobot {
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
   public static ColorSensor ColorSensor;
-  public double red = ColorSensor.getRed();
-  public double green = ColorSensor.getGreen();
-  public double blue = ColorSensor.getBlue();
+  public double red;
+  public double green;
+  public double blue;
 
   // private Driver dRover1 = new Driver();
   // public static ColorSensor colorSensor;
@@ -80,6 +80,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    red = ColorSensor.getRed();
+    green = ColorSensor.getGreen();
+    blue = ColorSensor.getBlue();
 
     angle = (((imu.getAngleZ() + 36000) % 360));
 
