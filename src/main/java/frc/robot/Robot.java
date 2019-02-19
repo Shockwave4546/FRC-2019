@@ -42,9 +42,13 @@ public class Robot extends TimedRobot {
   public talonMotor kLeftDrive = new talonMotor(0, .5, .5);
   public talonMotor kRightDrive = new talonMotor(1, .5, .5);
   private Driver dRover1 = new Driver();
+<<<<<<< HEAD
   public static ColorSensor colorSensor;
   double leftTrigger = xController.getLeftTrigger();
  // private coDriver dRover2 = new coDriver();
+=======
+  private coDriver dRover2 = new coDriver();
+>>>>>>> parent of 91270c8... Added line detection
 
   /**
    * This function is run when the robot is first started up and should be used
