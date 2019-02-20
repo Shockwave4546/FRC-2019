@@ -10,7 +10,7 @@ public class coDriver{
     private victorMotor kIntakeRight;
     private victorMotor kLinearSlide;
     private shockwaveXbox cCoDriverXbox;
-    private pneumatics pSolenoidContorl;
+    private pneumatics pSolenoidControl;
     private boolean cIntakeLeft;
     private boolean cIntakeRight;
     private double cLinearSlide;
@@ -19,7 +19,7 @@ public class coDriver{
         kIntakeLeft = new victorMotor(RobotMap.LeftIntakePort, RobotMap.LeftIntakePos, RobotMap.LeftIntakeNeg);
         kIntakeRight = new victorMotor(RobotMap.RightIntakePort, RobotMap.RightIntakePos, RobotMap.RightIntakeNeg);
         kLinearSlide = new victorMotor(RobotMap.LinearSlidePort, RobotMap.LinearSlidePos, RobotMap.LinearSlideNeg);
-        pSolenoidContorl = new pneumatics();
+        pSolenoidControl = new pneumatics();
         cCoDriverXbox = new shockwaveXbox(RobotMap.XboxCoDriver);
     }
 
@@ -51,9 +51,9 @@ public class coDriver{
     public void intakeHatchControl(){
         cDriveYButton = cCoDriverXbox.getYbutton();
         if(cDriveYButton == true){
-            pSolenoidContorl.HatchControl(1);
+            pSolenoidControl.HatchControl(1);
         }else{
-            pSolenoidContorl.HatchControl(0);
+            pSolenoidControl.HatchControl(0);
         }
     }
 
