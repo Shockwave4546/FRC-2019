@@ -71,8 +71,8 @@ public class RobotMap {
     // Lift Positions //
         public static final int GroundLevelBall = 1420; 
         
-        // Ground Hatch             - 1'7"
-        public static final int LowHatchPanelHeight = 1420; // Same as Ground Level for Alliance Station and Cargo Ship and First Level Rocket.
+        // Ground                   - 1'7"
+        public static final int LowHatchPanelHeight = 1420; 
         // Rocket Hatch Mid         - 3'11"
         public static final int MidHatchPanelHeight = 1420;
         // Rocket Hatch High        - 6'3"
