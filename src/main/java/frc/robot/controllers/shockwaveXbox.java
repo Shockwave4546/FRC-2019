@@ -3,7 +3,6 @@ package frc.robot.controllers;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
-
 public class shockwaveXbox {
     private static XboxController cXbox;
     private double defaultDeadzone = .2;

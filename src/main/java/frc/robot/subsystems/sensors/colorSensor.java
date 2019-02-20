@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.I2C;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class ColorSensor {
+public class colorSensor {
 	protected final static int CMD = 0x80;
 	protected final static int MULTI_BYTE_BIT = 0x20;
 	protected final static int ENABLE_REGISTER = 0x00;
@@ -33,7 +33,7 @@ public class ColorSensor {
 
 	public int red = 0, green = 0, blue = 0, prox = 0;
 
-	public ColorSensor(I2C.Port port) {
+	public colorSensor(I2C.Port port) {
 		buffy.order(ByteOrder.LITTLE_ENDIAN);
 		sensor = new I2C(port, 0x39); // 0x39 is the address of the Vex ColorSensor V2
 

@@ -1,28 +1,11 @@
-
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
 public class RobotMap {
     // Joystick Ports //
         public static final int XboxDriver = 0;
         public static final int XboxCoDriver = 1;
 
-
     // PWM Channels //
-        // public static final int DRIVE_TALONSR_LEFT_CHANNEL = 0;
-
         public static final int LeftIntakePort = 0;     // Motor Controller n/a -PDP: 5
         public static final int RightIntakePort = 1;    // Motor Controller 1   -PDP: 7
 
@@ -33,12 +16,9 @@ public class RobotMap {
 
         public static final int ClimbPivotPort = 5;     // Motor Controller 5   -PDP: 3
 
-
     // CAN IDs //
         public static final int LeftDrivePort = 1;      // SparkMax Motor 1     -PDP: 12
         public static final int RightDrivePort = 2;     // SparkMax Motor 2     -PDP: 14
-        // public static final int PCMone = 0;
-        // public static final int PCMtwo = 1;
 
     // Digital Channels //
         public static final int sSlideEncoder1 = 0;     // Linear Slide Encoder

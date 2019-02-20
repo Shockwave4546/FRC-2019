@@ -1,15 +1,16 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.subsystems.motors.*;
 import frc.robot.controllers.shockwaveXbox;
-import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.pneumatics;
-import frc.robot.RobotMap;
 import frc.robot.Dashboard;
-import frc.robot.subsystems.sensors.ColorSensor;
-import edu.wpi.first.wpilibj.I2C;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.sensors.colorSensor;
+
 import com.analog.adis16448.frc.ADIS16448_IMU;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Driver {
     public static final ADIS16448_IMU imu = new ADIS16448_IMU();
@@ -18,9 +19,8 @@ public class Driver {
     public static String targetDirection = "NODIRECTION";
     public static double targetZAngle = -1;
     public static double angle = 0;
-
-    public talonMotor kLeftDrive;
-    public talonMotor kRightDrive;
+    public sparkMotor kLeftDrive;
+    public sparkMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
     private pneumatics pSolenoidControl;
     private double cDriveLeftY;
@@ -29,14 +29,14 @@ public class Driver {
     private boolean cDriveAButton;
     private boolean cDriveBButton;
     private double drivemodetoggle;
-    public static ColorSensor colorsensor;
+    public static colorSensor colorsensor;
   
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
         pSolenoidControl = new pneumatics();
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
-        colorsensor = new ColorSensor(I2C.Port.kOnboard);
+        colorsensor = new colorSensor(I2C.Port.kOnboard);
     }
 
     private void drivebaseControl() {
@@ -68,8 +68,6 @@ public class Driver {
         }
     }
 
-    
-
     public void IMUReset() {
         imu.calibrate();
         imu.reset();
@@ -77,14 +75,9 @@ public class Driver {
 
     private void DPadTurn() {
         colorsensor.read();
-
         angle = (((imu.getAngleZ() + 36000) % 360));
-
         Dashboard.getInstance().putString(false, "DPad Value", cDriveXbox.getDPadDirection().toString());
-
         Dashboard.getInstance().putNumber(false, "Current-Z", angle);
-
-        // targetDirection = SmartDashboard.getString("DPad Value", "NODIRECTION");
         targetDirection = cDriveXbox.getDPadDirection().toString();
 
         if (targetDirection == "NODIRECTION") {
@@ -227,6 +220,7 @@ public class Driver {
             Dashboard.getInstance().putBoolean(false, "Line Detected", false);
         }
     }
+
     public void Drive() {
         drivemodetoggle = cDriveXbox.getRightTrigger();
         if(drivemodetoggle >= 0.1){
