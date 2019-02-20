@@ -69,9 +69,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     dRover1.Drive();
-    //dRover1.DPadTurn();
-    /*boolean PixyLightState = SmartDashboard.getBoolean("Pixy2 Light", false);
-    Cameras.light(PixyLightState); // Sends Current state of Toggle Button to Pixy2*/
 
   }
 
@@ -128,6 +125,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+
 
   }
 

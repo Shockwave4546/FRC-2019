@@ -1,9 +1,9 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.motors.*;
-import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.controllers.shockwaveXbox;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.pneumatics;
 import frc.robot.RobotMap;
 import frc.robot.Dashboard;
 import frc.robot.subsystems.sensors.ColorSensor;
@@ -22,19 +22,19 @@ public class Driver {
     public talonMotor kLeftDrive;
     public talonMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
-    private shockwaveSolenoid pBallIntake;
+    private pneumatics pSolenoidControl;
     private double cDriveLeftY;
     private double cDriveRightX;
-    private boolean intakeToggle;
+    private boolean toggleIntake;
     private boolean cDriveAButton;
     private boolean cDriveBButton;
     private double drivemodetoggle;
     public static ColorSensor colorsensor;
-
-    public Driver() {
-        kLeftDrive = new talonMotor(0, .5, .5);
-        kRightDrive = new talonMotor(1, .5, .5);
-        pBallIntake = new shockwaveSolenoid(RobotMap.pIntakeBallF, RobotMap.pIntakeBallR);
+  
+    public Driver(){
+        kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
+        kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
+        pSolenoidControl = new pneumatics();
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
         colorsensor = new ColorSensor(I2C.Port.kOnboard);
     }
@@ -54,17 +54,17 @@ public class Driver {
     private void intakeToggle() {
         cDriveAButton = cDriveXbox.getAbutton();
         cDriveBButton = cDriveXbox.getBbutton();
-        if ((cDriveAButton == true) && (cDriveBButton == false)) {
-            intakeToggle = true;
-        } else if ((cDriveAButton == false) && (cDriveBButton == true)) {
-            intakeToggle = false;
+        if((cDriveAButton == true)&&(cDriveBButton == false)){
+            toggleIntake = true;
+        }else if((cDriveAButton == false)&&(cDriveBButton == true)){
+            toggleIntake = false;
         }
-        if (intakeToggle = true) {
-            pBallIntake.forward();
-        } else if (intakeToggle = false) {
-            pBallIntake.reverse();
-        } else {
-            pBallIntake.off();
+        if(toggleIntake = true){
+            pSolenoidControl.BallControl(1);
+        }else if(toggleIntake = false){
+            pSolenoidControl.BallControl(0);
+        }else{
+            pSolenoidControl.BallControl(2);
         }
     }
 
@@ -236,12 +236,4 @@ public class Driver {
             intakeToggle();
         }
     }
-
-    /*
-     * public void remoteLeftDrive(final double leftMotor){
-     * kLeftDrive.rotateMotor(leftMotor); } public double getLeftEncoder(){ return
-     * kLeftDrive.getEncoder(); } public void remoteRightDrive(final double
-     * rightMotor){ kLeftDrive.rotateMotor(rightMotor); } public double
-     * getRightEncoder(){ return kRightDrive.getEncoder(); }
-     */
 }
