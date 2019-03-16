@@ -6,9 +6,11 @@ import frc.robot.subsystems.vision.Cameras;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
-  
+  public static Timer timer;
   private Driver dRover1 = new Driver();
   private coDriver dRover2 = new coDriver();
 
@@ -22,7 +24,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-
+    SmartDashboard.putNumber("Time", Math.round(timer.getMatchTime()));
 
   }
 
