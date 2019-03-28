@@ -74,7 +74,7 @@ public class Driver {
             kRightDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
         }
     }
-    private void climbmotorControl(){
+    private void climbmodeControl(){
         cDriveLeftY = cDriveXbox.getLeftY();
         cDriveRightX = cDriveXbox.getRightX();
         sClimbEncoderCount = sClimbEncoder.getCount();
@@ -271,7 +271,7 @@ public class Driver {
         climbToggle();
         drivemodetoggle = cDriveXbox.getRightTrigger();
         if(climbMode == true){
-            climbmotorControl();
+            climbmodeControl();
         }else{
             if(drivemodetoggle >= 0.1){
                 DPadTurn();
