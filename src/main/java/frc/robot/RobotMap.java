@@ -17,8 +17,8 @@ public class RobotMap {
         public static final int ClimbPivotPort = 5;     // Motor Controller 5   -PDP: 3
 
     // CAN IDs //
-        public static final int LeftDrivePort = 1;      // SparkMax Motor 1     -PDP: 12
-        public static final int RightDrivePort = 2;     // SparkMax Motor 2     -PDP: 14
+        public static final int LeftDrivePort = 11;      // SparkMax Motor 1     -PDP: 12
+        public static final int RightDrivePort = 12;     // SparkMax Motor 2     -PDP: 14
 
     // Digital Channels //
         public static final int sSlideEncoder1 = 0;     // Linear Slide Encoder
