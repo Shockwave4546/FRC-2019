@@ -2,7 +2,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.motors.*;
 import frc.robot.controllers.shockwaveXbox;
-import frc.robot.commands.pneumatics;
+import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.RobotMap;
 
 public class coDriver{
@@ -10,7 +10,7 @@ public class coDriver{
     private victorMotor kIntakeRight;
     private victorMotor kLinearSlide;
     private shockwaveXbox cCoDriverXbox;
-    private pneumatics pSolenoidControl;
+    private shockwaveSolenoid pHatchIntake;
     private boolean cIntakeLeft;
     private boolean cIntakeRight;
     private double cLinearSlide;
@@ -19,8 +19,27 @@ public class coDriver{
         kIntakeLeft = new victorMotor(RobotMap.LeftIntakePort, RobotMap.LeftIntakePos, RobotMap.LeftIntakeNeg);
         kIntakeRight = new victorMotor(RobotMap.RightIntakePort, RobotMap.RightIntakePos, RobotMap.RightIntakeNeg);
         kLinearSlide = new victorMotor(RobotMap.LinearSlidePort, RobotMap.LinearSlidePos, RobotMap.LinearSlideNeg);
-        pSolenoidControl = new pneumatics();
+        pHatchIntake = new shockwaveSolenoid(RobotMap.pIntakeHatchF, RobotMap.pIntakeHatchR);
         cCoDriverXbox = new shockwaveXbox(RobotMap.XboxCoDriver);
+    }
+
+    private void pHatchForward(){
+        pHatchIntake.forward();
+    }
+    private void pHatchReverse(){
+        pHatchIntake.reverse();
+    }
+    private void pHatchOff(){
+        pHatchIntake.off();
+    }
+    public void HatchControl(final int mode){
+        if(mode == 1){
+            pHatchForward();
+        }else if(mode == 0){
+            pHatchReverse();
+        }else{
+            pHatchOff();
+        }
     }
 
     private void intakeBallControl(){
@@ -51,9 +70,9 @@ public class coDriver{
     public void intakeHatchControl(){
         cDriveYButton = cCoDriverXbox.getYbutton();
         if(cDriveYButton == true){
-            pSolenoidControl.HatchControl(1);
+            HatchControl(1);
         }else{
-            pSolenoidControl.HatchControl(0);
+            HatchControl(0);
         }
     }
 

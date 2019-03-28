@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.motors.*;
 import frc.robot.controllers.shockwaveXbox;
-import frc.robot.commands.pneumatics;
+import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.Dashboard;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.sensors.colorSensor;
@@ -22,7 +22,7 @@ public class Driver {
     public sparkMotor kLeftDrive;
     public sparkMotor kRightDrive;
     private shockwaveXbox cDriveXbox;
-    private pneumatics pSolenoidControl;
+    private shockwaveSolenoid pBallIntake;
     private double cDriveLeftY;
     private double cDriveRightX;
     private boolean toggleIntake;
@@ -34,9 +34,28 @@ public class Driver {
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
-        pSolenoidControl = new pneumatics();
+        pBallIntake = new shockwaveSolenoid(RobotMap.pIntakeBallF, RobotMap.pIntakeBallR);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
         colorsensor = new colorSensor(I2C.Port.kOnboard);
+    }
+
+    private void pBallForward(){
+        pBallIntake.forward();
+    }
+    private void pBallReverse(){
+        pBallIntake.reverse();
+    }
+    private void pBallOff(){
+        pBallIntake.off();
+    }
+    public void BallControl(final int mode){
+        if(mode == 1){
+            pBallForward();
+        }else if(mode == 0){
+            pBallReverse();
+        }else{
+            pBallOff();
+        }
     }
 
     private void drivebaseControl() {
@@ -60,11 +79,11 @@ public class Driver {
             toggleIntake = false;
         }
         if(toggleIntake = true){
-            pSolenoidControl.BallControl(1);
+            BallControl(1);
         }else if(toggleIntake = false){
-            pSolenoidControl.BallControl(0);
+            BallControl(0);
         }else{
-            pSolenoidControl.BallControl(2);
+            BallControl(2);
         }
     }
 
