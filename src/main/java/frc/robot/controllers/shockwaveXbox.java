@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 public class shockwaveXbox {
-    private static XboxController cXbox;
+    private XboxController cXbox;
     private double defaultDeadzone = .2;
     private double LeftY;
     private double deadzoneLeftY;
@@ -39,8 +39,7 @@ public class shockwaveXbox {
 
     }
 
-    public shockwaveXbox(final int port, final double dead1, final double dead2, final double dead3,
-            final double dead4) {
+    public shockwaveXbox(final int port, final double dead1, final double dead2, final double dead3, final double dead4) {
         cXbox = new XboxController(port);
         deadzoneLeftY = dead1;
         deadzoneLeftX = dead2;

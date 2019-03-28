@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.motors.*;
+import frc.robot.subsystems.sensors.shockwaveEncoder;
 import frc.robot.controllers.shockwaveXbox;
 import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.Dashboard;
@@ -19,24 +20,37 @@ public class Driver {
     public static String targetDirection = "NODIRECTION";
     public static double targetZAngle = -1;
     public static double angle = 0;
-    public sparkMotor kLeftDrive;
-    public sparkMotor kRightDrive;
+    private sparkMotor kLeftDrive;
+    private sparkMotor kRightDrive;
+    private victorMotor kLeftClimbDrive;
+    private victorMotor kRightClimbDrive;
+    private victorMotor kClimbPivot;
     private shockwaveXbox cDriveXbox;
     private shockwaveSolenoid pBallIntake;
+    private shockwaveEncoder sClimbEncoder;
     private double cDriveLeftY;
     private double cDriveRightX;
+    private double sClimbEncoderCount;
+    private boolean climbMode;
     private boolean toggleIntake;
     private boolean cDriveAButton;
     private boolean cDriveBButton;
+    private boolean cDriveStartButton;
+    private boolean cDriveBackButton;
     private double drivemodetoggle;
     public static colorSensor colorsensor;
   
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
+        kLeftClimbDrive = new victorMotor(RobotMap.ClimbDriveLeft, RobotMap.LeftClimbDrivePos, RobotMap.LeftClimbDriveNeg);
+        kRightClimbDrive = new victorMotor(RobotMap.ClimbDriveRight, RobotMap.RightClimbDrivePos, RobotMap.RightClimbDriveNeg);
+        kClimbPivot = new victorMotor(RobotMap.ClimbPivotPort, RobotMap.ClimbPivotPos, RobotMap.ClimbPivotNeg);
+        sClimbEncoder = new shockwaveEncoder(RobotMap.sClimbEncoder1, RobotMap.sClimbEncoder2);
         pBallIntake = new shockwaveSolenoid(RobotMap.pIntakeBallF, RobotMap.pIntakeBallR);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
         colorsensor = new colorSensor(I2C.Port.kOnboard);
+        sClimbEncoder.resetEncoder();
     }
 
     private void pBallForward(){
@@ -69,7 +83,19 @@ public class Driver {
             kRightDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
         }
     }
-
+    private void climbmotorControl(){
+        cDriveLeftY = cDriveXbox.getLeftY();
+        cDriveRightX = cDriveXbox.getRightX();
+        sClimbEncoderCount = sClimbEncoder.getCount();
+        // Put the climb pivot thing here 
+        if (cDriveLeftY == 0) {
+            kLeftClimbDrive.rotateMotor(cDriveRightX);
+            kRightClimbDrive.rotateMotor(cDriveRightX);
+        } else {
+            kLeftClimbDrive.rotateMotor(cDriveLeftY + cDriveRightX);
+            kRightClimbDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
+        }
+    }
     private void intakeToggle() {
         cDriveAButton = cDriveXbox.getAbutton();
         cDriveBButton = cDriveXbox.getBbutton();
@@ -84,6 +110,15 @@ public class Driver {
             BallControl(0);
         }else{
             BallControl(2);
+        }
+    }
+    private void climbToggle(){
+        cDriveStartButton = cDriveXbox.getStartButton();
+        cDriveBackButton = cDriveXbox.getBackButton();
+        if((cDriveStartButton == true)&&(cDriveBackButton == false)){
+            climbMode = true;
+        }else if((cDriveStartButton == false)&&(cDriveBackButton == true)){
+            climbMode = false;
         }
     }
 
@@ -241,12 +276,17 @@ public class Driver {
     }
 
     public void Drive() {
+        climbToggle();
         drivemodetoggle = cDriveXbox.getRightTrigger();
-        if(drivemodetoggle >= 0.1){
-            DPadTurn();
+        if(climbMode == true){
+            climbmotorControl();
         }else{
-            drivebaseControl();
-            intakeToggle();
+            if(drivemodetoggle >= 0.1){
+                DPadTurn();
+            }else{
+                drivebaseControl();
+                intakeToggle();
+            }
         }
     }
 }
