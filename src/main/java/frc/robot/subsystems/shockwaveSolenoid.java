@@ -1,20 +1,50 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Compressor;
+import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class shockwaveSolenoid{
-    private DoubleSolenoid pSolenoid;
+public class shockwaveSolenoid extends Subsystem {
+    Compressor compressor = new Compressor(0);
 
-    public shockwaveSolenoid(final int forward, final int reverse){
-        pSolenoid = new DoubleSolenoid(forward, reverse);
+    DoubleSolenoid pHatchIntake = new DoubleSolenoid(RobotMap.pIntakeHatchF, RobotMap.pIntakeHatchR);
+
+    DoubleSolenoid pBallIntake = new DoubleSolenoid(RobotMap.pIntakeBallF, RobotMap.pIntakeBallR);
+
+    public void HatchOuttake() {
+        pHatchIntake.set(DoubleSolenoid.Value.kForward);
     }
-    public void forward(){
-        pSolenoid.set(DoubleSolenoid.Value.kForward);
+    public void HatchIntake() {
+        pHatchIntake.set(DoubleSolenoid.Value.kReverse);
     }
-    public void reverse(){
-        pSolenoid.set(DoubleSolenoid.Value.kReverse);
+    public void HatchOff() {
+        pHatchIntake.set(DoubleSolenoid.Value.kOff);
     }
-    public void off(){
-        pSolenoid.set(DoubleSolenoid.Value.kOff);
+
+
+    public void BallOut() {
+        pBallIntake.set(DoubleSolenoid.Value.kForward);
     }
+    public void BallIn() {
+        pBallIntake.set(DoubleSolenoid.Value.kReverse);
+    }
+    public void BallOff() {
+        pBallIntake.set(DoubleSolenoid.Value.kOff);
+    }
+
+    
+    public void retractAll() {
+        pHatchIntake.set(DoubleSolenoid.Value.kReverse);
+        pBallIntake.set(DoubleSolenoid.Value.kReverse);
+    }
+    public void extendAll() {
+        pHatchIntake.set(DoubleSolenoid.Value.kForward);
+        pBallIntake.set(DoubleSolenoid.Value.kForward);
+    }
+
+    public void initDefaultCommand() {
+        // There are no default commands needed.
+    }
+
 }

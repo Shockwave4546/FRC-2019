@@ -9,16 +9,18 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import frc.robot.subsystems.shockwaveSolenoid;
+
 public class Robot extends TimedRobot {
   public static Timer timer;
   private Driver dRover1 = new Driver();
   private coDriver dRover2 = new coDriver();
+  public static final shockwaveSolenoid pneumatics = new shockwaveSolenoid();
 
   @Override
   public void robotInit() {
     dRover1.IMUReset();
     Cameras.setup(); // Setup and Connection to Microsoft Camera
-
 
   }
 
@@ -31,19 +33,16 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
 
-
   }
 
   @Override
   public void disabledPeriodic() {
     Scheduler.getInstance().run();
 
-
   }
 
   @Override
   public void autonomousInit() {
-
 
   }
 
@@ -57,7 +56,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
 
-
   }
 
   @Override
@@ -66,12 +64,10 @@ public class Robot extends TimedRobot {
     dRover1.Drive();
     dRover2.coDrive();
 
-
   }
 
   @Override
   public void testPeriodic() {
-
 
   }
 }

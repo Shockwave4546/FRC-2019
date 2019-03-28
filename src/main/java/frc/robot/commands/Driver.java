@@ -8,6 +8,7 @@ import frc.robot.subsystems.sensors.shockwaveEncoder;
 import frc.robot.controllers.shockwaveXbox;
 import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.Dashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.sensors.colorSensor;
 
@@ -47,28 +48,18 @@ public class Driver {
         kRightClimbDrive = new victorMotor(RobotMap.ClimbDriveRight, RobotMap.RightClimbDrivePos, RobotMap.RightClimbDriveNeg);
         kClimbPivot = new victorMotor(RobotMap.ClimbPivotPort, RobotMap.ClimbPivotPos, RobotMap.ClimbPivotNeg);
         sClimbEncoder = new shockwaveEncoder(RobotMap.sClimbEncoder1, RobotMap.sClimbEncoder2);
-        pBallIntake = new shockwaveSolenoid(RobotMap.pIntakeBallF, RobotMap.pIntakeBallR);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
         colorsensor = new colorSensor(I2C.Port.kOnboard);
         sClimbEncoder.resetEncoder();
     }
 
-    private void pBallForward(){
-        pBallIntake.forward();
-    }
-    private void pBallReverse(){
-        pBallIntake.reverse();
-    }
-    private void pBallOff(){
-        pBallIntake.off();
-    }
     public void BallControl(final int mode){
         if(mode == 1){
-            pBallForward();
+            Robot.pneumatics.BallOut();
         }else if(mode == 0){
-            pBallReverse();
+            Robot.pneumatics.BallIn();
         }else{
-            pBallOff();
+            Robot.pneumatics.BallOff();
         }
     }
 
