@@ -87,6 +87,7 @@ public class Driver {
         cDriveLeftY = cDriveXbox.getLeftY();
         cDriveRightX = cDriveXbox.getRightX();
         sClimbEncoderCount = sClimbEncoder.getCount();
+        Dashboard.getInstance().putNumber(false, "ClimbPivot Encoder Count", sClimbEncoderCount);
         // Put the climb pivot thing here 
         if (cDriveLeftY == 0) {
             kLeftClimbDrive.rotateMotor(cDriveRightX);
