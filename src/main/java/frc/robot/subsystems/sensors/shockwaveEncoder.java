@@ -13,7 +13,7 @@ public class shockwaveEncoder{
         unknown
     }
     public shockwaveEncoder(final int port1, final int port2){
-        sEncoder = new Encoder(RobotMap.sSlideEncoder1, RobotMap.sSlideEncoder2);
+        sEncoder = new Encoder(port1, port2);
     }
 
     public int getCount(){

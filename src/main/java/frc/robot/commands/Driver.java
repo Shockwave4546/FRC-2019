@@ -31,6 +31,7 @@ public class Driver {
     private shockwaveEncoder sClimbEncoder;
     private double cDriveLeftY;
     private double cDriveRightX;
+    private double cDriveRightY;
     private double sClimbEncoderCount;
     private boolean climbMode;
     private boolean toggleIntake;
@@ -50,6 +51,7 @@ public class Driver {
         sClimbEncoder = new shockwaveEncoder(RobotMap.sClimbEncoder1, RobotMap.sClimbEncoder2);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
         colorsensor = new colorSensor(I2C.Port.kOnboard);
+        climbMode = false;
         sClimbEncoder.resetEncoder();
     }
 
@@ -76,16 +78,21 @@ public class Driver {
     }
     private void climbmodeControl(){
         cDriveLeftY = cDriveXbox.getLeftY();
-        cDriveRightX = cDriveXbox.getRightX();
+        cDriveRightY = cDriveXbox.getRightY();
         sClimbEncoderCount = sClimbEncoder.getCount();
         Dashboard.getInstance().putNumber(false, "ClimbPivot Encoder Count", sClimbEncoderCount);
         // Put the climb pivot thing here 
         if (cDriveLeftY == 0) {
-            kLeftClimbDrive.rotateMotor(cDriveRightX);
-            kRightClimbDrive.rotateMotor(cDriveRightX);
+            kLeftClimbDrive.rotateMotor(0);
+            kRightClimbDrive.rotateMotor(0);
         } else {
-            kLeftClimbDrive.rotateMotor(cDriveLeftY + cDriveRightX);
-            kRightClimbDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
+            kLeftClimbDrive.rotateMotor((cDriveLeftY) * -1);
+            kRightClimbDrive.rotateMotor((cDriveLeftY) * -1);
+        }
+        if (cDriveRightY == 0) {
+            kClimbPivot.rotateMotor(0);
+        } else {
+            kClimbPivot.rotateMotor((cDriveRightY) * -1);
         }
     }
     private void intakeToggle() {
@@ -272,12 +279,15 @@ public class Driver {
         drivemodetoggle = cDriveXbox.getRightTrigger();
         if(climbMode == true){
             climbmodeControl();
+            Dashboard.getInstance().putString(false, "Robot Mode", "Climb");
         }else{
             if(drivemodetoggle >= 0.1){
                 DPadTurn();
+                Dashboard.getInstance().putString(false, "Robot Mode", "Line Follow");
             }else{
                 drivebaseControl();
                 intakeToggle();
+                Dashboard.getInstance().putString(false, "Robot Mode", "Drive");
             }
         }
     }
