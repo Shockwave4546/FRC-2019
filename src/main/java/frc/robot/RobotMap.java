@@ -54,7 +54,7 @@ public class RobotMap {
         public static final double LeftIntakeNeg = .5;
 
         public static final double RightIntakePos = .5;
-        public static final double RightIntakeNeg = .5;
+        public static final double RightIntakeNeg = .5; 
 
         public static final double LinearSlidePos = 1;
         public static final double LinearSlideNeg = 1;
