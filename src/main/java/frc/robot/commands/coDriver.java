@@ -60,7 +60,6 @@ public class coDriver{
 
     private void slideControl(){
         cLinearSlide = cCoDriverXbox.getLeftY();
-        System.out.println(cLinearSlide);
         kLinearSlide.rotateMotor(cLinearSlide);
 
     }
