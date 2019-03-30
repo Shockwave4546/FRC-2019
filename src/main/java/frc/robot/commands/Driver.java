@@ -105,7 +105,6 @@ public class Driver {
         }
         if(toggleIntake == true){
             BallControl(1);
-            System.out.println("Trying to trigger");
         }else if(toggleIntake == false){
             BallControl(0);
         }else{
