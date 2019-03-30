@@ -40,6 +40,8 @@ public class Driver {
     private boolean cDriveStartButton;
     private boolean cDriveBackButton;
     private double drivemodetoggle;
+    private boolean toggleClimb;
+    private boolean climbDisable = true;
     public static colorSensor colorsensor;
   
     public Driver(){
@@ -64,6 +66,15 @@ public class Driver {
             Robot.pneumatics.BallOff();
         }
     }
+    public void ClimbControl(final int mode){
+        if(mode == 1){
+            Robot.pneumatics.ClimbOut();
+        }else if(mode == 0){
+            Robot.pneumatics.ClimbIn();
+        }else{
+            Robot.pneumatics.ClimbOff();
+        }
+    }
 
     private void drivebaseControl() {
         cDriveLeftY = cDriveXbox.getLeftY();
@@ -81,7 +92,6 @@ public class Driver {
         cDriveRightY = cDriveXbox.getRightY();
         sClimbEncoderCount = sClimbEncoder.getCount();
         Dashboard.getInstance().putNumber(false, "ClimbPivot Encoder Count", sClimbEncoderCount);
-        // Put the climb pivot thing here 
         if (cDriveLeftY == 0) {
             kLeftClimbDrive.rotateMotor(0);
             kRightClimbDrive.rotateMotor(0);
@@ -94,6 +104,21 @@ public class Driver {
         } else {
             kClimbPivot.rotateMotor((cDriveRightY) * -1);
         }
+        cDriveAButton = cDriveXbox.getAbutton();
+        cDriveBButton = cDriveXbox.getBbutton();
+        if((cDriveAButton == true)&&(cDriveBButton == false)){
+            toggleClimb = true;
+        }else if((cDriveAButton == false)&&(cDriveBButton == true)){
+            toggleClimb = false;
+        }
+        if(toggleClimb == true){
+            ClimbControl(1);
+        }else if(toggleClimb == false){
+            ClimbControl(0);
+        }else{
+            ClimbControl(2);
+        }
+        
     }
     private void intakeToggle() {
         cDriveAButton = cDriveXbox.getAbutton();
@@ -277,7 +302,7 @@ public class Driver {
     public void Drive() {
         climbToggle();
         drivemodetoggle = cDriveXbox.getRightTrigger();
-        if(climbMode == true){
+        if((climbMode == true)&&(climbDisable == false)){
             climbmodeControl();
             Dashboard.getInstance().putString(false, "Robot Mode", "Climb");
         }else{
