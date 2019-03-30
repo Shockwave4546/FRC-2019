@@ -66,7 +66,7 @@ public class RobotMap {
         public static final double RightClimbDriveNeg = .3;
 
         public static final double ClimbPivotPos = .2;
-        public static final double ClimbPivotNeg = .7;
+        public static final double ClimbPivotNeg = .4;
         
     // Lift Positions //
         public static final int GroundLevelBall = 1420; 
