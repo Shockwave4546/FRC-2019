@@ -69,8 +69,10 @@ public class coDriver{
         cDriveYButton = cCoDriverXbox.getYbutton();
         if(cDriveYButton == true){
             HatchControl(0);
-        }else{
+        }else if(cDriveYButton == false){
             HatchControl(1);
+        }else{
+            HatchControl(2);
         }
     }
 

@@ -103,9 +103,10 @@ public class Driver {
         }else if((cDriveAButton == false)&&(cDriveBButton == true)){
             toggleIntake = false;
         }
-        if(toggleIntake = true){
+        if(toggleIntake == true){
             BallControl(1);
-        }else if(toggleIntake = false){
+            System.out.println("Trying to trigger");
+        }else if(toggleIntake == false){
             BallControl(0);
         }else{
             BallControl(2);
