@@ -88,4 +88,3 @@ public class RobotMap {
         public static final int RocketHighBallHeight = 1420;
 
 }
-
