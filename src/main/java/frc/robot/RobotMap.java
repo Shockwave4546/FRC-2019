@@ -40,18 +40,18 @@ public class RobotMap {
         public static final int pClimbR = 5;        // Climb pneumatic port 2               -Reverse
 
     // Drive Train Motor Speeds (POS & NEG) //
-        public static final double LeftDrivePos = .3;
-        public static final double LeftDriveNeg = .3;
+        public static final double LeftDrivePos = .7;
+        public static final double LeftDriveNeg = .7;
 
-        public static final double RightDrivePos = .3;
-        public static final double RightDriveNeg = .3;
+        public static final double RightDrivePos = .7;
+        public static final double RightDriveNeg = .7;
 
     // Misc Motor Speeds //
-        public static final double LeftIntakePos = .5;
-        public static final double LeftIntakeNeg = .5;
+        public static final double LeftIntakePos = .8;
+        public static final double LeftIntakeNeg = .8;
 
-        public static final double RightIntakePos = .5;
-        public static final double RightIntakeNeg = .5; 
+        public static final double RightIntakePos = .8;
+        public static final double RightIntakeNeg = .8; 
 
         public static final double LinearSlidePos = 1;
         public static final double LinearSlideNeg = 1;

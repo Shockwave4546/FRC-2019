@@ -39,9 +39,11 @@ public class Driver {
     private boolean cDriveBButton;
     private boolean cDriveStartButton;
     private boolean cDriveBackButton;
+    private boolean cDriveLeftBumper;
     private double drivemodetoggle;
     private boolean toggleClimb;
-    private boolean climbDisable = true;
+    private boolean toggleOverdrive;
+    private boolean climbDisable = false;
     public static colorSensor colorsensor;
   
     public Driver(){
@@ -86,6 +88,19 @@ public class Driver {
             kLeftDrive.rotateMotor(cDriveLeftY + cDriveRightX);
             kRightDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
         }
+    }
+    private void MAXIMUM_OVERDRIVE(){
+        cDriveLeftBumper = cDriveXbox.getLeftBumper();
+        if(cDriveLeftBumper == true){
+            toggleOverdrive = true;
+            kLeftDrive.setMotorSpeeds(1, 1);
+            kRightDrive.setMotorSpeeds(1, 1);
+        }else if((cDriveLeftBumper == false) &&(toggleOverdrive == true)){
+            toggleOverdrive = false;
+            kLeftDrive.resetMotorSpeeds();
+            kRightDrive.resetMotorSpeeds();
+        }
+        Dashboard.getInstance().putBoolean(false, "Maximum Overdrive", toggleOverdrive);
     }
     private void climbmodeControl(){
         cDriveLeftY = cDriveXbox.getLeftY();
@@ -301,6 +316,7 @@ public class Driver {
 
     public void Drive() {
         climbToggle();
+        MAXIMUM_OVERDRIVE();
         drivemodetoggle = cDriveXbox.getRightTrigger();
         if((climbMode == true)&&(climbDisable == false)){
             climbmodeControl();
