@@ -320,6 +320,7 @@ public class Driver {
         drivemodetoggle = cDriveXbox.getRightTrigger();
         if((climbMode == true)&&(climbDisable == false)){
             climbmodeControl();
+            drivebaseControl();
             Dashboard.getInstance().putString(false, "Robot Mode", "Climb");
         }else{
             if(drivemodetoggle >= 0.1){
