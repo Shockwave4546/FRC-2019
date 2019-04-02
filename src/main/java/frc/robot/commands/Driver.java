@@ -1,6 +1,6 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.I2C;
+//import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.motors.*;
@@ -10,12 +10,12 @@ import frc.robot.subsystems.shockwaveSolenoid;
 import frc.robot.Dashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.sensors.colorSensor;
+//import frc.robot.subsystems.sensors.colorSensor;
 
-import com.analog.adis16448.frc.ADIS16448_IMU;
+//import com.analog.adis16448.frc.ADIS16448_IMU;
 
 public class Driver {
-    public static final ADIS16448_IMU imu = new ADIS16448_IMU();
+    //public static final ADIS16448_IMU imu = new ADIS16448_IMU();
     public boolean straight = false;
     public static double currentZAngle = 0;
     public static String targetDirection = "NODIRECTION";
@@ -44,7 +44,7 @@ public class Driver {
     private boolean toggleClimb;
     private boolean toggleOverdrive;
     private boolean climbDisable = false;
-    public static colorSensor colorsensor;
+    //public static colorSensor colorsensor;
   
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
@@ -54,7 +54,7 @@ public class Driver {
         kClimbPivot = new victorMotor(RobotMap.ClimbPivotPort, RobotMap.ClimbPivotPos, RobotMap.ClimbPivotNeg);
         sClimbEncoder = new shockwaveEncoder(RobotMap.sClimbEncoder1, RobotMap.sClimbEncoder2);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
-        colorsensor = new colorSensor(I2C.Port.kOnboard);
+        //colorsensor = new colorSensor(I2C.Port.kOnboard);
         climbMode = false;
         sClimbEncoder.resetEncoder();
     }
@@ -160,7 +160,7 @@ public class Driver {
             climbMode = false;
         }
     }
-
+/*
     public void IMUReset() {
         imu.calibrate();
         imu.reset();
@@ -313,7 +313,7 @@ public class Driver {
             Dashboard.getInstance().putBoolean(false, "Line Detected", false);
         }
     }
-
+*/
     public void Drive() {
         climbToggle();
         MAXIMUM_OVERDRIVE();
@@ -324,7 +324,7 @@ public class Driver {
             Dashboard.getInstance().putString(false, "Robot Mode", "Climb");
         }else{
             if(drivemodetoggle >= 0.1){
-                DPadTurn();
+               // DPadTurn();
                 Dashboard.getInstance().putString(false, "Robot Mode", "Line Follow");
             }else{
                 drivebaseControl();
