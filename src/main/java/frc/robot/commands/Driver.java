@@ -23,16 +23,16 @@ public class Driver {
     public static double angle = 0;
     private sparkMotor kLeftDrive;
     private sparkMotor kRightDrive;
-    private victorMotor kLeftClimbDrive;
-    private victorMotor kRightClimbDrive;
-    private victorMotor kClimbPivot;
+    //private victorMotor kLeftClimbDrive;
+    //private victorMotor kRightClimbDrive;
+    //private victorMotor kClimbPivot;
     private shockwaveXbox cDriveXbox;
     private shockwaveSolenoid pBallIntake;
-    private shockwaveEncoder sClimbEncoder;
+    //private shockwaveEncoder sClimbEncoder;
     private double cDriveLeftY;
     private double cDriveRightX;
     private double cDriveRightY;
-    private double sClimbEncoderCount;
+    //private double sClimbEncoderCount;
     private boolean climbMode;
     private boolean toggleIntake;
     private boolean cDriveAButton;
@@ -49,14 +49,14 @@ public class Driver {
     public Driver(){
         kLeftDrive = new sparkMotor(RobotMap.LeftDrivePort,RobotMap.LeftDrivePos,RobotMap.LeftDriveNeg);
         kRightDrive = new sparkMotor(RobotMap.RightDrivePort,RobotMap.RightDrivePos,RobotMap.RightDriveNeg);
-        kLeftClimbDrive = new victorMotor(RobotMap.ClimbDriveLeft, RobotMap.LeftClimbDrivePos, RobotMap.LeftClimbDriveNeg);
-        kRightClimbDrive = new victorMotor(RobotMap.ClimbDriveRight, RobotMap.RightClimbDrivePos, RobotMap.RightClimbDriveNeg);
-        kClimbPivot = new victorMotor(RobotMap.ClimbPivotPort, RobotMap.ClimbPivotPos, RobotMap.ClimbPivotNeg);
-        sClimbEncoder = new shockwaveEncoder(RobotMap.sClimbEncoder1, RobotMap.sClimbEncoder2);
+        //kLeftClimbDrive = new victorMotor(RobotMap.ClimbDriveLeft, RobotMap.LeftClimbDrivePos, RobotMap.LeftClimbDriveNeg);
+        //kRightClimbDrive = new victorMotor(RobotMap.ClimbDriveRight, RobotMap.RightClimbDrivePos, RobotMap.RightClimbDriveNeg);
+        //kClimbPivot = new victorMotor(RobotMap.ClimbPivotPort, RobotMap.ClimbPivotPos, RobotMap.ClimbPivotNeg);
+        //sClimbEncoder = new shockwaveEncoder(RobotMap.sClimbEncoder1, RobotMap.sClimbEncoder2);
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
         colorsensor = new colorSensor(I2C.Port.kOnboard);
         climbMode = false;
-        sClimbEncoder.resetEncoder();
+        //sClimbEncoder.resetEncoder();
     }
 
     public void BallControl(final int mode){
@@ -105,7 +105,7 @@ public class Driver {
     private void climbmodeControl(){
         cDriveLeftY = cDriveXbox.getLeftY();
         cDriveRightY = cDriveXbox.getRightY();
-        sClimbEncoderCount = sClimbEncoder.getCount();
+        /*sClimbEncoderCount = sClimbEncoder.getCount();
         Dashboard.getInstance().putNumber(false, "ClimbPivot Encoder Count", sClimbEncoderCount);
         if (cDriveLeftY == 0) {
             kLeftClimbDrive.rotateMotor(0);
@@ -118,7 +118,7 @@ public class Driver {
             kClimbPivot.rotateMotor(0);
         } else {
             kClimbPivot.rotateMotor((cDriveRightY) * -1);
-        }
+        }*/
         cDriveAButton = cDriveXbox.getAbutton();
         cDriveBButton = cDriveXbox.getBbutton();
         if((cDriveAButton == true)&&(cDriveBButton == false)){
