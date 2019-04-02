@@ -19,7 +19,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    dRover1.IMUReset();
+    //dRover1.IMUReset();
     Cameras.setup(); // Setup and Connection to Microsoft Camera
 
   }
