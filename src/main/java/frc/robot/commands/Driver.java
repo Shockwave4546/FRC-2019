@@ -31,7 +31,7 @@ public class Driver {
     //private shockwaveEncoder sClimbEncoder;
     private double cDriveLeftY;
     private double cDriveRightX;
-    private double cDriveRightY;
+    //private double cDriveRightY;
     //private double sClimbEncoderCount;
     private boolean climbMode;
     private boolean toggleIntake;
@@ -103,9 +103,9 @@ public class Driver {
         Dashboard.getInstance().putBoolean(false, "Maximum Overdrive", toggleOverdrive);
     }
     private void climbmodeControl(){
-        cDriveLeftY = cDriveXbox.getLeftY();
+        /*cDriveLeftY = cDriveXbox.getLeftY();
         cDriveRightY = cDriveXbox.getRightY();
-        /*sClimbEncoderCount = sClimbEncoder.getCount();
+        sClimbEncoderCount = sClimbEncoder.getCount();
         Dashboard.getInstance().putNumber(false, "ClimbPivot Encoder Count", sClimbEncoderCount);
         if (cDriveLeftY == 0) {
             kLeftClimbDrive.rotateMotor(0);
