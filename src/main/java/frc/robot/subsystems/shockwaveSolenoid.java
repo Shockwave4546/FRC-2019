@@ -13,6 +13,9 @@ public class shockwaveSolenoid extends Subsystem {
     DoubleSolenoid pBallIntake = new DoubleSolenoid(RobotMap.pIntakeBallF, RobotMap.pIntakeBallR);
 
     DoubleSolenoid pClimb = new DoubleSolenoid(RobotMap.pClimbF, RobotMap.pClimbR);
+
+    DoubleSolenoid pClimb2 = new DoubleSolenoid(RobotMap.pClimb2F, RobotMap.pClimb2R);
+
     public void HatchOuttake() {
         pHatchIntake.set(DoubleSolenoid.Value.kForward);
     }
@@ -43,16 +46,16 @@ public class shockwaveSolenoid extends Subsystem {
     public void ClimbOff(){
         pClimb.set(DoubleSolenoid.Value.kOff);
     }
+    public void Climb2Out(){
+        pClimb2.set(DoubleSolenoid.Value.kForward);
+    }
+    public void Climb2In(){
+        pClimb2.set(DoubleSolenoid.Value.kReverse);
+    }
+    public void Climb2Off(){
+        pClimb2.set(DoubleSolenoid.Value.kOff);
+    }
     
-    public void retractAll() {
-        pHatchIntake.set(DoubleSolenoid.Value.kReverse);
-        pBallIntake.set(DoubleSolenoid.Value.kReverse);
-    }
-    public void extendAll() {
-        pHatchIntake.set(DoubleSolenoid.Value.kForward);
-        pBallIntake.set(DoubleSolenoid.Value.kForward);
-    }
-
     public void initDefaultCommand() {
         // There are no default commands needed.
     }

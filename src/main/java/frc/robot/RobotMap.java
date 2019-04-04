@@ -36,8 +36,12 @@ public class RobotMap {
         public static final int pIntakeHatchF = 2;      // Hatch Intake pneumatic port 1    -Forward
         public static final int pIntakeHatchR = 3;      // Hatch Intake pneumatic port 2    -Reverse
 
-        public static final int pClimbF = 4;        // Climb pneumatic port 1               -Forward
-        public static final int pClimbR = 5;        // Climb pneumatic port 2               -Reverse
+        public static final int pClimbF = 4;        // Climb pneumatic 1 port 1             -Forward
+        public static final int pClimbR = 5;        // Climb pneumatic 1 port 2             -Reverse
+
+        public static final int pClimb2F = 6;        // Climb pneumatic 2 port 1            -Forward
+        public static final int pClimb2R = 7;        // Climb pneumatic 2 port 2            -Reverse
+
 
     // Drive Train Motor Speeds (POS & NEG) //
         public static final double LeftDrivePos = .7;

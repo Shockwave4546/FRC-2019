@@ -37,11 +37,14 @@ public class Driver {
     private boolean toggleIntake;
     private boolean cDriveAButton;
     private boolean cDriveBButton;
+    private boolean cDriveXButton;
+    private boolean cDriveYButton;
     private boolean cDriveStartButton;
     private boolean cDriveBackButton;
     private boolean cDriveLeftBumper;
     private double drivemodetoggle;
     private boolean toggleClimb;
+    private boolean toggleClimb2;
     private boolean toggleOverdrive;
     private boolean climbDisable = false;
     //public static colorSensor colorsensor;
@@ -75,6 +78,15 @@ public class Driver {
             Robot.pneumatics.ClimbIn();
         }else{
             Robot.pneumatics.ClimbOff();
+        }
+    }
+    public void Climb2Control(final int mode){
+        if(mode == 1){
+            Robot.pneumatics.Climb2Out();
+        }else if(mode == 0){
+            Robot.pneumatics.Climb2In();
+        }else{
+            Robot.pneumatics.Climb2Off();
         }
     }
 
@@ -121,6 +133,8 @@ public class Driver {
         }*/
         cDriveAButton = cDriveXbox.getAbutton();
         cDriveBButton = cDriveXbox.getBbutton();
+        cDriveXButton = cDriveXbox.getXbutton();
+        cDriveYButton = cDriveXbox.getYbutton();
         if((cDriveAButton == true)&&(cDriveBButton == false)){
             toggleClimb = true;
         }else if((cDriveAButton == false)&&(cDriveBButton == true)){
@@ -132,6 +146,18 @@ public class Driver {
             ClimbControl(0);
         }else{
             ClimbControl(2);
+        }
+        if((cDriveXButton == true)&&(cDriveYButton == false)){
+            toggleClimb2 = true;
+        }else if((cDriveXButton == false)&&(cDriveYButton == true)){
+            toggleClimb2 = false;
+        }
+        if(toggleClimb2 == true){
+            Climb2Control(1);
+        }else if(toggleClimb2 == false){
+            Climb2Control(0);
+        }else{
+            Climb2Control(2);
         }
         
     }
