@@ -1,6 +1,6 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.motors.*;
 import frc.robot.subsystems.sensors.shockwaveEncoder;
@@ -20,7 +20,7 @@ public class coDriver{
     private double cLinearSlide;
     private boolean cDriveYButton;
     private String climbposstr;
-    private int climbposint;
+   // private int climbposint;
     private int sSlideEncoderCount;
     public coDriver(){
         kIntakeLeft = new victorMotor(RobotMap.LeftIntakePort, RobotMap.LeftIntakePos, RobotMap.LeftIntakeNeg);
@@ -54,9 +54,9 @@ public class coDriver{
             kIntakeRight.stopMotor();
         }
     }
-    private void moveSlide(final int target){
+    /*private void moveSlide(final int target){
 
-    }
+    }*/
 
     private void slideControl(){
         cLinearSlide = cCoDriverXbox.getLeftY();

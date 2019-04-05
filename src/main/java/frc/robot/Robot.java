@@ -13,9 +13,9 @@ import frc.robot.subsystems.shockwaveSolenoid;
 
 public class Robot extends TimedRobot {
   public static Timer timer;
+  public static final shockwaveSolenoid pneumatics = new shockwaveSolenoid();
   private Driver dRover1 = new Driver();
   private coDriver dRover2 = new coDriver();
-  public static final shockwaveSolenoid pneumatics = new shockwaveSolenoid();
 
   @Override
   public void robotInit() {
