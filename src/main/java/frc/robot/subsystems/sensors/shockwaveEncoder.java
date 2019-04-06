@@ -1,7 +1,6 @@
 package frc.robot.subsystems.sensors;
 
 import edu.wpi.first.wpilibj.Encoder;
-import frc.robot.RobotMap;
 
 public class shockwaveEncoder{
     private int count;
