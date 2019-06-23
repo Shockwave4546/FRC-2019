@@ -44,11 +44,11 @@ public class RobotMap {
 
 
     // Drive Train Motor Speeds (POS & NEG) //
-        public static final double LeftDrivePos = .7;
-        public static final double LeftDriveNeg = .7;
+        public static final double LeftDrivePos = .5;
+        public static final double LeftDriveNeg = .5;
 
-        public static final double RightDrivePos = .7;
-        public static final double RightDriveNeg = .7;
+        public static final double RightDrivePos = .5;
+        public static final double RightDriveNeg = .5;
 
     // Misc Motor Speeds //
         public static final double LeftIntakePos = 1;
@@ -57,8 +57,8 @@ public class RobotMap {
         public static final double RightIntakePos = 1;
         public static final double RightIntakeNeg = 1; 
 
-        public static final double LinearSlidePos = 1;
-        public static final double LinearSlideNeg = 1;
+        public static final double LinearSlidePos = .8;
+        public static final double LinearSlideNeg = .8;
 
         public static final double LeftClimbDrivePos = .3;
         public static final double LeftClimbDriveNeg = .3;
