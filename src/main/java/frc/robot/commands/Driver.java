@@ -343,21 +343,21 @@ public class Driver {
 */
     public void Drive() {
         climbToggle();
-        MAXIMUM_OVERDRIVE();
+        //MAXIMUM_OVERDRIVE();
         drivemodetoggle = cDriveXbox.getRightTrigger();
         if(climbMode == true){
             climbmodeControl();
-            drivebaseControl();
+            //drivebaseControl();
             Dashboard.getInstance().putString(false, "Robot Mode", "Climb");
         }else{
-            if(drivemodetoggle >= 0.1){
+            /*if(drivemodetoggle >= 0.1){
                 //DPadTurn();
                 Dashboard.getInstance().putString(false, "Robot Mode", "Line Follow");
             }else{
                 drivebaseControl();
                 intakeToggle();
                 Dashboard.getInstance().putString(false, "Robot Mode", "Drive");
-            }
+            }*/
         }
     }
 }

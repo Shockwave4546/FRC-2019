@@ -80,9 +80,9 @@ public class coDriver{
         Dashboard.getInstance().putString(false, "Slide Position", climbposstr);
         sSlideEncoderCount = sSlideEncoder.getCount();
         Dashboard.getInstance().putNumber(false, "Slide Encoder Count", sSlideEncoderCount);
-        intakeBallControl();
+        //intakeBallControl();
         intakeHatchControl();
-        slideControl();
+        //slideControl();
     }
     public void remoteIntake(final double speed){
         kIntakeLeft.rotateMotor(speed);
