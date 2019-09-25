@@ -19,6 +19,8 @@ public class shockwaveXbox {
     private boolean rightBumper;
 
     private boolean Abutton;
+    private boolean Apress;
+    private boolean Arelease;
     private boolean Bbutton;
     private boolean Ybutton;
     private boolean Xbutton;
@@ -39,7 +41,8 @@ public class shockwaveXbox {
 
     }
 
-    public shockwaveXbox(final int port, final double dead1, final double dead2, final double dead3, final double dead4) {
+    public shockwaveXbox(final int port, final double dead1, final double dead2, final double dead3,
+            final double dead4) {
         cXbox = new XboxController(port);
         deadzoneLeftY = dead1;
         deadzoneLeftX = dead2;
@@ -115,6 +118,7 @@ public class shockwaveXbox {
         }
     }
 
+
     public boolean getLeftBumper() {
         leftBumper = cXbox.getBumper(Hand.kLeft);
         return leftBumper;
@@ -125,10 +129,17 @@ public class shockwaveXbox {
         return rightBumper;
     }
 
-
     public boolean getAbutton() {
         Abutton = cXbox.getAButton();
         return Abutton;
+    }
+    public boolean getAPress() {
+        Apress = cXbox.getAButtonPressed();
+        return Apress;
+    }
+    public boolean getARelease() {
+        Arelease = cXbox.getAButtonPressed();
+        return Apress;
     }
 
     public boolean getBbutton() {
@@ -146,19 +157,22 @@ public class shockwaveXbox {
         return Xbutton;
     }
 
-    public boolean getStartButton(){
+    public boolean getStartButton() {
         startButton = cXbox.getStartButton();
         return startButton;
     }
-    public boolean getBackButton(){
+
+    public boolean getBackButton() {
         backButton = cXbox.getBackButton();
         return backButton;
     }
-    public double getLeftTrigger(){
+
+    public double getLeftTrigger() {
         leftTrigger = cXbox.getTriggerAxis(Hand.kLeft);
         return leftTrigger;
     }
-    public double getRightTrigger(){
+
+    public double getRightTrigger() {
         rightTrigger = cXbox.getTriggerAxis(Hand.kRight);
         return rightTrigger;
     }

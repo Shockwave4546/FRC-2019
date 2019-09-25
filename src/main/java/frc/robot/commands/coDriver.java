@@ -40,6 +40,8 @@ public class coDriver{
         }
     }
 
+
+
     private void intakeBallControl(){
         cIntakeLeft = cCoDriverXbox.getLeftBumper();
         cIntakeRight = cCoDriverXbox.getRightBumper();

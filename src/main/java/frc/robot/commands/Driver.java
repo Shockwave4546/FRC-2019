@@ -31,6 +31,8 @@ public class Driver {
     private double cDriveRightX;
     //private double cDriveRightY;
     private boolean cDriveAButton;
+    private boolean cDriveARelease;
+    private boolean cDriveAPress;
     private boolean cDriveBButton;
     private boolean cDriveXButton;
     private boolean cDriveYButton;
@@ -83,7 +85,7 @@ public class Driver {
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
         //colorsensor = new colorSensor(I2C.Port.kOnboard);
         climbMode = false;
-        BallControl(2);
+        //BallControl(2);
         ClimbControl(2);
         Climb2Control(2);
         //sClimbEncoder.resetEncoder();
@@ -164,10 +166,17 @@ public class Driver {
     }
     private void intakeToggle() {
         cDriveAButton = cDriveXbox.getAbutton();
+        cDriveAPress = cDriveXbox.getAPress();
+        cDriveARelease = cDriveXbox.getARelease();
         cDriveBButton = cDriveXbox.getBbutton();
-        if((cDriveAButton == true)&&(cDriveBButton == false)){
+        /*if((cDriveAButton == true)&&(cDriveBButton == false)){
             toggleIntake = true;
         }else if((cDriveAButton == false)&&(cDriveBButton == true)){
+            toggleIntake = false;
+        }*/
+        if(cDriveAPress == true && toggleIntake == false){
+            toggleIntake = true;
+        }else if(cDriveAPress == true && toggleIntake == true){
             toggleIntake = false;
         }
         if(toggleIntake == true){
