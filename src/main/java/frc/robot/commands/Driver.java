@@ -33,8 +33,8 @@ public class Driver {
     //private boolean cDriveAButton;
     private boolean cDriveAPress;
     //private boolean cDriveBButton;
-    private boolean cDriveXButton;
-    private boolean cDriveYButton;
+    //private boolean cDriveXButton;
+    //private boolean cDriveYButton;
     private boolean cDriveYPress;
     //private boolean cDriveStartButton;
     private boolean cDriveStartPressed;
@@ -138,8 +138,8 @@ public class Driver {
         //cDriveAButton = cDriveXbox.getAbutton();
         cDriveAPress = cDriveXbox.getAPress();
         //cDriveBButton = cDriveXbox.getBbutton();
-        cDriveXButton = cDriveXbox.getXbutton();
-        cDriveYButton = cDriveXbox.getYbutton();
+        //cDriveXButton = cDriveXbox.getXbutton();
+        //cDriveYButton = cDriveXbox.getYbutton();
         cDriveYPress = cDriveXbox.getYPress();
         if(cDriveAPress == true && toggleIntake == false){
             toggleClimb = true;
