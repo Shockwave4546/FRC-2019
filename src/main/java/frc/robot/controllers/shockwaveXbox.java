@@ -20,9 +20,9 @@ public class shockwaveXbox {
 
     private boolean Abutton;
     private boolean Apress;
-    private boolean Arelease;
     private boolean Bbutton;
     private boolean Ybutton;
+    private boolean Ypress;
     private boolean Xbutton;
     // private DPadButton dpad;
     private double leftTrigger;
@@ -30,6 +30,7 @@ public class shockwaveXbox {
 
     private boolean backButton;
     private boolean startButton;
+    private boolean startPress;
 
 
     public shockwaveXbox(final int port) {
@@ -137,10 +138,6 @@ public class shockwaveXbox {
         Apress = cXbox.getAButtonPressed();
         return Apress;
     }
-    public boolean getARelease() {
-        Arelease = cXbox.getAButtonPressed();
-        return Apress;
-    }
 
     public boolean getBbutton() {
         Bbutton = cXbox.getBButton();
@@ -151,6 +148,10 @@ public class shockwaveXbox {
         Ybutton = cXbox.getYButton();
         return Ybutton;
     }
+    public boolean getYPress() {
+        Ypress = cXbox.getYButtonPressed();
+        return Ypress;
+    }
 
     public boolean getXbutton() {
         Xbutton = cXbox.getXButton();
@@ -160,6 +161,10 @@ public class shockwaveXbox {
     public boolean getStartButton() {
         startButton = cXbox.getStartButton();
         return startButton;
+    }
+    public boolean getStartPressed() {
+        startPress = cXbox.getStartButtonPressed();
+        return startPress;
     }
 
     public boolean getBackButton() {

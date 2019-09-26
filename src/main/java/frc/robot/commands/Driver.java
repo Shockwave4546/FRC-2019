@@ -30,14 +30,15 @@ public class Driver {
     private double cDriveLeftY;
     private double cDriveRightX;
     //private double cDriveRightY;
-    private boolean cDriveAButton;
-    private boolean cDriveARelease;
+    //private boolean cDriveAButton;
     private boolean cDriveAPress;
-    private boolean cDriveBButton;
+    //private boolean cDriveBButton;
     private boolean cDriveXButton;
     private boolean cDriveYButton;
-    private boolean cDriveStartButton;
-    private boolean cDriveBackButton;
+    private boolean cDriveYPress;
+    //private boolean cDriveStartButton;
+    private boolean cDriveStartPressed;
+    //private boolean cDriveBackButton;
     private boolean cDriveLeftBumper;
     //private shockwaveEncoder sClimbEncoder;
     //private double sClimbEncoderCount;
@@ -134,15 +135,22 @@ public class Driver {
         } else {
             kClimbPivot.rotateMotor((cDriveRightY) * -1);
         }*/
-        cDriveAButton = cDriveXbox.getAbutton();
-        cDriveBButton = cDriveXbox.getBbutton();
+        //cDriveAButton = cDriveXbox.getAbutton();
+        cDriveAPress = cDriveXbox.getAPress();
+        //cDriveBButton = cDriveXbox.getBbutton();
         cDriveXButton = cDriveXbox.getXbutton();
         cDriveYButton = cDriveXbox.getYbutton();
-        if((cDriveAButton == true)&&(cDriveBButton == false)){
+        cDriveYPress = cDriveXbox.getYPress();
+        if(cDriveAPress == true && toggleIntake == false){
+            toggleClimb = true;
+        }else if(cDriveAPress == true && toggleIntake == true){
+            toggleClimb = false;
+        }
+        /*if((cDriveAButton == true)&&(cDriveBButton == false)){
             toggleClimb = true;
         }else if((cDriveAButton == false)&&(cDriveBButton == true)){
             toggleClimb = false;
-        }
+        }*/
         if(toggleClimb == true){
             ClimbControl(1);
         }else if(toggleClimb == false){
@@ -150,11 +158,16 @@ public class Driver {
         }else{
             ClimbControl(2);
         }
-        if((cDriveXButton == true)&&(cDriveYButton == false)){  
+        if(cDriveYPress == true && toggleClimb2 == false){
+            toggleClimb2 = true;
+        }else if(cDriveYPress == true && toggleClimb2 == true){
+            toggleClimb2 = false;
+        }
+        /*if((cDriveXButton == true)&&(cDriveYButton == false)){  
             toggleClimb2 = true;
         }else if((cDriveXButton == false)&&(cDriveYButton == true)){
             toggleClimb2 = false;
-        }
+        }*/
         if(toggleClimb2 == true){
             Climb2Control(1);
         }else if(toggleClimb2 == false){
@@ -165,10 +178,9 @@ public class Driver {
         
     }
     private void intakeToggle() {
-        cDriveAButton = cDriveXbox.getAbutton();
+        //cDriveAButton = cDriveXbox.getAbutton();
         cDriveAPress = cDriveXbox.getAPress();
-        cDriveARelease = cDriveXbox.getARelease();
-        cDriveBButton = cDriveXbox.getBbutton();
+        //cDriveBButton = cDriveXbox.getBbutton();
         /*if((cDriveAButton == true)&&(cDriveBButton == false)){
             toggleIntake = true;
         }else if((cDriveAButton == false)&&(cDriveBButton == true)){
@@ -188,13 +200,19 @@ public class Driver {
         }
     }
     private void climbToggle(){
-        cDriveStartButton = cDriveXbox.getStartButton();
-        cDriveBackButton = cDriveXbox.getBackButton();
-        if((cDriveStartButton == true)&&(cDriveBackButton == false)){
+        //cDriveStartButton = cDriveXbox.getStartButton();
+        //cDriveBackButton = cDriveXbox.getBackButton();
+        cDriveStartPressed = cDriveXbox.getStartPressed();
+        if(cDriveStartPressed == true && climbMode == false){
+            climbMode = true;
+        }else if(cDriveStartPressed == true && climbMode == true){
+            climbMode = false;
+        }
+        /*if((cDriveStartButton == true)&&(cDriveBackButton == false)){
             climbMode = true;
         }else if((cDriveStartButton == false)&&(cDriveBackButton == true)){
             climbMode = false;
-        }
+        }*/
     }
 /*
     public void IMUReset() {
