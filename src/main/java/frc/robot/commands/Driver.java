@@ -141,9 +141,9 @@ public class Driver {
         //cDriveXButton = cDriveXbox.getXbutton();
         //cDriveYButton = cDriveXbox.getYbutton();
         cDriveYPress = cDriveXbox.getYPress();
-        if(cDriveAPress == true && toggleIntake == false){
+        if(cDriveAPress == true && toggleClimb == false){
             toggleClimb = true;
-        }else if(cDriveAPress == true && toggleIntake == true){
+        }else if(cDriveAPress == true && toggleClimb == true){
             toggleClimb = false;
         }
         /*if((cDriveAButton == true)&&(cDriveBButton == false)){

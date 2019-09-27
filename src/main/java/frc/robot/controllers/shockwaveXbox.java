@@ -21,6 +21,7 @@ public class shockwaveXbox {
     private boolean Abutton;
     private boolean Apress;
     private boolean Bbutton;
+    private boolean Bpress;
     private boolean Ybutton;
     private boolean Ypress;
     private boolean Xbutton;
@@ -142,6 +143,10 @@ public class shockwaveXbox {
     public boolean getBbutton() {
         Bbutton = cXbox.getBButton();
         return Bbutton;
+    }
+    public boolean getBPress() {
+        Bpress = cXbox.getBButtonPressed();
+        return Bpress;
     }
 
     public boolean getYbutton() {
