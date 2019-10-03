@@ -14,19 +14,21 @@ public class coDriver{
     private victorMotor kIntakeRight;
     private victorMotor kLinearSlide;
     private shockwaveXbox cCoDriverXbox;
-    private shockwaveEncoder sSlideEncoder;
+    //private shockwaveEncoder sSlideEncoder;
     private boolean cIntakeLeft;
     private boolean cIntakeRight;
     private double cLinearSlide;
     private boolean cDriveYButton;
-    private String climbposstr;
-   // private int climbposint;
-    private int sSlideEncoderCount;
+    //private String climbposstr;
+    //private int climbposint;
+    //private int sSlideEncoderCount;
+    //private boolean toggleHatch = false;
+
     public coDriver(){
         kIntakeLeft = new victorMotor(RobotMap.LeftIntakePort, RobotMap.LeftIntakePos, RobotMap.LeftIntakeNeg);
         kIntakeRight = new victorMotor(RobotMap.RightIntakePort, RobotMap.RightIntakePos, RobotMap.RightIntakeNeg);
         kLinearSlide = new victorMotor(RobotMap.LinearSlidePort, RobotMap.LinearSlidePos, RobotMap.LinearSlideNeg);
-        sSlideEncoder = new shockwaveEncoder(RobotMap.sSlideEncoder1, RobotMap.sSlideEncoder2);
+       // sSlideEncoder = new shockwaveEncoder(RobotMap.sSlideEncoder1, RobotMap.sSlideEncoder2);
         cCoDriverXbox = new shockwaveXbox(RobotMap.XboxCoDriver);
     }
 
@@ -36,7 +38,7 @@ public class coDriver{
         }else if(mode == 0){
             Robot.pneumatics.HatchIntake();
         }else{
-            Robot.pneumatics.HatchOff();
+          Robot.pneumatics.HatchOff();
         }
     }
 
@@ -72,16 +74,16 @@ public class coDriver{
             HatchControl(0);
         }else if(cDriveYButton == false){
             HatchControl(1);
-        }else{
-            HatchControl(2);
-        }
+        }//else{
+           // HatchControl(2);
+        //}
     }
 
     public void coDrive(){
-        climbposstr = "Ground";
-        Dashboard.getInstance().putString(false, "Slide Position", climbposstr);
-        sSlideEncoderCount = sSlideEncoder.getCount();
-        Dashboard.getInstance().putNumber(false, "Slide Encoder Count", sSlideEncoderCount);
+        //climbposstr = "Ground";
+        //Dashboard.getInstance().putString(false, "Slide Position", climbposstr);
+        //sSlideEncoderCount = sSlideEncoder.getCount();
+        //Dashboard.getInstance().putNumber(false, "Slide Encoder Count", sSlideEncoderCount);
         intakeBallControl();
         intakeHatchControl();
         slideControl();

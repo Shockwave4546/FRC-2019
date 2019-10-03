@@ -86,7 +86,7 @@ public class Driver {
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
         //colorsensor = new colorSensor(I2C.Port.kOnboard);
         climbMode = false;
-        //BallControl(2);
+        BallControl(2);
         ClimbControl(2);
         Climb2Control(2);
         //sClimbEncoder.resetEncoder();
@@ -192,9 +192,9 @@ public class Driver {
             toggleIntake = false;
         }
         if(toggleIntake == true){
-            BallControl(1);
-        }else if(toggleIntake == false){
             BallControl(0);
+        }else if(toggleIntake == false){
+            BallControl(1);
         }else{
             BallControl(2);
         }
