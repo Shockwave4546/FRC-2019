@@ -8,26 +8,33 @@ public class shockwaveXbox {
     private double defaultDeadzone = .2;
     private double LeftY;
     private double deadzoneLeftY;
+    
     private double LeftX;
     private double deadzoneLeftX;
+
     private double RightY;
     private double deadzoneRightY;
+
     private double RightX;
     private double deadzoneRightX;
 
     private boolean leftBumper;
     private boolean rightBumper;
 
-    private boolean Abutton;
-    private boolean Apress;
-    private boolean Bbutton;
-    private boolean Bpress;
-    private boolean Ybutton;
-    private boolean Ypress;
-    private boolean Xbutton;
-    // private DPadButton dpad;
     private double leftTrigger;
     private double rightTrigger;
+
+    private boolean Abutton;
+    private boolean Apress;
+
+    private boolean Bbutton;
+    private boolean Bpress;
+
+    private boolean Ybutton;
+    private boolean Ypress;
+
+    private boolean Xbutton;
+    // private DPadButton dpad;
 
     private boolean backButton;
     private boolean startButton;
