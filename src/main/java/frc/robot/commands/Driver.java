@@ -23,9 +23,8 @@ public class Driver {
     //public static double angle = 0;
     private sparkMotor kLeftDrive;
     private sparkMotor kRightDrive;
-    //private victorMotor kLeftClimbDrive;
-    //private victorMotor kRightClimbDrive;
-    //private victorMotor kClimbPivot;
+    private victorMotor kLeftClimbDrive;
+    private victorMotor kRightClimbDrive;
     private shockwaveXbox cDriveXbox;
     private double cDriveLeftY;
     private double cDriveRightX;
@@ -105,8 +104,9 @@ public class Driver {
             kRightDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
         }
     }
+
     private void MAXIMUM_OVERDRIVE(){
-        cDriveLeftBumper = cDriveXbox.getLeftBumper();
+        cDriveLeftBumper = cDriveXbox.getLeftBumper(0);
         if(cDriveLeftBumper == true){
             toggleOverdrive = true;
             kLeftDrive.setMotorSpeeds(1, 1);
@@ -118,11 +118,9 @@ public class Driver {
         }
         Dashboard.getInstance().putBoolean(false, "Maximum Overdrive", toggleOverdrive);
     }
+    
     private void climbmodeControl(){
-        /*cDriveLeftY = cDriveXbox.getLeftY();
-        cDriveRightY = cDriveXbox.getRightY();
-        sClimbEncoderCount = sClimbEncoder.getCount();
-        Dashboard.getInstance().putNumber(false, "ClimbPivot Encoder Count", sClimbEncoderCount);
+        cDriveLeftY = cDriveXbox.getLeftY();
         if (cDriveLeftY == 0) {
             kLeftClimbDrive.rotateMotor(0);
             kRightClimbDrive.rotateMotor(0);
@@ -130,27 +128,14 @@ public class Driver {
             kLeftClimbDrive.rotateMotor((cDriveLeftY) * -1);
             kRightClimbDrive.rotateMotor((cDriveLeftY) * -1);
         }
-        if (cDriveRightY == 0) {
-            kClimbPivot.rotateMotor(0);
-        } else {
-            kClimbPivot.rotateMotor((cDriveRightY) * -1);
-        }*/
-        //cDriveAButton = cDriveXbox.getAbutton();
-        cDriveAPress = cDriveXbox.getAPress();
-        //cDriveBButton = cDriveXbox.getBbutton();
-        //cDriveXButton = cDriveXbox.getXbutton();
-        //cDriveYButton = cDriveXbox.getYbutton();
-        cDriveYPress = cDriveXbox.getYPress();
+
+        cDriveAPress = cDriveXbox.getAbutton(1);
+        cDriveYPress = cDriveXbox.getYbutton(1);
         if(cDriveAPress == true && toggleClimb == false){
             toggleClimb = true;
         }else if(cDriveAPress == true && toggleClimb == true){
             toggleClimb = false;
         }
-        /*if((cDriveAButton == true)&&(cDriveBButton == false)){
-            toggleClimb = true;
-        }else if((cDriveAButton == false)&&(cDriveBButton == true)){
-            toggleClimb = false;
-        }*/
         if(toggleClimb == true){
             ClimbControl(1);
         }else if(toggleClimb == false){
@@ -163,11 +148,6 @@ public class Driver {
         }else if(cDriveYPress == true && toggleClimb2 == true){
             toggleClimb2 = false;
         }
-        /*if((cDriveXButton == true)&&(cDriveYButton == false)){  
-            toggleClimb2 = true;
-        }else if((cDriveXButton == false)&&(cDriveYButton == true)){
-            toggleClimb2 = false;
-        }*/
         if(toggleClimb2 == true){
             Climb2Control(1);
         }else if(toggleClimb2 == false){
@@ -178,14 +158,7 @@ public class Driver {
         
     }
     private void intakeToggle() {
-        //cDriveAButton = cDriveXbox.getAbutton();
-        cDriveAPress = cDriveXbox.getAPress();
-        //cDriveBButton = cDriveXbox.getBbutton();
-        /*if((cDriveAButton == true)&&(cDriveBButton == false)){
-            toggleIntake = true;
-        }else if((cDriveAButton == false)&&(cDriveBButton == true)){
-            toggleIntake = false;
-        }*/
+        cDriveAPress = cDriveXbox.getAbutton(1);
         if(cDriveAPress == true && toggleIntake == false){
             toggleIntake = true;
         }else if(cDriveAPress == true && toggleIntake == true){
@@ -200,19 +173,12 @@ public class Driver {
         }
     }
     private void climbToggle(){
-        //cDriveStartButton = cDriveXbox.getStartButton();
-        //cDriveBackButton = cDriveXbox.getBackButton();
-        cDriveStartPressed = cDriveXbox.getStartPressed();
+        cDriveStartPressed = cDriveXbox.getStartButton(1);
         if(cDriveStartPressed == true && climbMode == false){
             climbMode = true;
         }else if(cDriveStartPressed == true && climbMode == true){
             climbMode = false;
         }
-        /*if((cDriveStartButton == true)&&(cDriveBackButton == false)){
-            climbMode = true;
-        }else if((cDriveStartButton == false)&&(cDriveBackButton == true)){
-            climbMode = false;
-        }*/
     }
 /*
     public void IMUReset() {

@@ -19,26 +19,38 @@ public class shockwaveXbox {
     private double deadzoneRightX;
 
     private boolean leftBumper;
+    private boolean leftBumperPress;
+    private boolean leftBumperRelease;
     private boolean rightBumper;
+    private boolean rightBumperPress;
+    private boolean rightBumperRelease;
 
     private double leftTrigger;
     private double rightTrigger;
 
     private boolean Abutton;
     private boolean Apress;
+    private boolean Arelease;
 
     private boolean Bbutton;
     private boolean Bpress;
+    private boolean Brelease;
 
     private boolean Ybutton;
     private boolean Ypress;
+    private boolean Yrelease;
 
     private boolean Xbutton;
+    private boolean Xpress;
+    private boolean Xrelease;
     // private DPadButton dpad;
 
     private boolean backButton;
+    private boolean backPress;
+    private boolean backRelease;
     private boolean startButton;
     private boolean startPress;
+    private boolean startRelease;
 
 
     public shockwaveXbox(final int port) {
@@ -50,13 +62,12 @@ public class shockwaveXbox {
 
     }
 
-    public shockwaveXbox(final int port, final double dead1, final double dead2, final double dead3,
-            final double dead4) {
+    public shockwaveXbox(final int port, final double deadzone) {
         cXbox = new XboxController(port);
-        deadzoneLeftY = dead1;
-        deadzoneLeftX = dead2;
-        deadzoneRightY = dead3;
-        deadzoneRightX = dead4;
+        deadzoneLeftY = deadzone;
+        deadzoneLeftX = deadzone;
+        deadzoneRightY = deadzone;
+        deadzoneRightX = deadzone;
     }
 
     public enum DPadDirection {
@@ -91,6 +102,7 @@ public class shockwaveXbox {
 
     }
 
+    //-----Left Y Axis-----
     public double getLeftY() {
         LeftY = cXbox.getY(Hand.kLeft);
         if (-deadzoneLeftY <= LeftY && LeftY <= deadzoneLeftY) {
@@ -100,6 +112,7 @@ public class shockwaveXbox {
         }
     }
 
+    //-----Left X Axis-----
     public double getLeftX() {
         LeftX = cXbox.getX(Hand.kLeft);
         if (-deadzoneLeftX <= LeftX && LeftX <= deadzoneLeftX) {
@@ -109,6 +122,7 @@ public class shockwaveXbox {
         }
     }
 
+    //-----Right Y Axis-----
     public double getRightY() {
         RightY = cXbox.getY(Hand.kRight);
         if (-deadzoneRightY <= RightY && RightY <= deadzoneRightY) {
@@ -118,6 +132,7 @@ public class shockwaveXbox {
         }
     }
 
+    //-----Right X Axis-----
     public double getRightX() {
         RightX = cXbox.getX(Hand.kRight);
         if (-deadzoneRightX <= RightX && RightX <= deadzoneRightX) {
@@ -126,71 +141,152 @@ public class shockwaveXbox {
             return RightX;
         }
     }
-
-
-    public boolean getLeftBumper() {
-        leftBumper = cXbox.getBumper(Hand.kLeft);
-        return leftBumper;
-    }
-
-    public boolean getRightBumper() {
-        rightBumper = cXbox.getBumper(Hand.kRight);
-        return rightBumper;
-    }
-
-    public boolean getAbutton() {
-        Abutton = cXbox.getAButton();
-        return Abutton;
-    }
-    public boolean getAPress() {
-        Apress = cXbox.getAButtonPressed();
-        return Apress;
-    }
-
-    public boolean getBbutton() {
-        Bbutton = cXbox.getBButton();
-        return Bbutton;
-    }
-    public boolean getBPress() {
-        Bpress = cXbox.getBButtonPressed();
-        return Bpress;
-    }
-
-    public boolean getYbutton() {
-        Ybutton = cXbox.getYButton();
-        return Ybutton;
-    }
-    public boolean getYPress() {
-        Ypress = cXbox.getYButtonPressed();
-        return Ypress;
-    }
-
-    public boolean getXbutton() {
-        Xbutton = cXbox.getXButton();
-        return Xbutton;
-    }
-
-    public boolean getStartButton() {
-        startButton = cXbox.getStartButton();
-        return startButton;
-    }
-    public boolean getStartPressed() {
-        startPress = cXbox.getStartButtonPressed();
-        return startPress;
-    }
-
-    public boolean getBackButton() {
-        backButton = cXbox.getBackButton();
-        return backButton;
-    }
-
+    
+    //-----Left Trigger-----
     public double getLeftTrigger() {
         leftTrigger = cXbox.getTriggerAxis(Hand.kLeft);
         return leftTrigger;
     }
 
+    //-----Right Trigger-----
     public double getRightTrigger() {
         rightTrigger = cXbox.getTriggerAxis(Hand.kRight);
         return rightTrigger;
+    }
+
+    //-----Left Bumper-----
+    public boolean getLeftBumper(int choice) {
+        if(choice == 1){
+            // Button Press - 1
+            leftBumperPress = cXbox.getBumperPressed(Hand.kLeft);
+            return leftBumperPress;
+        }else if(choice == 2){
+            // Button Release - 2
+            leftBumperRelease = cXbox.getBumperReleased(Hand.kLeft);
+            return leftBumperRelease;
+        }else{
+            // Button Value - else
+            leftBumper = cXbox.getBumper(Hand.kLeft);
+            return leftBumper;
+        }
+    }
+
+    //-----Right Bumper-----
+    public boolean getRightBumper(int choice) {
+        if(choice == 1){
+            // Button Press - 1
+            rightBumperPress = cXbox.getBumperPressed(Hand.kRight);
+            return rightBumperPress;
+        }else if(choice == 2){
+            // Button Release - 2
+            rightBumperRelease = cXbox.getBumperReleased(Hand.kRight);
+            return rightBumperRelease;
+        }else{
+            // Button Value - else
+            rightBumper = cXbox.getBumper(Hand.kRight);
+            return rightBumper;
+        }
+    }
+
+    //-----A Button-----
+    public boolean getAbutton(int choice) {
+        if(choice == 1){
+            // Button Press - 1
+            Apress = cXbox.getAButtonPressed();
+            return Apress;
+        }else if(choice == 2){
+            // Button Release - 2
+            Arelease = cXbox.getAButtonReleased();
+            return Arelease;
+        }else{
+            // Button Value - else
+            Abutton = cXbox.getAButton();
+            return Abutton;
+        }
+    }
+
+    //-----B Button-----
+    public boolean getBbutton(int choice) {
+        if(choice == 1){
+            // Button Press - 1
+            Bpress = cXbox.getBButtonPressed();
+            return Bpress;
+        }else if(choice == 2){
+            // Button Release - 2
+            Brelease = cXbox.getBButtonReleased();
+            return Brelease;
+        }else{
+            // Button Value - else
+            Bbutton = cXbox.getBButton();
+            return Bbutton;
+        }
+    }
+
+    //-----Y Button-----
+    public boolean getYbutton(int choice) {
+        if(choice == 1){
+            // Button Press - 1
+            Ypress = cXbox.getYButtonPressed();
+            return Ypress;
+        }else if(choice == 2){
+            // Button Release - 2 
+            Yrelease = cXbox.getYButtonReleased();
+            return Yrelease;
+        }else{
+            // Button Value - else
+            Ybutton = cXbox.getYButton();
+            return Ybutton;
+        }
+    }
+
+    //-----X Button-----
+    public boolean getXbutton(int choice) {
+        if(choice == 1){
+            // Button Press - 1
+            Xpress = cXbox.getXButtonPressed();
+            return Xpress;
+        }else if(choice == 2){
+            // Button Release - 2
+            Xrelease = cXbox.getXButtonReleased();
+            return Xrelease;
+        }else{
+            // Button Value - else
+            Xbutton = cXbox.getXButton();
+            return Xbutton;
+        }
+    }
+
+    //-----Start Button-----
+    public boolean getStartButton(int choice) {
+        if(choice == 2){
+            // Button Press - else
+            startPress = cXbox.getStartButtonPressed();
+            return startPress;
+        }else if(choice == 3){
+            // Button Release - else
+            startRelease = cXbox.getStartButtonReleased();
+            return startRelease;
+        }else{
+            // Button Value - else
+            startButton = cXbox.getStartButton();
+            return startButton;
+        }
+    }
+
+    //-----Back Button-----
+    public boolean getBackButton(int choice) {
+        if(choice == 2){
+            // Button Press - 1
+            backPress = cXbox.getBackButtonPressed();
+            return backPress;
+        }else if(choice == 3){
+            // Button Release - 2
+            backRelease = cXbox.getBackButtonReleased();
+            return backRelease;
+        }else{
+            // Button Value - else
+            backButton = cXbox.getBackButton();
+            return backButton;
+        }
     }
 }

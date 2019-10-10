@@ -45,8 +45,8 @@ public class coDriver{
 
 
     private void intakeBallControl(){
-        cIntakeLeft = cCoDriverXbox.getLeftBumper();
-        cIntakeRight = cCoDriverXbox.getRightBumper();
+        cIntakeLeft = cCoDriverXbox.getLeftBumper(0);
+        cIntakeRight = cCoDriverXbox.getRightBumper(0);
         if(cIntakeLeft == true){
             kIntakeLeft.rotateClockwise(1);
             kIntakeRight.rotateCounterClockwise(1);
@@ -69,7 +69,7 @@ public class coDriver{
     }
 
     private void intakeHatchControl(){
-        cDriveYButton = cCoDriverXbox.getYbutton();
+        cDriveYButton = cCoDriverXbox.getYbutton(0);
         if(cDriveYButton == true){
             HatchControl(0);
         }else if(cDriveYButton == false){
