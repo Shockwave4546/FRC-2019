@@ -60,6 +60,7 @@ public class Driver {
         }else{
             kLeftDrive.rotateMotor(cDriveLeftY + cDriveRightX);
             kRightDrive.rotateMotor((cDriveLeftY - cDriveRightX) * -1);
+            kMiddleDrive.rotateMotor(cDriveLeftX);
         }
     }
 
