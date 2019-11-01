@@ -45,8 +45,8 @@ public class Driver {
     private boolean climbMode;
     private boolean toggleIntake;
     private double drivemodetoggle;
-    private boolean toggleClimb;
-    private boolean toggleClimb2;
+    private boolean toggleClimb = false;
+    private boolean toggleClimb2 = false;
     private boolean toggleOverdrive;
     //public static colorSensor colorsensor;
     public void BallControl(final int mode){
