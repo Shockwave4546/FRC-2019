@@ -86,9 +86,9 @@ public class Driver {
         cDriveXbox = new shockwaveXbox(RobotMap.XboxDriver);
         //colorsensor = new colorSensor(I2C.Port.kOnboard);
         climbMode = false;
-        BallControl(2);
-        ClimbControl(2);
-        Climb2Control(2);
+        BallControl(0);
+        ClimbControl(0);
+        Climb2Control(0);
         //sClimbEncoder.resetEncoder();
     }
 
