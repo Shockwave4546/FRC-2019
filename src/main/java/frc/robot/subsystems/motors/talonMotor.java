@@ -27,9 +27,9 @@ public class talonMotor extends Motor{
     
     public void rotateMotor(final double rotate){
         if(rotate > 0){
-            kMotor.set(rotate * mPos);
+            kMotor.set(rotate);
         }else{
-            kMotor.set(rotate * mNeg);
+            kMotor.set(rotate);
         }
     }
 }
