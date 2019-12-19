@@ -6,13 +6,16 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.motors.talonMotor;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.*;
+import java.util.Map;
 
 public class Robot extends TimedRobot {
 
 
   //public static Timer timer;
   PowerDistributionPanel pdp = new PowerDistributionPanel();
-  SendableChooser rotateChooser = new SendableChooser<>();
+  //SendableChooser rotateChooser = new SendableChooser<>();
   SendableChooser motorChooser = new SendableChooser<>();
   public static double drivePos;
   public static double driveNeg;
@@ -27,10 +30,15 @@ public class Robot extends TimedRobot {
   public static talonMotor talon3 = new talonMotor(3, 0, 0);
   public static talonMotor talon4 = new talonMotor(4, 0, 0);
 
+  public ShuffleboardTab tab = Shuffleboard.getTab("Smartdashboard");
+  public NetworkTableEntry speed;
+
+  //public ShuffleboardTab tab = Shuffleboard.getTab("Smartdashboard");
+
   @Override
   public void robotInit() {
     motor = talon1;
-    
+    /*
     rotateChooser.addDefault("0", 0.0);
     rotateChooser.addObject("-1",-1.0);
     rotateChooser.addObject("-0.75",-0.75);
@@ -40,9 +48,9 @@ public class Robot extends TimedRobot {
     rotateChooser.addObject("0.5",0.5);
     rotateChooser.addObject("0.75",0.75);
     rotateChooser.addObject("1",1.0);
-
+    
     SmartDashboard.putData("Rotate Speed",rotateChooser);
-
+    */
     motorChooser.addDefault("0", 0);
     motorChooser.addObject("1", 1);
     motorChooser.addObject("2", 2);
@@ -52,13 +60,17 @@ public class Robot extends TimedRobot {
     
 
     SmartDashboard.putData("Motor Select", motorChooser);
+
+   
+    speed = tab.add("Rotate Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", -1, "max", 1)).getEntry();
+
   }
 
   @Override
   public void robotPeriodic() {
     int motorPort = (int) motorChooser.getSelected();
 
-    rotation = (double) rotateChooser.getSelected();
+    //rotation = (double) rotateChooser.getSelected();
 
 
     switch(motorPort){
@@ -87,8 +99,7 @@ public class Robot extends TimedRobot {
       break;
     }
 
-
-    motor.rotateMotor(rotation);
+    SmartDashboard.putNumber("Current", pdp.getTotalCurrent());
   }
 
   @Override
@@ -122,7 +133,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-
+    motor.rotateMotor(speed.getDouble(0.0));
   }
 
   @Override
